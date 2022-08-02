@@ -1,4 +1,4 @@
-﻿// <copyright file="ResultContainer.cs" company="Den Delimarsky">
+﻿// <copyright file="CoreBase.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -7,9 +7,12 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
 {
-    public abstract class ResultContainer
+    public abstract class CoreBase
     {
-        public string Id { get; set; }
-        public int ResultCode { get; set; }
+        public string CorePath { get; set; }
+        public bool IsEquipped { get; set; }
+        public string CoreId { get; set; }
+        public string CoreType { get; set; }
+        public APIFormattedDate? FirstAcquiredDate { get; set; }
     }
 }

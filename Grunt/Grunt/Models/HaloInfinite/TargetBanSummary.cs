@@ -10,7 +10,7 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
-    public class TargetBanSummary : ResultContainer
+    public class TargetBanSummary : ResultContainerBase
     {
         public BanResult Result { get; set; }
     }

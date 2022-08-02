@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
-    public class FavoriteAsset : Asset
+    public class FavoriteAsset : AssetBase
     {
         //TODO: Figure out what the type is here.
         public object Links { get; set; }

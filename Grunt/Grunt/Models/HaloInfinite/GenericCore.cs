@@ -7,7 +7,7 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
-    public class GenericCore : HaloInfinite.Foundation.Core
+    public class GenericCore : HaloInfinite.Foundation.CoreBase
     {
     }
 }

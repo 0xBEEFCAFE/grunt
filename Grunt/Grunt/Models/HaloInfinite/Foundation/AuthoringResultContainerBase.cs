@@ -1,4 +1,4 @@
-﻿// <copyright file="AuthoringResultContainer.cs" company="Den Delimarsky">
+﻿// <copyright file="AuthoringResultContainerBase.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -7,7 +7,7 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
 {
-    public abstract class AuthoringResultContainer
+    public abstract class AuthoringResultContainerBase
     {
         public int EstimatedTotal { get; set; }
         public int Start { get; set; }

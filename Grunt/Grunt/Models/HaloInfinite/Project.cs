@@ -10,7 +10,7 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
-    public class Project : Asset
+    public class Project : AssetBase
     {
         public CustomProjectData CustomData { get; set; }
         public AssetLink[] MapLinks { get; set; }

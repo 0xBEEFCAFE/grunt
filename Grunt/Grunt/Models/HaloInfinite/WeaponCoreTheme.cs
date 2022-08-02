@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
-    public class WeaponCoreTheme : Foundation.Theme
+    public class WeaponCoreTheme : Foundation.ThemeBase
     {
         public string CoatingPath { get; set; }
         public List<Emblem> Emblems { get; set; }

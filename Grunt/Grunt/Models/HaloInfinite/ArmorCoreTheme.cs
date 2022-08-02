@@ -11,7 +11,7 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
-    public class ArmorCoreTheme : Theme
+    public class ArmorCoreTheme : ThemeBase
     {
         public string CoatingPath { get; set; }
         public string GlovePath { get; set; }

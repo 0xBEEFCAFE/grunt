@@ -8,7 +8,7 @@
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
-    public class AiCoreTheme : Models.HaloInfinite.Foundation.Theme
+    public class AiCoreTheme : Models.HaloInfinite.Foundation.ThemeBase
     {
         public string ModelPath { get; set; }
         public string ColorPath { get; set; }

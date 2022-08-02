@@ -11,7 +11,7 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
-    public class AuthoringAssetContainer : AuthoringResultContainer
+    public class AuthoringAssetContainer : AuthoringResultContainerBase
     {
         public List<AuthoringAsset> Results { get; set; }
     }

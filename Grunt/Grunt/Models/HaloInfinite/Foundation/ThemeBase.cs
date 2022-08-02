@@ -1,4 +1,4 @@
-﻿// <copyright file="Theme.cs" company="Den Delimarsky">
+﻿// <copyright file="ThemeBase.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -7,7 +7,7 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
 {
-    public abstract class Theme
+    public abstract class ThemeBase
     {
         public APIFormattedDate? FirstModifiedDateUtc { get; set; }
         public APIFormattedDate? LastModifiedDateUtc { get; set; }

@@ -13,7 +13,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     /// AI Core available in Halo Infinite.
     /// </summary>
     [IsAutomaticallySerializable]
-    public class AiCore : Foundation.Core
+    public class AiCore : Foundation.CoreBase
     {
         /// <summary>
         /// Gets or sets a list of themes associated with an AI Core.

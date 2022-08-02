@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
-    public class VehicleCoreTheme : Foundation.Theme
+    public class VehicleCoreTheme : Foundation.ThemeBase
     {
         public string CoatingPath { get; set; }
         public string HornPath { get; set; }

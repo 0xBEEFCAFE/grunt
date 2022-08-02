@@ -2237,9 +2237,9 @@ namespace OpenSpartan.Grunt.Core
         /// <include file='../APIDocsExamples/Stats_GetChallengeDecks.xml' path='//example'/>
         /// <param name="player">The player identifier in the format "xuid(000000)"</param>
         /// <returns>An instance of PlayerDecks containing deck information if request was successful. Return value is null otherwise.</returns>
-        public async Task<HaloApiResultContainer<PlayerDecks, HaloApiErrorContainer>> StatsGetChallengeDecks(string player)
+        public async Task<HaloApiResultContainer<ChallengeDecksResponse, HaloApiErrorContainer>> StatsGetChallengeDecks(string player)
         {
-            return await this.ExecuteAPIRequest<PlayerDecks>(
+            return await this.ExecuteAPIRequest<ChallengeDecksResponse>(
                 $"https://{HaloCoreEndpoints.StatsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/players/{player}/decks",
                 HttpMethod.Get,
                 true,

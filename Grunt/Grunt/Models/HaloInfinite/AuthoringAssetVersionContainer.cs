@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
-    public class AuthoringAssetVersionContainer : AuthoringResultContainer
+    public class AuthoringAssetVersionContainer : AuthoringResultContainerBase
     {
         public List<AuthoringAssetVersion> Results { get; set; }
     }

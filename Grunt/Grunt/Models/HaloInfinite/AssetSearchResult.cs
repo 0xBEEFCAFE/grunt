@@ -10,7 +10,7 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
-    public class AssetSearchResult : Asset
+    public class AssetSearchResult : AssetBase
     {
         public string Name { get; set; }
         public string[] Tags { get; set; }
