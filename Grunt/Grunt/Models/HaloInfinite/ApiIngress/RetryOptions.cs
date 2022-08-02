@@ -1,4 +1,4 @@
-﻿// <copyright file="ApiRetryPolicy.cs" company="Den Delimarsky">
+﻿// <copyright file="RetryOptions.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -7,10 +7,12 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
 {
-    public class ApiRetryPolicy
+    public class RetryOptions
     {
-        public string RetryPolicyId { get; set; }
-        public int TimeoutMs { get; set; }
-        public ApiRetryOptions RetryOptions { get; set; }
+        public int MaxRetryCount { get; set; }
+        public int RetryDelayMs { get; set; }
+        public float RetryGrowth { get; set; }
+        public int RetryJitterMs { get; set; }
+        public bool RetryIfNotFound { get; set; }
     }
 }

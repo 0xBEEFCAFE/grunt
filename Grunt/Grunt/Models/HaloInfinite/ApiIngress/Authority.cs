@@ -1,4 +1,4 @@
-﻿// <copyright file="ApiAuthority.cs" company="Den Delimarsky">
+﻿// <copyright file="Authority.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -7,7 +7,7 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
 {
-    public class ApiAuthority
+    public class Authority
     {
         public string AuthorityId { get; set; }
         public int Scheme { get; set; }

@@ -6,6 +6,7 @@
 // </copyright>
 
 using System.Collections.Generic;
+using OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
@@ -13,11 +14,17 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class SearchResultsContainer
     {
         public AssetTag[] Tags { get; set; }
+
         public int EstimatedTotal { get; set; }
+
         public int Start { get; set; }
+
         public int Count { get; set; }
+
         public int ResultCount { get; set; }
+
         public List<AssetSearchResult> Results { get; set; }
-        public Links Links { get; set; }
+
+        public Dictionary<string, OnlineUriReference>? Links { get; set; }
     }
 }

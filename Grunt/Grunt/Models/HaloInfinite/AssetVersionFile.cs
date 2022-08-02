@@ -14,6 +14,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     {
         public string Prefix { get; set; }
         public string[] FileRelativePaths { get; set; }
-        public ApiEndpoint PrefixEndpoint { get; set; }
+        public OnlineUriReference PrefixEndpoint { get; set; }
     }
 }

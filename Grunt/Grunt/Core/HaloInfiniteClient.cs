@@ -69,11 +69,14 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the list of API settings as provided by the official Halo API. This is the latest version of all available endpoints.
         /// </summary>
+        /// <remarks>
+        /// Method supports returning results in XML behind the scenes. Class names map to XML data model.
+        /// </remarks>
         /// <include file='../APIDocsExamples/GetApiSettingsContainer.xml' path='//example'/>
         /// <returns>An instance of ApiSettingsContainer if the call is successful. Otherwise, returns null.</returns>
-        public async Task<HaloApiResultContainer<ApiSettingsContainer, HaloApiErrorContainer>> GetApiSettingsContainer()
+        public async Task<HaloApiResultContainer<Models.HaloInfinite.ApiIngress.Configuration, HaloApiErrorContainer>> GetApiSettingsContainer()
         {
-            return await this.ExecuteAPIRequest<ApiSettingsContainer>(
+            return await this.ExecuteAPIRequest<Models.HaloInfinite.ApiIngress.Configuration>(
                 HaloCoreEndpoints.HaloInfiniteEndpointsEndpoint,
                 HttpMethod.Get,
                 false,
@@ -530,23 +533,6 @@ namespace OpenSpartan.Grunt.Core
                 true,
                 GlobalConstants.HALO_WAYPOINT_USER_AGENT);
         }
-
-        /// <summary>
-        /// This API does not work with GET requests and is likely used to post transactions. Additional investigation is required.
-        /// </summary>
-        /// <remarks>INACTIVE API. See <see href="https://github.com/OpenSpartan/grunt/issues/15">GitHub issue</see>.</remarks>
-        /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
-        /// <returns>Unknown.</returns>
-        private async Task<HaloApiResultContainer<string, HaloApiErrorContainer>> EconomyPurchaseStorefrontOfferingTransaction(string player)
-        {
-            return await this.ExecuteAPIRequest<string>(
-                $"https://{HaloCoreEndpoints.EconomyOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/players/{player}/storetransactions",
-                HttpMethod.Get,
-                true,
-                true,
-                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
-        }
-
 
         /// <summary>
         /// Gets information about offerings for a player in a given store.
@@ -2187,14 +2173,17 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns individual player stats for a given match.
         /// </summary>
+        /// <remarks>
+        /// Method supports returning results in XML behind the scenes. Class names map to XML data model.
+        /// </remarks>
         /// <include file='../APIDocsExamples/Skill_GetMatchPlayerResult.xml' path='//example'/>
         /// <param name="matchId">The unique match ID.</param>
         /// <param name="playerIds">Array of player IDs. Each ID string should be in the format of "xuid(XUID_VALUE)".</param>
-        /// <returns>An instance of <see cref="PlayerSkillResultContainer"/> representing player skills if the request was successful. Otherwise, returns null.</returns>
-        public async Task<HaloApiResultContainer<PlayerSkillResultContainer, HaloApiErrorContainer>> SkillGetMatchPlayerResult(string matchId, List<string> playerIds)
+        /// <returns>An instance of <see cref="MatchSkillInfo"/> representing player skills if the request was successful. Otherwise, returns null.</returns>
+        public async Task<HaloApiResultContainer<MatchSkillInfo, HaloApiErrorContainer>> SkillGetMatchPlayerResult(string matchId, List<string> playerIds)
         {
             var formattedPlayerList = string.Join(",", playerIds);
-            return await this.ExecuteAPIRequest<PlayerSkillResultContainer>(
+            return await this.ExecuteAPIRequest<MatchSkillInfo>(
                 $"https://{HaloCoreEndpoints.SkillOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/matches/{matchId}/skill?players={formattedPlayerList}",
                 HttpMethod.Get,
                 true,
@@ -2231,10 +2220,10 @@ namespace OpenSpartan.Grunt.Core
         /// <param name="targetlist">A list of targets that need to be checked. Authenticated devices can be included as "Authenticated(Device)". Individual players can be specified as "xuid(XUID_VALUE)".</param>
         /// <returns>An instance of BanSummary containing applicable ban information if request was successful. Return value is null otherwise.</returns>
         /// <remarks>In some quick tests, it seems that including Authenticated(Device) in the request results in 401 Unauthorized if called outside the game. Additional work might be required to understand how to validate the device.</remarks>
-        public async Task<HaloApiResultContainer<BanSummary, HaloApiErrorContainer>> StatsBanSummary(List<string> targetlist)
+        public async Task<HaloApiResultContainer<BansSummaryQueryResult, HaloApiErrorContainer>> StatsBanSummary(List<string> targetlist)
         {
             var formattedTargetList = string.Join(",", targetlist);
-            return await this.ExecuteAPIRequest<BanSummary>(
+            return await this.ExecuteAPIRequest<BansSummaryQueryResult>(
                 $"https://{HaloCoreEndpoints.BanProcessorOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/bansummary?auth=st&targets={formattedTargetList}",
                 HttpMethod.Get,
                 false,

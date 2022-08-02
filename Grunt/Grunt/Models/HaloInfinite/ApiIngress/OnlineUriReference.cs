@@ -1,4 +1,4 @@
-﻿// <copyright file="ApiEndpoint.cs" company="Den Delimarsky">
+﻿// <copyright file="OnlineUriReference.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -7,7 +7,7 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
 {
-    public class ApiEndpoint
+    public class OnlineUriReference
     {
         public string EndpointId { get; set; }
         public string AuthorityId { get; set; }

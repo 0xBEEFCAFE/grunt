@@ -20,7 +20,7 @@ namespace OpenSpartan.Grunt.Librarian
 
             HaloInfiniteClient client = new(string.Empty, string.Empty);
 
-            ApiSettingsContainer container = new();
+            Configuration container = new();
             // Get the API endpoint data.
             Task.Run(async () =>
             {
@@ -33,7 +33,7 @@ namespace OpenSpartan.Grunt.Librarian
 
                 foreach(var endpoint in container.Endpoints)
                 {
-                    ApiAuthority endpointAuthority = (from c in container.Authorities where string.Equals(c.Key, endpoint.Value.AuthorityId, StringComparison.InvariantCultureIgnoreCase) select c).First().Value;
+                    Authority endpointAuthority = (from c in container.Authorities where string.Equals(c.Key, endpoint.Value.AuthorityId, StringComparison.InvariantCultureIgnoreCase) select c).First().Value;
                     var endpointNamePieces = endpoint.Key.Split('_');
                     //func.Name = endpointNamePieces.Last();
 
