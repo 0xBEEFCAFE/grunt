@@ -10,7 +10,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class Player
     {
-        public string PlayerId { get; set; }
+        public Guid PlayerId { get; set; }
         public int PlayerType { get; set; }
         public object BotAttributes { get; set; }
         public int LastTeamId { get; set; }

@@ -10,9 +10,13 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class ExtractionStats
     {
         public int ExtractionConversionsCompleted { get; set; }
+
         public int ExtractionConversionsDenied { get; set; }
+
         public int ExtractionInitiationsCompleted { get; set; }
+
         public int ExtractionInitiationsDenied { get; set; }
+
         public int SuccessfulExtractions { get; set; }
     }
 }

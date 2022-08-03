@@ -12,13 +12,21 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class BombStats
     {
         public int BombCarriersKilled { get; set; }
+
         public int BombDefusals { get; set; }
+
         public int BombDefusersKilled { get; set; }
+
         public int BombDetonations { get; set; }
+
         public int BombPickUps { get; set; }
+
         public int BombPlants { get; set; }
+
         public int BombReturns { get; set; }
+
         public int KillsAsBombCarrier { get; set; }
+
         public TimeSpan TimeAsBombCarrier { get; set; }
     }
 }
