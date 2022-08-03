@@ -14,6 +14,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public IdentifierName ThemeName { get; set; }
         public IdentifierName EmblemShaderName { get; set; }
         public CommonItemData CommonData { get; set; }
-        public Configuration[] AvailableConfigurations { get; set; }
+        public InGameItemConfiguration[] AvailableConfigurations { get; set; }
     }
 }
