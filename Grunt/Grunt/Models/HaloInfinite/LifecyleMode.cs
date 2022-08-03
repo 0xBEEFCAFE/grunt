@@ -1,4 +1,4 @@
-﻿// <copyright file="MatchContainer.cs" company="Den Delimarsky">
+﻿// <copyright file="LifecyleMode.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -7,17 +7,9 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
-    [IsAutomaticallySerializable]
-    public class MatchHistoryResponse
+    public enum LifecyleMode
     {
-        public int Start { get; set; }
-
-        public int Count { get; set; }
-
-        public int ResultCount { get; set; }
-
-        public PlayerMatchHistoryRecord[] Results { get; set; }
-
-        public MatchLinks Links { get; set; }
+        Matchmade = 3,
+        Custom = 1,
     }
 }
