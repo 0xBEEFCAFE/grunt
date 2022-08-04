@@ -9,6 +9,7 @@ using System;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    [IsAutomaticallySerializable]
     public class CaptureTheFlagStats
     {
         public int FlagCaptureAssists { get; set; }

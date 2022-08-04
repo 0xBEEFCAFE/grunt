@@ -7,6 +7,7 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    [IsAutomaticallySerializable]
     public class ExtractionStats
     {
         public int ExtractionConversionsCompleted { get; set; }

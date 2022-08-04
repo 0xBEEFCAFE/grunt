@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Weapon core.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class WeaponCore : Foundation.CoreBase
     {
-        public List<WeaponCoreTheme> Themes { get; set; }
+        /// <summary>
+        /// Gets or sets the list of associated weapon core themes.
+        /// </summary>
+        public List<WeaponCoreTheme>? Themes { get; set; }
     }
 }
