@@ -1,4 +1,4 @@
-﻿// <copyright file="PlayerTeamStat.cs" company="Den Delimarsky">
+﻿// <copyright file="PlayerType.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -7,11 +7,19 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
-    [IsAutomaticallySerializable]
-    public class PlayerTeamStat
+    /// <summary>
+    /// Type of player participating in a match.
+    /// </summary>
+    public enum PlayerType
     {
-        public int TeamId { get; set; }
+        /// <summary>
+        /// Player is a human.
+        /// </summary>
+        Human = 1,
 
-        public Stats Stats { get; set; }
+        /// <summary>
+        /// Player is a bot.
+        /// </summary>
+        Bot = 2,
     }
 }

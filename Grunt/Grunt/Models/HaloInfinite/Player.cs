@@ -9,16 +9,50 @@ using System;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Represents a match player.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Player
     {
+        /// <summary>
+        /// Player Xbox Live ID (XUID).
+        /// </summary>
         public string PlayerId { get; set; }
-        public int PlayerType { get; set; }
+
+        /// <summary>
+        /// Player type
+        /// </summary>
+        public PlayerType PlayerType { get; set; }
+
+        /// <summary>
+        /// Attributes associated with the bot player. Only available if player is a bot.
+        /// </summary>
         public BotAttributes BotAttributes { get; set; }
+
+        /// <summary>
+        /// ID of the team the player was last associated with.
+        /// </summary>
         public int LastTeamId { get; set; }
-        public int Outcome { get; set; }
+
+        /// <summary>
+        /// Match outcome associated with the player.
+        /// </summary>
+        public Outcome Outcome { get; set; }
+
+        /// <summary>
+        /// Player rank within the match.
+        /// </summary>
         public int Rank { get; set; }
+
+        /// <summary>
+        /// Gets or sets participation info for the player in a match.
+        /// </summary>
         public ParticipationInfo ParticipationInfo { get; set; }
+
+        /// <summary>
+        /// Individual team stats associated with a player.
+        /// </summary>
         public PlayerTeamStat[] PlayerTeamStats { get; set; }
     }
 }
