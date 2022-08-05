@@ -38,9 +38,13 @@
 		<PackageReleaseNotes>Initial release of the OpenSpartan.Grunt package.</PackageReleaseNotes>
 		<AssemblyName>$(MSBuildProjectName)</AssemblyName>
 		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
-		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+	</ItemGroup>
 	
 	<ItemGroup>
 	  <None Remove="stylecop.json" />
