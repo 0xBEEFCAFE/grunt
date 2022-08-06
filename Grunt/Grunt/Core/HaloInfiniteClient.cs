@@ -1546,6 +1546,7 @@ namespace OpenSpartan.Grunt.Core
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
+        /// <param name="report">Instance of <see cref="AssetReport"/> containing the report for the asset.</param>
         /// <returns>If successful, returns an instance of AssetReport containing the report information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<AssetReport, HaloApiErrorContainer>> HIUGCReportAnAsset(string player, string assetType, string assetId, AssetReport report)
         {

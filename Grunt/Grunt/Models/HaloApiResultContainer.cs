@@ -16,8 +16,8 @@ namespace OpenSpartan.Grunt.Models
     {
         public HaloApiResultContainer(T result, THaloApiErrorContainer container)
         {
-            Result = result;
-            Error = container;
+            this.Result = result;
+            this.Error = container;
         }
 
         public T Result { get; set; }
