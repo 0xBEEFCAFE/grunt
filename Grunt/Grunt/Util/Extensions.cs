@@ -13,6 +13,11 @@ namespace OpenSpartan.Grunt.Util
 {
     internal static class Extensions
     {
+        /// <summary>
+        /// Determines the header value for a specific API content type.
+        /// </summary>
+        /// <param name="value">API content type represented by <see cref="ApiContentType"/>.</param>
+        /// <returns>If successful, returns the string value for the header associated with a content type.</returns>
         public static string? GetHeaderValue(this ApiContentType value)
         {
             Type type = value.GetType();
@@ -20,9 +25,7 @@ namespace OpenSpartan.Grunt.Util
 
             if (fieldInfo != null)
             {
-                ContentTypeAttribute[]? attributes = fieldInfo.GetCustomAttributes(typeof(ContentTypeAttribute), false) as ContentTypeAttribute[];
-
-                if (attributes != null)
+                if (fieldInfo.GetCustomAttributes(typeof(ContentTypeAttribute), false) is ContentTypeAttribute[] attributes)
                 {
                     return attributes.Length > 0 ? attributes[0].HeaderValue : null;
                 }
