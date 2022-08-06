@@ -11,25 +11,46 @@ namespace OpenSpartan.Grunt.Models
 {
     public class XboxXui
     {
+        /// <summary>
+        /// Gets or sets the user hash.
+        /// </summary>
         [JsonPropertyName("uhs")]
-        public string Uhs { get; set; }
+        public string? UserHash { get; set; }
 
+        /// <summary>
+        /// Gets or sets the user gamertag.
+        /// </summary>
         [JsonPropertyName("gtg")]
-        public string Gtg { get; set; }
+        public string? Gamertag { get; set; }
 
+        /// <summary>
+        /// Gets or sets the user Xbox Live ID (XUID).
+        /// </summary>
         [JsonPropertyName("xid")]
-        public string Xid { get; set; }
+        public string? XUID { get; set; }
 
+        /// <summary>
+        /// Gets or sets the account age group.
+        /// </summary>
         [JsonPropertyName("agg")]
-        public string Agg { get; set; }
+        public string? AgeGroup { get; set; }
 
+        /// <summary>
+        /// Gets or sets the user settings restrictions.
+        /// </summary>
         [JsonPropertyName("usr")]
-        public string Usr { get; set; }
+        public string? UserSettingsRestrictions { get; set; }
 
+        /// <summary>
+        /// Gets or sets the user title restrictions.
+        /// </summary>
         [JsonPropertyName("utr")]
-        public string Utr { get; set; }
+        public string? UserTitleRestrictions { get; set; }
 
+        /// <summary>
+        /// Gets or sets the account privileges.
+        /// </summary>
         [JsonPropertyName("prv")]
-        public string Prv { get; set; }
+        public string? Privileges { get; set; }
     }
 }
