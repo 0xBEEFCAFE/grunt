@@ -9,6 +9,9 @@ using System.Text.Json.Serialization;
 
 namespace OpenSpartan.Grunt.Models
 {
+    /// <summary>
+    /// Xbox XUI
+    /// </summary>
     public class XboxXui
     {
         /// <summary>
