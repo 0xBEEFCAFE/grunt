@@ -17,12 +17,25 @@ namespace OpenSpartan.Grunt.Converters
     /// </summary>
     internal class EmptyDateStringToNullJsonConverter : JsonConverter<DateTime?>
     {
+        /// <summary>
+        /// Read content from the JSON parser.
+        /// </summary>
+        /// <param name="reader">Instance of <see cref="Utf8JsonReader"/> used to read the JSON content.</param>
+        /// <param name="typeToConvert">JSON data to convert.</param>
+        /// <param name="options">JSON serialization options.</param>
+        /// <returns>If successful, returns an instance of <see cref="DateTime"/> containing the date and time. Otherwise, returns null.</returns>
         public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? value = reader.GetString();
             return string.IsNullOrWhiteSpace(value) ? null : DateTime.Parse(value);
         }
 
+        /// <summary>
+        /// Writes content through a JSON parser.
+        /// </summary>
+        /// <param name="writer">Instance of <see cref="Utf8JsonWriter"/> that will be writing the JSON data.</param>
+        /// <param name="value">Instance of <see cref="DateTime"/> containing the date and time to be written into JSON.</param>
+        /// <param name="options">JSON serialization options.</param>
         public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
         {
             writer.WriteStringValue(value.ToString());

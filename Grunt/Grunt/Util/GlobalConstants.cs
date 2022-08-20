@@ -7,10 +7,24 @@
 
 namespace OpenSpartan.Grunt.Util
 {
+    /// <summary>
+    /// Constants that do not change within the application.
+    /// </summary>
     internal class GlobalConstants
     {
+        /// <summary>
+        /// Halo Waypoint user agent used for outbound HTTP API requests.
+        /// </summary>
         internal static readonly string HALO_WAYPOINT_USER_AGENT = "HaloWaypoint/2021112313511900 CFNetwork/1327.0.4 Darwin/21.2.0";
+
+        /// <summary>
+        /// Halo Infinite PC game user agent used for outbound HTTP API requests.
+        /// </summary>
         internal static readonly string HALO_PC_USER_AGENT = "SHIVA-2043073184/6.10021.18539.0 (release; PC)";
+
+        /// <summary>
+        /// Default scopes used for the Xbox Live authentication.
+        /// </summary>
         internal static readonly string[] DEFAULT_AUTH_SCOPES = new string[] { "Xboxlive.signin", "Xboxlive.offline_access" };
     }
 }

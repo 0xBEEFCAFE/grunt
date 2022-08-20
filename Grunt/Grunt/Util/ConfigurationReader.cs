@@ -21,7 +21,7 @@ namespace OpenSpartan.Grunt.Util
         /// <typeparam name="T">Type of object to deserialize.</typeparam>
         /// <param name="path">Path to the file to read.</param>
         /// <returns>If successful, returns an instance of the object <typeparamref name="T"/>. Otherwise, returns null.</returns>
-        public static T ReadConfiguration<T>(string path)
+        public static T? ReadConfiguration<T>(string path)
         {
             T? config = default;
 
