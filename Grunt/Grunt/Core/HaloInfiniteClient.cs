@@ -1495,7 +1495,8 @@ namespace OpenSpartan.Grunt.Core
                 HttpMethod.Post,
                 true,
                 true,
-                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT,
+                "{}");
         }
 
         /// <summary>
