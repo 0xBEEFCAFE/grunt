@@ -78,7 +78,7 @@ namespace OpenSpartan.Grunt.Zeta
                 Console.WriteLine(haloToken.Token);
             }).GetAwaiter().GetResult();
             
-            HaloInfiniteClient client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].Xid);
+            HaloInfiniteClient client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
 
             // Test getting the clearance for local execution.
             string localClearance = string.Empty;
@@ -97,108 +97,123 @@ namespace OpenSpartan.Grunt.Zeta
                 }
             }).GetAwaiter().GetResult();
 
-            // Try getting actual Halo Infinite data.
             Task.Run(async () =>
             {
-                var example = await client.StatsGetMatchStats("21416434-4717-4966-9902-af7097469f74");
-                Console.WriteLine("You have stats.");
+                var latestBuildData = await client.HIUGCDiscoveryGetManifestByBuild("6.10022.18207");
+                var oldBuildData = await client.HIUGCDiscoveryGetManifestByBuild("6.10022.16347");
+
+                var differential = latestBuildData.Result.MapLinks.Where(m => !oldBuildData.Result.MapLinks.Any(mNew => mNew.AssetId == m.AssetId));
+
+                foreach (var engine in differential)
+                {
+                    Console.WriteLine($"{engine.PublicName,20}\t({engine.AssetId})");
+                }
+
+                Console.WriteLine("Done getting build differential.");
             }).GetAwaiter().GetResult();
 
-            Task.Run(async () =>
-            {
-                var academyData = await client.AcademyGetContent();
-                Console.WriteLine("Got academy data.");
-            }).GetAwaiter().GetResult();           
+            //// Try getting actual Halo Infinite data.
+            //Task.Run(async () =>
+            //{
+            //    var example = await client.StatsGetMatchStats("21416434-4717-4966-9902-af7097469f74");
+            //    Console.WriteLine("You have stats.");
+            //}).GetAwaiter().GetResult();
 
-            // Test getting the season data.
-            Task.Run(async () =>
-            {
-                var seasonData = await client.GameCmsGetSeasonRewardTrack(
-                    "Seasons/Season7.json",
-                    localClearance);
-                Console.WriteLine("Got season data.");
-            }).GetAwaiter().GetResult();
+            //Task.Run(async () =>
+            //{
+            //    var academyData = await client.AcademyGetContent();
+            //    Console.WriteLine("Got academy data.");
+            //}).GetAwaiter().GetResult();           
 
-            // Try getting skill qualifications with SkillGetMatchPlayerResult.
-            Task.Run(async () =>
-            {
-                List<string> sampleXuids = "xuid(2533274793272155),xuid(2533274814715980),xuid(2533274855333605),xuid(2535435749594170),xuid(2535448099228893),xuid(2535457135464780),xuid(2535466738529606),xuid(2535472868898775)".Split(',').ToList();
-                var performanceData = (await client.SkillGetMatchPlayerResult("ad6a3d46-9320-44ee-94cd-c5cb39c7aedd", sampleXuids)).Result;
-                Console.WriteLine("Got player performance data.");
-            }).GetAwaiter().GetResult();
+            //// Test getting the season data.
+            //Task.Run(async () =>
+            //{
+            //    var seasonData = await client.GameCmsGetSeasonRewardTrack(
+            //        "Seasons/Season7.json",
+            //        localClearance);
+            //    Console.WriteLine("Got season data.");
+            //}).GetAwaiter().GetResult();
 
-            // Get an example image and store it locally.
-            Task.Run(async () =>
-            {
-                var imageData = (await client.GameCmsGetImage("progression/inventory/armor/gloves/003-001-olympus-8e7c9dff-sm.png")).Result;
-                Console.WriteLine("Got image data.");
-                if (imageData != null)
-                {
-                    System.IO.File.WriteAllBytes("image.png", imageData);
-                    Console.WriteLine("Wrote sample image to file.");
-                }
-                else
-                {
-                    Console.WriteLine("Image could not be written. There was an error.");
-                }
-            }).GetAwaiter().GetResult();
+            //// Try getting skill qualifications with SkillGetMatchPlayerResult.
+            //Task.Run(async () =>
+            //{
+            //    List<string> sampleXuids = "xuid(2533274793272155),xuid(2533274814715980),xuid(2533274855333605),xuid(2535435749594170),xuid(2535448099228893),xuid(2535457135464780),xuid(2535466738529606),xuid(2535472868898775)".Split(',').ToList();
+            //    var performanceData = (await client.SkillGetMatchPlayerResult("ad6a3d46-9320-44ee-94cd-c5cb39c7aedd", sampleXuids)).Result;
+            //    Console.WriteLine("Got player performance data.");
+            //}).GetAwaiter().GetResult();
 
-            // Get bot customization data
-            Task.Run(async () =>
-            {
-                var seasonData = (await client.AcademyGetBotCustomization(localClearance)).Result;
-                if (seasonData != null)
-                {
-                    Console.WriteLine("Got but customization data.");
-                }
-                else
-                {
-                    Console.WriteLine("Could not get bot customization data.");
-                }
-            }).GetAwaiter().GetResult();
+            //// Get an example image and store it locally.
+            //Task.Run(async () =>
+            //{
+            //    var imageData = (await client.GameCmsGetImage("progression/inventory/armor/gloves/003-001-olympus-8e7c9dff-sm.png")).Result;
+            //    Console.WriteLine("Got image data.");
+            //    if (imageData != null)
+            //    {
+            //        System.IO.File.WriteAllBytes("image.png", imageData);
+            //        Console.WriteLine("Wrote sample image to file.");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Image could not be written. There was an error.");
+            //    }
+            //}).GetAwaiter().GetResult();
 
-            // Get currency data
-            Task.Run(async () =>
-            {
-                var currencyData = (await client.GameCmsGetCurrency("currency/currencies/cr.json", localClearance)).Result;
-                if (currencyData != null)
-                {
-                    Console.WriteLine("Got currency data.");
-                }
-                else
-                {
-                    Console.WriteLine("Could not get currency data.");
-                }
-            }).GetAwaiter().GetResult();
+            //// Get bot customization data
+            //Task.Run(async () =>
+            //{
+            //    var seasonData = (await client.AcademyGetBotCustomization(localClearance)).Result;
+            //    if (seasonData != null)
+            //    {
+            //        Console.WriteLine("Got but customization data.");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Could not get bot customization data.");
+            //    }
+            //}).GetAwaiter().GetResult();
 
-            // Get reward data.
-            Task.Run(async () =>
-            {
-                var rewardData = (await client.EconomyGetAwardedRewards("xuid(2533274855333605)", "Challenges-35a86ae3-017c-4b5a-b633-b2802a770e0a")).Result;
-                if (rewardData != null)
-                {
-                    Console.WriteLine("Got reward data.");
-                }
-                else
-                {
-                    Console.WriteLine("Could not get reward data.");
-                }
-            }).GetAwaiter().GetResult();
+            //// Get currency data
+            //Task.Run(async () =>
+            //{
+            //    var currencyData = (await client.GameCmsGetCurrency("currency/currencies/cr.json", localClearance)).Result;
+            //    if (currencyData != null)
+            //    {
+            //        Console.WriteLine("Got currency data.");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Could not get currency data.");
+            //    }
+            //}).GetAwaiter().GetResult();
 
-            Task.Run(async () =>
-            {
-                var matchData = await client.StatsGetMatchHistory("xuid(2533274855333605)", 0, 12, Models.HaloInfinite.MatchType.All);
-                
-                var data = matchData.Result;
-                if (data != null)
-                {
-                    Console.WriteLine("Got reward data.");
-                }
-                else
-                {
-                    Console.WriteLine("Could not get reward data.");
-                }
-            }).GetAwaiter().GetResult();
+            //// Get reward data.
+            //Task.Run(async () =>
+            //{
+            //    var rewardData = (await client.EconomyGetAwardedRewards("xuid(2533274855333605)", "Challenges-35a86ae3-017c-4b5a-b633-b2802a770e0a")).Result;
+            //    if (rewardData != null)
+            //    {
+            //        Console.WriteLine("Got reward data.");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Could not get reward data.");
+            //    }
+            //}).GetAwaiter().GetResult();
+
+            //Task.Run(async () =>
+            //{
+            //    var matchData = await client.StatsGetMatchHistory("xuid(2533274855333605)", 0, 12, Models.HaloInfinite.MatchType.All);
+
+            //    var data = matchData.Result;
+            //    if (data != null)
+            //    {
+            //        Console.WriteLine("Got reward data.");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Could not get reward data.");
+            //    }
+            //}).GetAwaiter().GetResult();
 
             Console.ReadLine();
         }
