@@ -13,6 +13,11 @@ namespace OpenSpartan.Grunt.Util
     internal class GlobalConstants
     {
         /// <summary>
+        /// User agent for the web-based requests to the Halo Waypoint API.
+        /// </summary>
+        internal static readonly string WEB_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36 Edg/105.0.1343.27";
+
+        /// <summary>
         /// Halo Waypoint user agent used for outbound HTTP API requests.
         /// </summary>
         internal static readonly string HALO_WAYPOINT_USER_AGENT = "HaloWaypoint/2021112313511900 CFNetwork/1327.0.4 Darwin/21.2.0";

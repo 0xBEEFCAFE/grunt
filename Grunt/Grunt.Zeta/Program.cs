@@ -78,7 +78,13 @@ namespace OpenSpartan.Grunt.Zeta
                 Console.WriteLine(haloToken.Token);
             }).GetAwaiter().GetResult();
             
+            // Let's create an instance to experiment with the Halo Infinite client.
             HaloInfiniteClient client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
+
+            // Let's also create an instance to experiment with the Halo Waypoint APIs.
+            WaypointClient waypointClient = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
+
+            Console.WriteLine($"Your XUID is {extendedTicket.DisplayClaims.Xui[0].XUID}");
 
             // Test getting the clearance for local execution.
             string localClearance = string.Empty;
@@ -97,20 +103,27 @@ namespace OpenSpartan.Grunt.Zeta
                 }
             }).GetAwaiter().GetResult();
 
+            // Try getting actual Halo Infinite data.
             Task.Run(async () =>
             {
-                var latestBuildData = await client.HIUGCDiscoveryGetManifestByBuild("6.10022.18207");
-                var oldBuildData = await client.HIUGCDiscoveryGetManifestByBuild("6.10022.16347");
-
-                var differential = latestBuildData.Result.MapLinks.Where(m => !oldBuildData.Result.MapLinks.Any(mNew => mNew.AssetId == m.AssetId));
-
-                foreach (var engine in differential)
-                {
-                    Console.WriteLine($"{engine.PublicName,20}\t({engine.AssetId})");
-                }
-
-                Console.WriteLine("Done getting build differential.");
+                var example = await waypointClient.RedeemCode("0000-0000-0000-0000-0000");
+                Console.WriteLine("Code redemption complete.");
             }).GetAwaiter().GetResult();
+
+            //Task.Run(async () =>
+            //{
+            //    var latestBuildData = await client.HIUGCDiscoveryGetManifestByBuild("6.10022.18207");
+            //    var oldBuildData = await client.HIUGCDiscoveryGetManifestByBuild("6.10022.16347");
+
+            //    var differential = latestBuildData.Result.MapLinks.Where(m => !oldBuildData.Result.MapLinks.Any(mNew => mNew.AssetId == m.AssetId));
+
+            //    foreach (var engine in differential)
+            //    {
+            //        Console.WriteLine($"{engine.PublicName,20}\t({engine.AssetId})");
+            //    }
+
+            //    Console.WriteLine("Done getting build differential.");
+            //}).GetAwaiter().GetResult();
 
             //// Try getting actual Halo Infinite data.
             //Task.Run(async () =>

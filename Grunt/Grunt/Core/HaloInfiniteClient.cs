@@ -7,17 +7,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using OpenSpartan.Grunt.Converters;
+using OpenSpartan.Grunt.Core.Foundation;
 using OpenSpartan.Grunt.Endpoints;
 using OpenSpartan.Grunt.Models;
 using OpenSpartan.Grunt.Models.HaloInfinite;
-using OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress;
 using OpenSpartan.Grunt.Util;
 
 namespace OpenSpartan.Grunt.Core
@@ -25,18 +21,8 @@ namespace OpenSpartan.Grunt.Core
     /// <summary>
     /// Client used to access the Halo Infinite API surface.
     /// </summary>
-    public class HaloInfiniteClient
+    public class HaloInfiniteClient : ClientBase
     {
-        private readonly JsonSerializerOptions serializerOptions = new()
-        {
-            WriteIndented = true,
-            Converters =
-            {
-                new EmptyDateStringToNullJsonConverter(),
-                new XmlDurationToTimeSpanJsonConverter(),
-            },
-        };
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HaloInfiniteClient"/> class, used to access the Halo Infinite API.
         /// </summary>
@@ -51,20 +37,11 @@ namespace OpenSpartan.Grunt.Core
         }
 
         /// <summary>
-        /// Gets or sets the Spartan token used to authenticate against the Halo Infinite API.
+        /// Initializes a new instance of the <see cref="HaloInfiniteClient"/> class, used to access the Halo Infinite API.
         /// </summary>
-        public string SpartanToken { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Gets or sets the  player identifier in the format "xuid(XUID_VALUE)".
-        /// </summary>
-        public string Xuid { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Gets or sets the ID of the flight/clearance currently active for the player.
-        /// </summary>
-        public string ClearanceToken { get; set; } = string.Empty;
-
+        public HaloInfiniteClient()
+        {
+        }
 
         /// <summary>
         /// Gets the list of API settings as provided by the official Halo API. This is the latest version of all available endpoints.
@@ -72,7 +49,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// Method supports returning results in XML behind the scenes. Class names map to XML data model.
         /// </remarks>
-        /// <include file='../APIDocsExamples/GetApiSettingsContainer.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GetApiSettingsContainer.xml' path='//example'/>
         /// <returns>An instance of ApiSettingsContainer if the call is successful. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<Models.HaloInfinite.ApiIngress.Configuration, HaloApiErrorContainer>> GetApiSettingsContainer()
         {
@@ -91,7 +68,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Get bot customization information.
         /// </summary>
-        /// <include file='../APIDocsExamples/Academy_GetBotCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Academy_GetBotCustomization.xml' path='//example'/>
         /// <param name="flightId">ID of the flight/clearance associated with the request.</param>
         /// <returns>If successful, returns an instance of BotCustomizationData that contains bot customization information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<BotCustomizationData, HaloApiErrorContainer>> AcademyGetBotCustomization(string flightId)
@@ -107,7 +84,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the client manifest for the Academy.
         /// </summary>
-        /// <include file='../APIDocsExamples/Academy_GetContent.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Academy_GetContent.xml' path='//example'/>
         /// <returns>If successful, returns an instance of AcademyClientManifest that contains the definition of drills available in the Academy. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<AcademyClientManifest, HaloApiErrorContainer>> AcademyGetContent()
         {
@@ -122,7 +99,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the client manifest for the Academy. From the endpoint name we can infer that this is test data.
         /// </summary>
-        /// <include file='../APIDocsExamples/Academy_GetContentTest.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Academy_GetContentTest.xml' path='//example'/>
         /// <param name="clearanceId">ID of the flight/clearance associated with the request.</param>
         /// <returns>If successful, returns an instance of TestAcademyClientManifest that contains the definition of drills available in the Academy. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<TestAcademyClientManifest, HaloApiErrorContainer>> AcademyGetContentTest(string clearanceId)
@@ -138,7 +115,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets definitions for stars awarded in the Academy. This call breaks if a user agent is specified.
         /// </summary>
-        /// <include file='../APIDocsExamples/Academy_GetStarDefinitions.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Academy_GetStarDefinitions.xml' path='//example'/>
         /// <returns>If successful, returns an instance of AcademyStarDefinitions that contains definitions for stars awarded in the Academy. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<AcademyStarDefinitions, HaloApiErrorContainer>> AcademyGetStarDefinitions()
         {
@@ -157,7 +134,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about an individual AI Core.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_AiCoreCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_AiCoreCustomization.xml' path='//example'/>
         /// <param name="player">The player identifier in the format "xuid(XUID_VALUE)".</param>
         /// <param name="coreId">Unique AI Core ID. Example ID is "304-100-ai-core-debb20e3".</param>
         /// <returns>If successful, returns an instance of Core containing AI core customization metadata if request was successful. Otherwise, returns null.</returns>
@@ -174,7 +151,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Get AI core customization for a player.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_AiCoresCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_AiCoresCustomization.xml' path='//example'/>
         /// <param name="player">The player identifier in the format "xuid(XUID_VALUE)".</param>
         /// <returns>An instance of AiCores containing AI core customization metadata if request was successful. Return value is null otherwise.</returns>
         public async Task<HaloApiResultContainer<AiCoreContainer, HaloApiErrorContainer>> EconomyAiCoresCustomization(string player)
@@ -190,7 +167,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Get details about all owned cores for a player.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_AllOwnedCoresDetails.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_AllOwnedCoresDetails.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>An instance of PlayerCores containing player core customization metadata if request was successful. Return value is null otherwise.</returns>
         public async Task<HaloApiResultContainer<PlayerCores, HaloApiErrorContainer>> EconomyAllOwnedCoresDetails(string player)
@@ -206,7 +183,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about a specific armor core a player owns.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_ArmorCoreCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_ArmorCoreCustomization.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="coreId">The unique identifier for an armor core. An example value is "017-001-eag-c13d0b38".</param>
         /// <returns>If successful, returns an instance of ArmorCore containing customization information. Otherwise, returns null.</returns>
@@ -223,7 +200,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about all armor cores a player owns.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_ArmorCoresCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_ArmorCoresCustomization.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of ArmorCoreCollection that contains the list of armor cores. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<ArmorCoreCollection, HaloApiErrorContainer>> EconomyArmorCoresCustomization(string player)
@@ -239,7 +216,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about currently active boosts for the player.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetActiveBoosts.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetActiveBoosts.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of ActiveBoostsContainer that contains the list of active boosts. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<ActiveBoostsContainer, HaloApiErrorContainer>> EconomyGetActiveBoosts(string player)
@@ -255,7 +232,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about a reward given to a player.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetAwardedRewards.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetAwardedRewards.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="rewardId">The unique ID for the reward given to a player. Example value is "Challenges-35a86ae3-017c-4b5a-b633-b2802a770e0a".</param>
         /// <returns>If successful, returns an instance of RewardSnapshot that contains the list of awarded rewards. Otherwise, returns null.</returns>
@@ -272,7 +249,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about boosts offering in the store for a given player.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetBoostsStore.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetBoostsStore.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of StoreItem containing boost information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<StoreItem, HaloApiErrorContainer>> EconomyGetBoostsStore(string player)
@@ -288,7 +265,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the information about giveaways available for a given player.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetGiveawayRewards.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetGiveawayRewards.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of PlayerGiveaways containing available giveaways. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<PlayerGiveaways, HaloApiErrorContainer>> EconomyGetGiveawayRewards(string player)
@@ -304,7 +281,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about items available for sale in the Halo Championship Series (HCS) store.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetHCSStore.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetHCSStore.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, an instance of StoreItem containing store offerings. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<StoreItem, HaloApiErrorContainer>> EconomyGetHCSStore(string player)
@@ -320,7 +297,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about items available in the current player's inventory.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetInventoryItems.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetInventoryItems.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of PlayerInventory that contains a list of items in the player's inventory. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<PlayerInventory, HaloApiErrorContainer>> EconomyGetInventoryItems(string player)
@@ -336,7 +313,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the information about all available items in the main store.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetMainStore.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetMainStore.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of StoreItem that contains information about items available in the main store. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<StoreItem, HaloApiErrorContainer>> EconomyGetMainStore(string player)
@@ -352,7 +329,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about customizations for multiple players.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetMultiplePlayersCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetMultiplePlayersCustomization.xml' path='//example'/>
         /// <param name="playerIds">Array of player IDs. Each ID string should be in the format of "xuid(XUID_VALUE)."</param>
         /// <returns>If successful, returns an instance of PlayerCustomizationCollection that contains player customizations. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<PlayerCustomizationCollection, HaloApiErrorContainer>> EconomyGetMultiplePlayersCustomization(List<string> playerIds)
@@ -369,7 +346,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about the operations reward levels store.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetOperationRewardLevelsStore.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetOperationRewardLevelsStore.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of StoreItem that contains information about items available in the operations reward levels store. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<StoreItem, HaloApiErrorContainer>> EconomyGetOperationRewardLevelsStore(string player)
@@ -385,7 +362,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about the operations store.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetOperationsStore.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetOperationsStore.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of StoreItem that contains information about items available in the operations store. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<StoreItem, HaloApiErrorContainer>> EconomyGetOperationsStore(string player)
@@ -401,7 +378,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about rewards associated with a given reward track, such as a season or special event.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetRewardTrack.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetRewardTrack.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="rewardTrackType">Type of reward track. For seasons, this is usually "operation". This parameter is a singular noun, and is pluralized automatically in the function (the "s" character is appended).</param>
         /// <param name="trackId">Unique identifier for the reward track. An example value is "battlepass-noblesacrifice.json".</param>
@@ -419,7 +396,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the amount of currencies that the player has in their account.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetVirtualCurrencyBalances.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetVirtualCurrencyBalances.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of CurrencySnapshot that contains the balances. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<CurrencySnapshot, HaloApiErrorContainer>> EconomyGetVirtualCurrencyBalances(string player)
@@ -435,7 +412,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about items on sale in the XP grants store.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_GetXpGrantsStore.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_GetXpGrantsStore.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of StoreItem that contains information about items in the store. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<StoreItem, HaloApiErrorContainer>> EconomyGetXpGrantsStore(string player)
@@ -451,7 +428,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about a specific owned core.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_OwnedCoreDetails.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_OwnedCoreDetails.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="coreId">The unque core ID. An example is "017-001-eag-c13d0b38".</param>
         /// <returns>If successful, returns an instance of Core containing core information. Otherwise, returns null.</returns>
@@ -468,7 +445,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the current player appearance customization state.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_PlayerAppearanceCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_PlayerAppearanceCustomization.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of AppearanceCustomization containing customization information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<AppearanceCustomization, HaloApiErrorContainer>> EconomyPlayerAppearanceCustomization(string player)
@@ -484,7 +461,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about available player customizations.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_PlayerCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_PlayerCustomization.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="viewType">Determines which view into customizations is shown. Available values are "public" and "private". The private view enables showing all available cores, while the public view only shows equipped cores.</param>
         /// <returns>If successful, returns an instance of CustomizationData containing player customizations. Otherwise, returns null.</returns>
@@ -501,7 +478,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets available reward tracks for a player based on current and past battle passes.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_PlayerOperations.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_PlayerOperations.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of OperationRewardTrackSnapshot containing battle pass information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<OperationRewardTrackSnapshot, HaloApiErrorContainer>> EconomyPlayerOperations(string player)
@@ -517,7 +494,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about transactions that the player executed.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_PostCurrencyTransaction.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_PostCurrencyTransaction.xml' path='//example'/>
         /// <remarks>
         /// This function is likely used as a POST as well (hence the name - right now we're only using GET). Once we discover how this API works, we can extend the functionality further. <see href="https://github.com/OpenSpartan/grunt/issues/14">GitHub issue</see>.
         /// </remarks>
@@ -537,7 +514,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about offerings for a player in a given store.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_ScheduledStorefrontOfferings.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_ScheduledStorefrontOfferings.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="storeId">The unique store identifier. An example value is "hcs".</param>
         /// <returns>If successful, returns an instance of StoreItem containing offerings. Otherwise, returns null.</returns>
@@ -555,7 +532,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the currently active Spartan body customization.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_SpartanBodyCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_SpartanBodyCustomization.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of SpartanBody containing the customization information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<SpartanBody, HaloApiErrorContainer>> EconomySpartanBodyCustomization(string player)
@@ -571,7 +548,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about a vehicle core.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_VehicleCoreCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_VehicleCoreCustomization.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="coreId">Unique vehicle core ID. Example value is "409-304-olympus-e8b8a8b3".</param>
         /// <returns>If successful, returns an instance of VehicleCore. Otherwise, returns null.</returns>
@@ -588,7 +565,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about the vehicle core customizations availale to a player.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_VehicleCoresCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_VehicleCoresCustomization.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of VehicleCoreCollection containing a list of available vehicle cores. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<VehicleCoreCollection, HaloApiErrorContainer>> EconomyVehicleCoresCustomization(string player)
@@ -604,7 +581,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about a specific weapon core.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_WeaponCoreCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_WeaponCoreCustomization.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="coreId">The unique ID of the weapon core.</param>
         /// <returns>If successful, returns an instance of WeaponCore containing information about the weapon core. Otherwise, returns null.</returns>
@@ -621,7 +598,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about weapon cores equipped on a player.
         /// </summary>
-        /// <include file='../APIDocsExamples/Economy_WeaponCoresCustomization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Economy_WeaponCoresCustomization.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of WeaponCoreCollection. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<WeaponCoreCollection, HaloApiErrorContainer>> EconomyWeaponCoresCustomization(string player)
@@ -644,7 +621,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// Keep in mind that this is not a list of achievements that the player has unlocked - it's just an aggregation of all available achievements in Halo Infinite.
         /// </remarks>
-        /// <include file='../APIDocsExamples/GameCms_GetAchievements.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetAchievements.xml' path='//example'/>
         /// <returns>If successful, returns an instance of AchievementCollection that contains the list of available achievements. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<AchievementCollection, HaloApiErrorContainer>> GameCmsGetAchievements()
         {
@@ -659,7 +636,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about active async compute overrides. Unknown what the concrete purpose of this API is yet.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetAsyncComputeOverrides.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetAsyncComputeOverrides.xml' path='//example'/>
         /// <returns>If successful, returns an instance of AsyncComputeOverrides containing override metadata. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<AsyncComputeOverrides, HaloApiErrorContainer>> GameCmsGetAsyncComputeOverrides()
         {
@@ -674,7 +651,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns information about an existing challenge.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetChallenge.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetChallenge.xml' path='//example'/>
         /// <param name="challengePath">Path to the challenge file. Example is "ChallengeContent/ClientChallengeDefinitions/S1RotationalSet1Challenges/Normal/NTeamSlayerPlay.json".</param>
         /// <param name="flightId">The unique ID for the currently active flight.</param>
         /// <returns>If successful, returns an instance of Challenge containing challenge information. Otherwise, returns null.</returns>
@@ -691,7 +668,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the information about a specific challenge deck.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetChallengeDeck.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetChallengeDeck.xml' path='//example'/>
         /// <param name="challengeDeckPath">Path to the challenge deck. An example value is "ChallengeContent/ClientChallengeDeckDefinitions/S2EntrenchedWeeklyDeck2.json".</param>
         /// <param name="flightId">Unique identifier for the currently active flight.</param>
         /// <returns>If successful, returns an instance of ChallengeDeckDefinition containing challenge deck metadata. Otherwise, returns null.</returns>
@@ -708,7 +685,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the information about a specific currency type.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetCurrency.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetCurrency.xml' path='//example'/>
         /// <param name="currencyPath">Path to the currency. An example is "currency/currencies/cr.json".</param>
         /// <param name="flightId">Unique identifier for the currently active flight.</param>
         /// <returns>If successful, returns an instance of CurrencyDefinition containing information about the specified currency. Otherwise, returns null.</returns>
@@ -729,7 +706,7 @@ namespace OpenSpartan.Grunt.Core
         /// Based on the "claw" terminology, these are likely accounts with access to clawback services (for transaction refunds).
         /// At least one of the accounts returned for this API call is flagged as a member of the Xbox Scarlett team, so it's likely these are accounts that have a more direct access to Halo services.
         /// </remarks>
-        /// <include file='../APIDocsExamples/GameCms_GetClawAccess.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetClawAccess.xml' path='//example'/>
         /// <param name="flightId">Unique identifier for the currently active flight.</param>
         /// <returns>If successful, returns an instance of ClawAccessSnapshot containing relevant XUID lists. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<ClawAccessSnapshot, HaloApiErrorContainer>> GameCmsGetClawAccess(string flightId)
@@ -745,7 +722,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the pre-defined CPU presets for different game performance configurations.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetCPUPresets.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetCPUPresets.xml' path='//example'/>
         /// <returns>If successful, returns an instance of CPUPresetSnapshot containing preset information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<CPUPresetSnapshot, HaloApiErrorContainer>> GameCmsGetCpuPresets()
         {
@@ -760,7 +737,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns the parameters for new custom games started in Halo Infinite.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetCustomGameDefaults.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetCustomGameDefaults.xml' path='//example'/>
         /// <returns>If successful, returns an instance of CustomGameDefinition containing game parameters. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<CustomGameDefinition, HaloApiErrorContainer>> GameCmsGetCustomGameDefaults()
         {
@@ -775,7 +752,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the full list of existing in-game items.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetCustomizationCatalog.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetCustomizationCatalog.xml' path='//example'/>
         /// <param name="flightId">Unique identifier for the currently active flight.</param>
         /// <returns>If successful, returns an instance of InventoryDefinition containing the full list of available items. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<InventoryDefinition, HaloApiErrorContainer>> GameCmsGetCustomizationCatalog(string flightId)
@@ -791,7 +768,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about graphic device preset overrides.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetDevicePresetOverrides.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetDevicePresetOverrides.xml' path='//example'/>
         /// <remarks>
         /// The exact purpose of this function is unknown at this time, and requires additional investigation.
         /// </remarks>
@@ -809,7 +786,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about an in-game event.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetEvent.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetEvent.xml' path='//example'/>
         /// <param name="eventPath">The path to the event file. An example value is "RewardTracks/Events/Rituals/ritualEagleStrike.json".</param>
         /// <param name="flightId">Unique identifier for the currently active flight.</param>
         /// <returns>If successful, an instance of RewardTrackMetadata is returned. Otherwise, returns null.</returns>
@@ -826,7 +803,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the queries used to obtain override values for graphic device specifications.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetGraphicsSpecControlOverrides.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetGraphicsSpecControlOverrides.xml' path='//example'/>
         /// <returns>If successful, returns an instance of OverrideQueryDefinition containing query definitions. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<OverrideQueryDefinition, HaloApiErrorContainer>> GameCmsGetGraphicsSpecControlOverrides()
         {
@@ -876,7 +853,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// For example, you may find that you can get the data about an armor emblem with the path "/inventory/armor/emblems/013-001-363f4a25.json".
         /// </remarks>
-        /// <include file='../APIDocsExamples/GameCms_GetItem.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetItem.xml' path='//example'/>
         /// <param name="itemPath">Path to the item to be obtained. Example is "/inventory/armor/emblems/013-001-363f4a25.json".</param>
         /// <param name="flightId">Unique ID for the currently active flight.</param>
         /// <returns>If successful, an instance of InGameItem. Otherwise, null.</returns>
@@ -893,7 +870,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the list of possible error messages that a player can get when attempting to join multiplayer games.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetLobbyErrorMessages.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetLobbyErrorMessages.xml' path='//example'/>
         /// <param name="flightId">Unique ID for the currently active flight.</param>
         /// <returns>If successful, returns an instance of LobbyHopperErrorMessageList that contains possible errors. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<LobbyHopperErrorMessageList, HaloApiErrorContainer>> GameCmsGetLobbyErrorMessages(string flightId)
@@ -909,7 +886,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns metadata on currently available in-game manufacturers and currencies.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetMetadata.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetMetadata.xml' path='//example'/>
         /// <param name="flightId">Unique ID for the currently active flight.</param>
         /// <returns>If successful, an instance of Metadata containing the information about in-game manufacturers and currencies. Otherwise, null.</returns>
         public async Task<HaloApiResultContainer<Metadata, HaloApiErrorContainer>> GameCmsGetMetadata(string flightId)
@@ -925,7 +902,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns the network configuration for the current flight.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetNetworkConfiguration.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetNetworkConfiguration.xml' path='//example'/>
         /// <param name="flightId">Unique ID for the currently active flight.</param>
         /// <returns>If successful, returns an instance of NetworkConfiguration. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<NetworkConfiguration, HaloApiErrorContainer>> GameCmsGetNetworkConfiguration(string flightId)
@@ -941,7 +918,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns the currently relevant news.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetNews.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetNews.xml' path='//example'/>
         /// <param name="filePath">Path to the news collection. Example is "/articles/articles.json".</param>
         /// <returns>If successful, returns a News instance containing the currently active news. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<News, HaloApiErrorContainer>> GameCmsGetNews(string filePath)
@@ -957,7 +934,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns information about a message that is displayed when, I assume, authentication fails.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetNotAllowedInTitleMessage.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetNotAllowedInTitleMessage.xml' path='//example'/>
         /// <remarks>It's unclear where this is actually used because the sample response is a test one, without any relevant context.</remarks>
         /// <returns>If successful, an instance of OEConfiguration containing the message. Otherwise, null.</returns>
         public async Task<HaloApiResultContainer<OEConfiguration, HaloApiErrorContainer>> GameCmsGetNotAllowedInTitleMessage()
@@ -989,7 +966,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Get recommended drivers for the current version of Halo Infinite.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetRecommendedDrivers.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetRecommendedDrivers.xml' path='//example'/>
         /// <returns>If successful, returns an instance of DriverManifest that contains details on supported drivers. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<DriverManifest, HaloApiErrorContainer>> GameCmsGetRecommendedDrivers()
         {
@@ -1004,7 +981,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about a given Halo Infinite season.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetSeasonRewardTrack.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetSeasonRewardTrack.xml' path='//example'/>
         /// <remarks>
         /// Keep in mind that the season numbers do not align cleanly with the public season numbers. For example, public Season 2 is Season 7 in this API. That is caused by a number of test season that 343 added to the product ahead of release.
         /// </remarks>
@@ -1028,7 +1005,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a list of all available image files currently used by the multiplayer service.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetGuide_Images.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetGuide_Images.xml' path='//example'/>
         /// <param name="flightId">Unique ID for the currently active flight.</param>
         /// <returns>If successful, an instance of GuideContainer containing file information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<GuideContainer, HaloApiErrorContainer>> GameCmsGetGuideImages(string flightId)
@@ -1044,7 +1021,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a list of all available multiplayer files currently used by the multiplayer service.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetGuide_Multiplayer.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetGuide_Multiplayer.xml' path='//example'/>
         /// <param name="flightId">Unique ID for the currently active flight.</param>
         /// <returns>If successful, an instance of GuideContainer containing file information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<GuideContainer, HaloApiErrorContainer>> GameCmsGetGuideMultiplayer(string flightId)
@@ -1060,7 +1037,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a list of all available news files currently used by the multiplayer service.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetGuide_News.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetGuide_News.xml' path='//example'/>
         /// <param name="flightId">Unique ID for the currently active flight.</param>
         /// <returns>If successful, an instance of GuideContainer containing file information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<GuideContainer, HaloApiErrorContainer>> GameCmsGetGuideNews(string flightId)
@@ -1076,7 +1053,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a list of all available progression files currently used by the multiplayer service.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetGuide_Progression.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetGuide_Progression.xml' path='//example'/>
         /// <param name="flightId">Unique ID for the currently active flight.</param>
         /// <returns>If successful, an instance of GuideContainer containing file information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<GuideContainer, HaloApiErrorContainer>> GameCmsGetGuideProgression(string flightId)
@@ -1092,7 +1069,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a list of all available spec files currently used by the multiplayer service.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetGuide_Specs.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetGuide_Specs.xml' path='//example'/>
         /// <param name="flightId">Unique ID for the currently active flight.</param>
         /// <returns>If successful, an instance of GuideContainer containing file information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<GuideContainer, HaloApiErrorContainer>> GameCmsGetGuideSpecs(string flightId)
@@ -1108,7 +1085,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a list of all available title authorization files currently used by the multiplayer service.
         /// </summary>
-        /// <include file='../APIDocsExamples/GameCms_GetGuide_TitleAuthorization.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetGuide_TitleAuthorization.xml' path='//example'/>
         /// <param name="flightId">Unique ID for the currently active flight.</param>
         /// <returns>If successful, an instance of GuideContainer containing file information. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<GuideContainer, HaloApiErrorContainer>> GameCmsGetGuideTitleAuthorization(string flightId)
@@ -1128,7 +1105,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Checks whether the player has favorited a specific asset.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_CheckAssetPlayerBookmark.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_CheckAssetPlayerBookmark.xml' path='//example'/>
         /// <param name="title">Title for which the asset should be obtained. An example value is "hi".</param>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
@@ -1147,7 +1124,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Creates a new version of an asset as part of a working editing session.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_CreateAssetVersionAgnostic.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_CreateAssetVersionAgnostic.xml' path='//example'/>
         /// <param name="title">Title which contains the asset. An example value here is "hi".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
@@ -1239,7 +1216,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// This method expects a JSON body, but I don't yet know what the underlying data structure is.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_FavoriteAnAsset.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_FavoriteAnAsset.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
@@ -1258,7 +1235,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets authoring metadata about a specific asset.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_GetAsset.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_GetAsset.xml' path='//example'/>
         /// <param name="title">Title which contains the asset. An example value here is "hi".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
@@ -1294,7 +1271,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// Interestingly enough, this API call did not contain the Film suffix in the name. I added it for explicit identification because otherwise it would be confusing.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_GetLatestAssetVersionFilm.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_GetLatestAssetVersionFilm.xml' path='//example'/>
         /// <param name="title">Title which contains the asset. An example value here is "hi".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
         /// <returns>If successful, returns an instance of AuthoringAssetVersion containing film data in the CustomData property. Otherwise, returns null.</returns>
@@ -1314,7 +1291,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// Certain asset types, such as engine game variants, might return a 403 response code for the API, therefore you will not get a real version here.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_GetLatestAssetVersionAgnostic.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_GetLatestAssetVersionAgnostic.xml' path='//example'/>
         /// <param name="title">Title which contains the asset. An example value here is "hi".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
@@ -1332,7 +1309,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns a published version of the asset.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_GetPublishedVersion.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_GetPublishedVersion.xml' path='//example'/>
         /// <param name="title">Title which contains the asset. An example value here is "hi".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
@@ -1350,7 +1327,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets metadata related to a concrete version of a specified asset.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_GetSpecificAssetVersion.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_GetSpecificAssetVersion.xml' path='//example'/>
         /// <param name="title">Title which contains the asset. An example value here is "hi".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
@@ -1372,7 +1349,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// The underlying request supports specifying parameters that limit the search, such as ?start=number, however that is not yet implemented in this version of the API wrapper.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_ListAllVersions.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_ListAllVersions.xml' path='//example'/>
         /// <param name="title">Title which contains the asset. An example value here is "hi".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
@@ -1393,7 +1370,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// The underlying request supports specifying parameters that limit the search, such as ?start=number, however that is not yet implemented in this version of the API wrapper.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_ListPlayerAssets.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_ListPlayerAssets.xml' path='//example'/>
         /// <param name="title">Title which contains the asset. An example value here is "hi".</param>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="start">Number of results from which to start the iteration.</param>
@@ -1426,7 +1403,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// The underlying request supports specifying parameters that limit the search, such as ?start=number, however that is not yet implemented in this version of the API wrapper.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_ListPlayerFavorites.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_ListPlayerFavorites.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <returns>If successful, returns an instance of AuthoringFavoritesContainer containing the list of favorites. Otherwise, returns null.</returns>
@@ -1446,7 +1423,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// The underlying request supports specifying parameters that limit the search, such as ?start=number, however that is not yet implemented in this version of the API wrapper.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_ListPlayerFavoritesAgnostic.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_ListPlayerFavoritesAgnostic.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of AuthoringFavoritesContainer containing the list of favorites. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<AuthoringFavoritesContainer, HaloApiErrorContainer>> HIUGCListPlayerFavoritesAgnostic(string player)
@@ -1462,7 +1439,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Update an existing asset version.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_PatchAssetVersion.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_PatchAssetVersion.xml' path='//example'/>
         /// <param name="title">Title for the game for which the authoring session needs to be spawned. Example variant is "hi" for "Halo Infinite".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
@@ -1505,7 +1482,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// This API is actually not captured in the endpoint catalog, but it seems to return values anyway.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_GetAssetRatings.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_GetAssetRatings.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
@@ -1523,7 +1500,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Rates an asset the player has access to.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_RateAnAsset.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_RateAnAsset.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
@@ -1543,7 +1520,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Reports an asset.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_ReportAnAsset.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_ReportAnAsset.xml' path='//example'/>
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
@@ -1568,7 +1545,7 @@ namespace OpenSpartan.Grunt.Core
         /// still up to discovery to figure out what the values for the POST request are.
         /// TODO: Need to figure out what the actual data model is for the POST request.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_SpawnAsset.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_SpawnAsset.xml' path='//example'/>
         /// <param name="title">Title for the game for which the authoring session needs to be spawned. Example variant is "hi" for "Halo Infinite".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants", "Maps", or "Prefabs".</param>
         /// <param name="asset">Asset definition, containing information about the asset to be created.</param>
@@ -1604,7 +1581,7 @@ namespace OpenSpartan.Grunt.Core
         /// }
         /// It also seems that using `includeContainerSas` results in a 403 response, but without it a session can be created.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_StartSessionAgnostic.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_StartSessionAgnostic.xml' path='//example'/>
         /// <param name="title">Title for the game for which the authoring session needs to be spawned. Example variant is "hi" for "Halo Infinite".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique asset ID for the asset type specified earlier.</param>
@@ -1629,7 +1606,7 @@ namespace OpenSpartan.Grunt.Core
         /// For now, an empty JSON is passed to the PATCH request. In the future, analysis needs to be done to understand more about how the request actually
         /// can be used to modify the data, since that's what a PATCH is usually about.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_ExtendSessionAgnostic.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_ExtendSessionAgnostic.xml' path='//example'/>
         /// <param name="title">Title for the game for which the authoring session needs to be spawned. Example variant is "hi" for "Halo Infinite".</param>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique asset ID for the asset type specified earlier.</param>
@@ -1725,7 +1702,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns metadata about a given engine game variant version.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetEngineGameVariant.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetEngineGameVariant.xml' path='//example'/>
         /// <param name="assetId">Unique asset ID for the engine game variant.</param>
         /// <param name="versionId">Unique ID for the asset version for the engine game variant.</param>
         /// <returns>If successful, returns an instance of EngineGameVariant containing appropriate metadata. Otherwise, returns null.</returns>
@@ -1742,7 +1719,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets an engine game variant without an associated version.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetEngineGameVariantWithoutVersion.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetEngineGameVariantWithoutVersion.xml' path='//example'/>
         /// <param name="assetId">Unique asset ID for the engine game variant.</param>
         /// <returns>If successful, returns an instance of EngineGameVariant containing appropriate metadata. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<EngineGameVariant, HaloApiErrorContainer>> HIUGCDiscoveryGetEngineGameVariantWithoutVersion(string assetId)
@@ -1758,7 +1735,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a game manifest.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetManifest.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetManifest.xml' path='//example'/>
         /// <param name="assetId">Unique asset ID for the manifest. Example value is "6369c3a6-390e-496c-ab71-93c326347327".</param>
         /// <param name="versionId">Unique version ID for the manifest. Example value is "9a348b5b-08aa-41c2-8b3a-681870c78a76".</param>
         /// <param name="clearanceId">ID of the currently active flight.</param>
@@ -1776,7 +1753,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the current game manifest.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetManifestByBuild.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetManifestByBuild.xml' path='//example'/>
         /// <param name="buildNumber">Build for which the manifest needs to be obtained. Maps to official Halo builds, such as 6.10022.10499.</param>
         /// <returns>An instance of Manifest containing game manifest information if request is successful. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<Manifest, HaloApiErrorContainer>> HIUGCDiscoveryGetManifestByBuild(string buildNumber)
@@ -1792,7 +1769,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns information about a given map at a specific release version.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetMap.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetMap.xml' path='//example'/>
         /// <param name="assetId">Unique map ID. For example, the ID for the Recharge map is "8420410b-044d-44d7-80b6-98a766c8c39f".</param>
         /// <param name="versionId">Unique version ID for a map. For example, for the Recharge map a version is "068c0974-f748-41ba-b457-b8fed603576e".</param>
         /// <returns>An instance of Map containing map metadata if request is successful. Otherwise, returns null.</returns>
@@ -1813,7 +1790,7 @@ namespace OpenSpartan.Grunt.Core
         /// An example fully constructed HTTP request to the API is: https://{HaloCoreEndpoints.DiscoveryOrigin}.svc.halowaypoint.com/hi/mapModePairs/9e056bcc-b9bc-4845-9fe3-6d667f018463/versions/37b8cd75-d1ce-4abf-9349-a76673503410.
         /// This request represents the BTB game mode on the Breaker map.
         /// </remarks>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetMapModePair.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetMapModePair.xml' path='//example'/>
         /// <param name="assetId">Unique ID for the map and mode combination.</param>
         /// <param name="versionId">Unique version ID for the map and mode combination.</param>
         /// <param name="clearanceId">ID of the currently active flight.</param>
@@ -1831,7 +1808,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a map and mode combination without the version.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetMapModePairWithoutVersion.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetMapModePairWithoutVersion.xml' path='//example'/>
         /// <param name="assetId">Unique ID for the map and mode combination. Example value is "b6aca0c7-8ba7-4066-bf91-693571374c3c" for "sgh_interlock".</param>
         /// <returns>If successful, returns an instance of <see cref="Task"/> representing the map and mode combination. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<MapModePair, HaloApiErrorContainer>> HIUGCDiscoveryGetMapModePairWithoutVersion(string assetId)
@@ -1848,7 +1825,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about a given map.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetMapWithoutVersion.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetMapWithoutVersion.xml' path='//example'/>
         /// <param name="assetId">Unique map ID. For example, the ID for the Recharge map is "8420410b-044d-44d7-80b6-98a766c8c39f".</param>
         /// <returns>An instance of Map containing map metadata if request is successful. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<Map, HaloApiErrorContainer>> HIUGCDiscoveryGetMapWithoutVersion(string assetId)
@@ -1864,7 +1841,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about a specific playlist.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetPlaylist.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetPlaylist.xml' path='//example'/>
         /// <param name="assetId">Unique asset ID for the playlist.</param>
         /// <param name="versionId">Unique version ID for the playlist.</param>
         /// <param name="clearanceId">ID of the currently active flight.</param>
@@ -1882,7 +1859,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information about a specific playlist without its version.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetPlaylistWithoutVersion.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetPlaylistWithoutVersion.xml' path='//example'/>
         /// <param name="assetId">Unique asset ID for the playlist.</param>
         /// <returns>If successful, returns an instance of <see cref="Playlist"/> representing the targeted playlist. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<Playlist, HaloApiErrorContainer>> HIUGCDiscoveryGetPlaylistWithoutVersion(string assetId)
@@ -1898,7 +1875,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information abouty a specific prefab version.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetPrefab.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetPrefab.xml' path='//example'/>
         /// <param name="assetId">Unique asset ID for the prefab.</param>
         /// <param name="versionId">Unique version ID for the prefab.</param>
         /// <returns>If successful, returns a <see cref="Prefab"/> instance representing the specific prefab. Otherwise, returns null.</returns>
@@ -1915,7 +1892,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets information abouty a specific prefab version.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetPrefabWithoutVersion.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetPrefabWithoutVersion.xml' path='//example'/>
         /// <param name="assetId">Unique asset ID for the prefab.</param>
         /// <returns>If successful, returns a <see cref="Prefab"/> instance representing the specific prefab. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<Prefab, HaloApiErrorContainer>> HIUGCDiscoveryGetPrefabWithoutVersion(string assetId)
@@ -1931,7 +1908,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns the project details that are associated with a given version of a manifest. This manifest contains all the maps and modes to show in the custom game menus.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetProject.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetProject.xml' path='//example'/>
         /// <param name="assetId">Unique asset ID representing the project. Example asset ID currently active is the custom game manifest ID: "a9dc0785-2a99-4fec-ba6e-0216feaaf041".</param>
         /// <param name="versionId">Version ID for the project. As an example, a version of a production manifest is "a4e68648-f994-44bb-853e-d09ee224d799".</param>
         /// <returns>An instance of Project containing current game project information if request is successful. Otherwise, returns null.</returns>
@@ -1948,7 +1925,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns information on a project (collection of game modes and maps). This manifest contains all the maps and modes to show in the custom game menus.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetProjectWithoutVersion.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetProjectWithoutVersion.xml' path='//example'/>
         /// <param name="assetId">Unique asset ID representing the project. Example asset ID currently active is the custom game manifest ID: "a9dc0785-2a99-4fec-ba6e-0216feaaf041".</param>
         /// <returns>An instance of Project containing current game project information if request is successful. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<Project, HaloApiErrorContainer>> HIUGCDiscoveryGetProjectWithoutVersion(string assetId)
@@ -1964,7 +1941,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns information about available tags that can be associated with game assets.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetTagsInfo.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetTagsInfo.xml' path='//example'/>
         /// <returns>An instance of TagInfo containing a list of tags if the request is successful. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<TagInfo, HaloApiErrorContainer>> HIUGCDiscoveryGetTagsInfo()
         {
@@ -1979,7 +1956,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns information about a game asset version. This information is specific only to the version specified and does not contain general asset metadata. To get general asset metadata, use HIUGCDiscoveryGetUgcGameVariantWithoutVersion.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetUgcGameVariant.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetUgcGameVariant.xml' path='//example'/>
         /// <param name="assetId">Unique ID for the game asset. For example, for "Fiesta - Slayer" game mode, the asset ID is "aca7bbf8-7a18-4aae-8785-1bd3f58275fd".</param>
         /// <param name="versionId">Version for the asset to obtain. Example value is "3685f6b2-2860-4e98-9d13-513087edb465".</param>
         /// <returns>An instance of UGCGameVariant containing game variant metadata if the request is successful. Otherwise, returns null.</returns>
@@ -1996,7 +1973,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Returns general asset metadata related to a game asset.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_GetUgcGameVariantWithoutVersion.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetUgcGameVariantWithoutVersion.xml' path='//example'/>
         /// <param name="assetId">Unique ID for the game asset. For example, for "Fiesta - Slayer" game mode, the asset ID is "aca7bbf8-7a18-4aae-8785-1bd3f58275fd".</param>
         /// <returns>An instance of GameAssetVariant containing asset metadata if the request is successful. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<UGCGameVariant, HaloApiErrorContainer>> HIUGCDiscoveryGetUgcGameVariantWithoutVersion(string assetId)
@@ -2012,7 +1989,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Searches for assets in the user generated content directory.
         /// </summary>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_Search.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_Search.xml' path='//example'/>
         /// <param name="start">Number of results from which to start the iteration.</param>
         /// <param name="count">Count of results to return.</param>
         /// <param name="includeTimes">Include creation, modification, and deletion times in results.</param>
@@ -2034,7 +2011,7 @@ namespace OpenSpartan.Grunt.Core
         /// Returns information about available film chunks that are used to reconstruct the entire match.
         /// </summary>
         /// <remarks>Despite the name of this request, the data captured here is not actually a movie but rather a full re-creation of the match, using in-game assets and player positions.</remarks>
-        /// <include file='../APIDocsExamples/HIUGC_Discovery_SpectateByMatchId.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_SpectateByMatchId.xml' path='//example'/>
         /// <param name="matchId">Unique ID for the match.</param>
         /// <returns>An instance of Film containing film metadata if the request is successful. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<Film, HaloApiErrorContainer>> HIUGCDiscoverySpectateByMatchId(string matchId)
@@ -2054,7 +2031,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a list of available lobby servers.
         /// </summary>
-        /// <include file='../APIDocsExamples/Lobby_GetQosServers.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Lobby_GetQosServers.xml' path='//example'/>
         /// <returns>A list of Server instances if the request is successful. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<List<Server>, HaloApiErrorContainer>> LobbyGetQosServers()
         {
@@ -2069,7 +2046,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the player presence status.
         /// </summary>
-        /// <include file='../APIDocsExamples/Lobby_Presence.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Lobby_Presence.xml' path='//example'/>
         /// <param name="presenceRequest">Presence request, containing a list of Xuids representing Xbox Live players.</param>
         /// <returns>If successful, an instance of <see cref="LobbyPresenceContainer"/> representing the lobby details. Otherwise, null.</returns>
         public async Task<HaloApiResultContainer<LobbyPresenceContainer, HaloApiErrorContainer>> LobbyPresence(LobbyPresenceRequestContainer presenceRequest)
@@ -2090,7 +2067,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a third-party join handle for a lobby.
         /// </summary>
-        /// <include file='../APIDocsExamples/Lobby_ThirdPartyJoinHandle.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Lobby_ThirdPartyJoinHandle.xml' path='//example'/>
         /// <param name="lobbyId">Unique lobby ID.</param>
         /// <param name="player">Player ID in the format of "xuid(XUID_VALUE)".</param>
         /// <param name="handleAudience">Audience for the join handle. Example value is "Friends".</param>
@@ -2114,7 +2091,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Get a list of features enables for a given flight.
         /// </summary>
-        /// <include file='../APIDocsExamples/Setting_GetFlightedFeatureFlags.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Setting_GetFlightedFeatureFlags.xml' path='//example'/>
         /// <param name="flightId">Clearance ID/flight that is being used.</param>
         /// <returns>An instance of FlightedFeatureFlags containing a list of enabled and disabled features if the request is successful. Otherwise, returns null.</returns>
         public async Task<HaloApiResultContainer<FlightedFeatureFlags, HaloApiErrorContainer>> SettingGetFlightedFeatureFlags(string flightId)
@@ -2134,7 +2111,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the currently assigned clearance/flight ID.
         /// </summary>
-        /// <include file='../APIDocsExamples/Settings_GetClearance.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Settings_GetClearance.xml' path='//example'/>
         /// <param name="audience">Audience that the request is targeting. Standard value is RETAIL.</param>
         /// <param name="sandbox">Identifier associated with the sandbox. Typical value is UNUSED.</param>
         /// <param name="buildNumber">Number of the game build the data is requested for. Example value is 211755.22.01.23.0549-0.</param>
@@ -2152,7 +2129,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the the player clearance/flight ID.
         /// </summary>
-        /// <include file='../APIDocsExamples/Settings_GetPlayerClearance.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Settings_GetPlayerClearance.xml' path='//example'/>
         /// <param name="audience">Audience that the request is targeting. Standard value is RETAIL.</param>
         /// <param name="player">The player identifier in the format "xuid(000000)".</param>
         /// <param name="sandbox">Identifier associated with the sandbox. Typical value is UNUSED.</param>
@@ -2178,7 +2155,7 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>
         /// Method supports returning results in XML behind the scenes. Class names map to XML data model.
         /// </remarks>
-        /// <include file='../APIDocsExamples/Skill_GetMatchPlayerResult.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Skill_GetMatchPlayerResult.xml' path='//example'/>
         /// <param name="matchId">The unique match ID.</param>
         /// <param name="playerIds">Array of player IDs. Each ID string should be in the format of "xuid(XUID_VALUE)".</param>
         /// <returns>An instance of <see cref="MatchSkillInfo"/> representing player skills if the request was successful. Otherwise, returns null.</returns>
@@ -2196,7 +2173,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets playlist Competitive Skill Rank (CSR) for a player or a set of players.
         /// </summary>
-        /// <include file='../APIDocsExamples/Skill_GetPlaylistCsr.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Skill_GetPlaylistCsr.xml' path='//example'/>
         /// <param name="playlistId">Unique ID for the playlist.</param>
         /// <param name="playerIds">Array of player IDs. Each ID string should be in the format of "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, an instance of <see cref="PlaylistCsrResultContainer"/> representing player CSRs. Otherwise, returns null.</returns>
@@ -2218,7 +2195,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the summary information for applicable bans to players and devices.
         /// </summary>
-        /// <include file='../APIDocsExamples/Stats_BanSummary.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Stats_BanSummary.xml' path='//example'/>
         /// <param name="targetlist">A list of targets that need to be checked. Authenticated devices can be included as "Authenticated(Device)". Individual players can be specified as "xuid(XUID_VALUE)".</param>
         /// <returns>An instance of BanSummary containing applicable ban information if request was successful. Return value is null otherwise.</returns>
         /// <remarks>In some quick tests, it seems that including Authenticated(Device) in the request results in 401 Unauthorized if called outside the game. Additional work might be required to understand how to validate the device.</remarks>
@@ -2236,7 +2213,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets challenge decks that are available for a player.
         /// </summary>
-        /// <include file='../APIDocsExamples/Stats_GetChallengeDecks.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Stats_GetChallengeDecks.xml' path='//example'/>
         /// <param name="player">The player identifier in the format "xuid(000000)"</param>
         /// <returns>An instance of PlayerDecks containing deck information if request was successful. Return value is null otherwise.</returns>
         public async Task<HaloApiResultContainer<ChallengeDecksResponse, HaloApiErrorContainer>> StatsGetChallengeDecks(string player)
@@ -2252,7 +2229,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets the summary on number of played matches.
         /// </summary>
-        /// <include file='../APIDocsExamples/Stats_GetMatchCount.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Stats_GetMatchCount.xml' path='//example'/>
         /// <param name="player">The player identifier in the format "xuid(000000)"</param>
         /// <returns>An instance of PlayerMatchCount containing match counts if request was successful. Return value is null otherwise.</returns>
         public async Task<HaloApiResultContainer<PlayerMatchCount, HaloApiErrorContainer>> StatsGetMatchCount(string player)
@@ -2268,7 +2245,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets match history for a player.
         /// </summary>
-        /// <include file='../APIDocsExamples/Stats_GetMatchHistory.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Stats_GetMatchHistory.xml' path='//example'/>
         /// <param name="player">The player identifier in the format "xuid(000000)"</param>
         /// <param name="start">Start value for the counter, from which data should be returned.</param>
         /// <param name="count">Number of matches to return. Maximum is 25. Going beyond 25 will result in only 25 values being returned.</param>
@@ -2287,7 +2264,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets stats for a specific match.
         /// </summary>
-        /// <include file='../APIDocsExamples/Stats_GetMatchStats.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Stats_GetMatchStats.xml' path='//example'/>
         /// <param name="matchId">Match ID in GUID format.</param>
         /// <returns>An instance of MatchStats containing match metadata if request was successful. Return value is null otherwise.</returns>
         public async Task<HaloApiResultContainer<MatchStats, HaloApiErrorContainer>> StatsGetMatchStats(string matchId)
@@ -2303,7 +2280,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Get challenge progression associated with a given match.
         /// </summary>
-        /// <include file='../APIDocsExamples/Stats_GetPlayerMatchProgression.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Stats_GetPlayerMatchProgression.xml' path='//example'/>
         /// <param name="player">The player identifier in the format "xuid(000000)"</param>
         /// <param name="matchId">Match ID in GUID format.</param>
         /// <returns>An instance of MatchProgression containing match challenge progression metadata if request was successful. Return value is null otherwise.</returns>
@@ -2320,7 +2297,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets match privacy settings for a given player.
         /// </summary>
-        /// <include file='../APIDocsExamples/Stats_MatchPrivacy.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/Stats_MatchPrivacy.xml' path='//example'/>
         /// <param name="player">The player identifier in the format "xuid(000000)"</param>
         /// <returns>An instance of MatchesPrivacy containing match privacy metadata if request was successful. Return value is null otherwise.</returns>
         public async Task<HaloApiResultContainer<MatchesPrivacy, HaloApiErrorContainer>?> StatsMatchPrivacy(string player)
@@ -2340,7 +2317,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a specific moderation proof signing key.
         /// </summary>
-        /// <include file='../APIDocsExamples/TextModeration_GetSigningKey.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/TextModeration_GetSigningKey.xml' path='//example'/>
         /// <param name="keyId">Key ID. Full list can be obtained by a call to TextModerationGetSigningKeys.</param>
         /// <returns>An instance of Key containing a single signing key data if request was successful. Return value is null otherwise.</returns>
         public async Task<HaloApiResultContainer<Key, HaloApiErrorContainer>> TextModerationGetSigningKey(string keyId)
@@ -2356,7 +2333,7 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a list of available moderation proof signing keys.
         /// </summary>
-        /// <include file='../APIDocsExamples/TextModeration_GetSigningKeys.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/HaloInfinite/TextModeration_GetSigningKeys.xml' path='//example'/>
         /// <returns>An instance of ModerationProofKeys containing signing key data if request was successful. Return value is null otherwise.</returns>
         public async Task<HaloApiResultContainer<ModerationProofKeys, HaloApiErrorContainer>> TextModerationGetSigningKeys()
         {
@@ -2366,102 +2343,6 @@ namespace OpenSpartan.Grunt.Core
                 false,
                 false,
                 GlobalConstants.HALO_PC_USER_AGENT);
-        }
-
-        /// <summary>
-        /// Executes an API request in a standard way against a given API endpoint. This is a helper method that's put
-        /// in place to simplify how the API calls are made because most requests against the Halo Infinite API are
-        /// pretty repetitive.
-        /// </summary>
-        /// <param name="endpoint">The API endpoint to which the request is sent.</param>
-        /// <param name="method">HTTP method to be used for the request.</param>
-        /// <param name="useSpartanToken">Determines whether a Spartan token needs to be applied to teh request.</param>
-        /// <param name="useClearance">Determines whether a clearance/flight ID needs to be applied to the request.</param>
-        /// <param name="userAgent">User agent to be used for the request.</param>
-        /// <param name="content">If the request contains data to be sent to the Halo Waypoint service, include it here. Expected format is JSON.</param>
-        /// <param name="contentType">Content type for POST requests. By default it's `application/json`.</param>
-        /// <returns>Response string in case of a successful request. Null if request failed.</returns>
-        private async Task<HaloApiResultContainer<T, HaloApiErrorContainer>> ExecuteAPIRequest<T>(string endpoint, HttpMethod method, bool useSpartanToken, bool useClearance, string userAgent, string content = "", ApiContentType contentType = ApiContentType.Json)
-        {
-            var client = new HttpClient(new HttpClientHandler
-            {
-                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate | DecompressionMethods.Brotli,
-            });
-
-            HaloApiResultContainer<T, HaloApiErrorContainer> resultContainer = new(default, new HaloApiErrorContainer());
-
-            var request = new HttpRequestMessage()
-            {
-                RequestUri = new Uri(endpoint),
-                Method = method,
-            };
-
-            if (request.Method == HttpMethod.Post)
-            {
-                var contentTypeAttribute = contentType.GetHeaderValue();
-                request.Headers.Add("Content-Type", contentTypeAttribute);
-            }
-
-            if (!string.IsNullOrEmpty(content))
-            {
-                request.Content = new StringContent(content, Encoding.UTF8, "application/json");
-            }
-
-            if (useSpartanToken)
-            {
-                request.Headers.Add("x-343-authorization-spartan", this.SpartanToken);
-            }
-
-            if (useClearance)
-            {
-                request.Headers.Add("343-clearance", this.ClearanceToken);
-            }
-
-            request.Headers.Add("User-Agent", userAgent);
-            request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("Accept-Encoding", "gzip, deflate, br");
-
-            var response = await client.SendAsync(request);
-
-            resultContainer.Error.Code = Convert.ToInt32(response.StatusCode);
-
-            if (response.IsSuccessStatusCode)
-            {
-                if (typeof(T) == typeof(string))
-                {
-                    resultContainer.Result = (T)Convert.ChangeType(await response.Content.ReadAsStringAsync(), typeof(T));
-                }
-                else if (typeof(T) == typeof(byte[]))
-                {
-                    using (MemoryStream dataStream = new())
-                    {
-                        response.Content.ReadAsStreamAsync().Result.CopyTo(dataStream);
-                        resultContainer.Result = (T)Convert.ChangeType(dataStream.ToArray(), typeof(T));
-                    }
-                }
-                else if (typeof(T) == typeof(bool))
-                {
-                    resultContainer.Result = (T)(object)response.IsSuccessStatusCode;
-                }
-                else
-                {
-                    if (Attribute.GetCustomAttribute(typeof(T), typeof(IsAutomaticallySerializableAttribute)) != null)
-                    {
-                        resultContainer.Result = JsonSerializer.Deserialize<T>(await response.Content.ReadAsStringAsync(), this.serializerOptions);
-                    }
-                    else
-                    {
-                        throw new NotSupportedException("The specified type is not supported. You can onlty get results in string or byte array formats.");
-                    }
-                }
-            }
-
-            if (response.Content != null)
-            {
-                resultContainer.Error.Message = await response.Content.ReadAsStringAsync();
-            }
-
-            return resultContainer;
         }
     }
 }
