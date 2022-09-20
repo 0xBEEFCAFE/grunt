@@ -13,6 +13,41 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public enum GameVariantCategory
     {
         /// <summary>
+        /// Unknown game variant category
+        /// </summary>
+        Unknown = -1,
+
+        /// <summary>
+        /// No assigned game variant category
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// Campaign
+        /// </summary>
+        Campaign = 1,
+
+        /// <summary>
+        /// Forge
+        /// </summary>
+        Forge = 2,
+
+        /// <summary>
+        /// Academy
+        /// </summary>
+        Academy = 3,
+
+        /// <summary>
+        /// Academy tutorial
+        /// </summary>
+        AcademyTutorial = 4,
+
+        /// <summary>
+        /// Academy practice
+        /// </summary>
+        AcademyPractice = 5,
+
+        /// <summary>
         /// Slayer
         /// </summary>
         MultiplayerSlayer = 6,
@@ -33,6 +68,11 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         MultiplayerFiesta = 9,
 
         /// <summary>
+        /// SWAT
+        /// </summary>
+        MultiplayerSwat = 10,
+
+        /// <summary>
         /// Strongholds
         /// </summary>
         MultiplayerStrongholds = 11,
@@ -41,6 +81,11 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// King of the Hill
         /// </summary>
         MultiplayerBastion = 12,
+
+        /// <summary>
+        /// King of the Hill
+        /// </summary>
+        MultiplayerKingOfTheHill = 13,
 
         /// <summary>
         /// Total Control
@@ -78,6 +123,16 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         MultiplayerJuggernaut = 20,
 
         /// <summary>
+        /// Regicide
+        /// </summary>
+        MultiplayerRegicide = 21,
+
+        /// <summary>
+        /// Infection
+        /// </summary>
+        MultiplayerInfection = 22,
+
+        /// <summary>
         /// VIP
         /// </summary>
         MultiplayerEscort = 23,
@@ -93,9 +148,69 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         MultiplayerGrifball = 25,
 
         /// <summary>
+        /// Race
+        /// </summary>
+        MultiplayerRace = 26,
+
+        /// <summary>
+        /// Multiplayer prototype
+        /// </summary>
+        MultiplayerPrototype = 27,
+
+        /// <summary>
+        /// Test
+        /// </summary>
+        Test = 28,
+
+        /// <summary>
+        /// Academy test
+        /// </summary>
+        TestAcademy = 29,
+
+        /// <summary>
+        /// Audio test
+        /// </summary>
+        TestAudio = 30,
+
+        /// <summary>
+        /// Campaign test
+        /// </summary>
+        TestCampaign = 31,
+
+        /// <summary>
         /// Test game variant
         /// </summary>
         TestEngine = 32,
+
+        /// <summary>
+        /// Forge test
+        /// </summary>
+        TestForge = 33,
+
+        /// <summary>
+        /// Graphics test
+        /// </summary>
+        TestGraphics = 34,
+
+        /// <summary>
+        /// Multiplayer test
+        /// </summary>
+        TestMultiplayer = 35,
+
+        /// <summary>
+        /// Sandbox test
+        /// </summary>
+        TestSandbox = 36,
+
+        /// <summary>
+        /// Academy training
+        /// </summary>
+        AcademyTraining = 37,
+
+        /// <summary>
+        /// Academy weapon drill
+        /// </summary>
+        AcademyWeaponDrill = 38,
 
         /// <summary>
         /// Land Grab
