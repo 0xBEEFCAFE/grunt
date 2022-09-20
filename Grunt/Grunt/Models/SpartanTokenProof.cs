@@ -7,9 +7,19 @@
 
 namespace OpenSpartan.Grunt.Models
 {
+    /// <summary>
+    /// Container class for Spartan token information.
+    /// </summary>
     public class SpartanTokenProof
     {
-        public string Token { get; set; }
-        public string TokenType { get; set; }
+        /// <summary>
+        /// Gets or sets the Spartan token content.
+        /// </summary>
+        public string? Token { get; set; }
+
+        /// <summary>
+        /// Gets or sets the token type.
+        /// </summary>
+        public string? TokenType { get; set; }
     }
 }

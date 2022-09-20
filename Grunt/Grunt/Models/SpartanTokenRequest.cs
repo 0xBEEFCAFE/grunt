@@ -7,10 +7,24 @@
 
 namespace OpenSpartan.Grunt.Models
 {
+    /// <summary>
+    /// Container class containing information required for Spartan token acquisition.
+    /// </summary>
     public class SpartanTokenRequest
     {
-        public string Audience { get; set; }
-        public string MinVersion { get; set; }
-        public SpartanTokenProof[] Proof { get; set; }
+        /// <summary>
+        /// Gets or sets the token audience.
+        /// </summary>
+        public string? Audience { get; set; }
+
+        /// <summary>
+        /// Gets or sets the target minimum version.
+        /// </summary>
+        public string? MinVersion { get; set; }
+
+        /// <summary>
+        /// Gets or sets token information.
+        /// </summary>
+        public SpartanTokenProof[]? Proof { get; set; }
     }
 }

@@ -9,9 +9,15 @@ using System.Text.Json.Serialization;
 
 namespace OpenSpartan.Grunt.Models
 {
+    /// <summary>
+    /// Container class for Xbox Live API display claims.
+    /// </summary>
     public class XboxDisplayClaims
     {
+        /// <summary>
+        /// Gets or sets Xbox user-related information.
+        /// </summary>
         [JsonPropertyName("xui")]
-        public XboxXui[] Xui { get; set; }
+        public XboxXui[]? Xui { get; set; }
     }
 }
