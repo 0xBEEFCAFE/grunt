@@ -9,8 +9,15 @@ using System;
 
 namespace OpenSpartan.Grunt.Models
 {
+    /// <summary>
+    /// Attribute defining the response or request content type, that can be used as an attribute on API-related classes.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.All)]
     public class ContentTypeAttribute : Attribute
     {
-        public string HeaderValue { get; set; }
+        /// <summary>
+        /// Gets or sets the content type header value.
+        /// </summary>
+        public string? HeaderValue { get; set; }
     }
 }

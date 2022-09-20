@@ -9,12 +9,25 @@ using System.Text.Json.Serialization;
 
 namespace OpenSpartan.Grunt.Models
 {
-
+    /// <summary>
+    /// Model containing the information about an issued Spartan V4 token.
+    /// </summary>
     public class SpartanToken
     {
+        /// <summary>
+        /// Gets or sets the Spartan token.
+        /// </summary>
         [JsonPropertyName("SpartanToken")]
-        public string Token { get; set; }
-        public APIFormattedDate ExpiresUtc { get; set; }
-        public string TokenDuration { get; set; }
+        public string? Token { get; set; }
+
+        /// <summary>
+        /// Gets or sets the token expiration date.
+        /// </summary>
+        public APIFormattedDate? ExpiresUtc { get; set; }
+
+        /// <summary>
+        /// Gets or sets the token validity duration.
+        /// </summary>
+        public string? TokenDuration { get; set; }
     }
 }

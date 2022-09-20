@@ -9,24 +9,45 @@ using System.Text.Json.Serialization;
 
 namespace OpenSpartan.Grunt.Models
 {
+    /// <summary>
+    /// Container class for the OAuth token.
+    /// </summary>
     public class OAuthToken
     {
+        /// <summary>
+        /// Gets or sets the token type.
+        /// </summary>
         [JsonPropertyName("token_type")]
-        public string TokenType { get; set; }
+        public string? TokenType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the token validity duration.
+        /// </summary>
         [JsonPropertyName("expires_in")]
         public int ExpiresIn { get; set; }
 
+        /// <summary>
+        /// Gets or sets the scope for the token.
+        /// </summary>
         [JsonPropertyName("scope")]
-        public string Scope { get; set; }
+        public string? Scope { get; set; }
 
+        /// <summary>
+        /// Gets or sets the associated access token.
+        /// </summary>
         [JsonPropertyName("access_token")]
-        public string AccessToken { get; set; }
+        public string? AccessToken { get; set; }
 
+        /// <summary>
+        /// Gets or sets the associated refresh token.
+        /// </summary>
         [JsonPropertyName("refresh_token")]
-        public string RefreshToken { get; set; }
+        public string? RefreshToken { get; set; }
 
+        /// <summary>
+        /// Gets or sets the unique user ID.
+        /// </summary>
         [JsonPropertyName("user_id")]
-        public string UserId { get; set; }
+        public string? UserId { get; set; }
     }
 }
