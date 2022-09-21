@@ -23,5 +23,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
         public AssetVersionFile Files { get; set; }
         public int AssetKind { get; set; }
         public int Order { get; set; }
+        public PlayAssetStats AssetStats { get; set; }
     }
 }

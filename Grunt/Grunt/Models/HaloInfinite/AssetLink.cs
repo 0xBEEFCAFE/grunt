@@ -12,6 +12,5 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class AssetLink : AssetBase
     {
-        public PlayAssetStats AssetStats { get; set; }
     }
 }

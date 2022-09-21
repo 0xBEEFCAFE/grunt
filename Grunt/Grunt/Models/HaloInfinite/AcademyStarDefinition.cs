@@ -7,11 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Information related to a star earned through the Academy in Halo Infinite.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AcademyStarDefinition
     {
-        public string GUID { get; set; }
-        public string Title { get; set; }
-        public DisplayString DisplayString { get; set; }
+        /// <summary>
+        /// Gets or sets the star GUID.
+        /// </summary>
+        public string? GUID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the star title.
+        /// </summary>
+        public string? Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the star title string across multiple locales.
+        /// </summary>
+        public DisplayString? DisplayString { get; set; }
     }
 }

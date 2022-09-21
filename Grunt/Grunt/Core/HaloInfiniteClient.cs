@@ -1821,7 +1821,6 @@ namespace OpenSpartan.Grunt.Core
                 GlobalConstants.HALO_WAYPOINT_USER_AGENT);
         }
 
-
         /// <summary>
         /// Gets information about a given map.
         /// </summary>

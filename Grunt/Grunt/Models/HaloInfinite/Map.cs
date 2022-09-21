@@ -13,8 +13,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class Map : AssetBase
     {
         public CustomMapData CustomData { get; set; }
-        public object[] PrefabLinks { get; set; }
-        public PlayAssetStats AssetStats { get; set; }
-        public int Order { get; set; }
+        public AssetLink[] PrefabLinks { get; set; }
     }
 }

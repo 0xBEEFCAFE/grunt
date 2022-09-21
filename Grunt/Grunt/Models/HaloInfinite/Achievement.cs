@@ -7,12 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Halo Infinite achievement.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Achievement
     {
+        /// <summary>
+        /// Gets or sets the achievement ID.
+        /// </summary>
         public int Id { get; set; }
-        public string XboxLiveId { get; set; }
-        public string SteamId { get; set; }
-    }
 
+        /// <summary>
+        /// Gets or sets the achievement ID on Xbox Live.
+        /// </summary>
+        public string? XboxLiveId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the achievement ID on Steam.
+        /// </summary>
+        public string? SteamId { get; set; }
+    }
 }

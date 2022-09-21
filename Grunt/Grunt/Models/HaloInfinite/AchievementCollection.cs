@@ -5,11 +5,19 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System.Collections.Generic;
+
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container class for achievements in Halo Infinite.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AchievementCollection
     {
-        public Achievement[] Achievements { get; set; }
+        /// <summary>
+        /// Gets or sets the list of achievements.
+        /// </summary>
+        public List<Achievement>? Achievements { get; set; }
     }
 }

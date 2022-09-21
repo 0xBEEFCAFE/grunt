@@ -13,6 +13,5 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class UGCGameVariant : AssetBase
     {
         public object CustomData { get; set; }
-        public PlayAssetStats AssetStats { get; set; }
     }
 }
