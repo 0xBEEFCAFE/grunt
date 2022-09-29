@@ -6,20 +6,32 @@
 // </copyright>
 
 using System.Collections.Generic;
+using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for 
+    /// </summary>
     [IsAutomaticallySerializable]
-    public class AuthoringAssetRating
+    public class AuthoringAssetRating : AssetBase
     {
-        //TODO: Figure out what this is.
-        public object Links { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string AssetId { get; set; }
-        public string AssetVersionId { get; set; }
-        public AuthoringAssetRatingCustomData CustomData { get; set; }
-        public List<VersionRating> VersionRatings { get; set; }
-        public int AssetKind { get; set; }
+        /// <summary>
+        /// Gets or sets the links associated with an authored asset rating.
+        /// </summary>
+        /// <remarks>
+        /// Additional research is needed to figure out the underlying data model.
+        /// </remarks>
+        public object? Links { get; set; }
+
+        /// <summary>
+        /// Gets or sets authoring asset rating custom data.
+        /// </summary>
+        public AuthoringAssetRatingCustomData? CustomData { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of version ratings for an authoring asset.
+        /// </summary>
+        public List<VersionRating>? VersionRatings { get; set; }
     }
 }

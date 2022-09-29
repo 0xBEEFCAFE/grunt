@@ -7,9 +7,15 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Custom data associated with an authoring asset rating.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AuthoringAssetRatingCustomData
     {
+        /// <summary>
+        /// Gets or sets the score for the authoring asset rating.
+        /// </summary>
         public int Score { get; set; }
     }
 }
