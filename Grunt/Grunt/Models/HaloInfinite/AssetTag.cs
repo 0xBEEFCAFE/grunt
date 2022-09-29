@@ -7,10 +7,15 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Asset tag definition.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AssetTag
     {
+        /// <summary>
+        /// Gets or sets the asset tag name.
+        /// </summary>
         public string Name { get; set; }
     }
-
 }

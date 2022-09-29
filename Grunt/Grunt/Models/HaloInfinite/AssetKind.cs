@@ -12,15 +12,54 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     /// </summary>
     public enum AssetKind
     {
-        Film,
-        Map,
-        Playlist,
-        Prefab,
+        /// <summary>
+        /// Film asset.
+        /// </summary>
+        Film = 1,
+
+        /// <summary>
+        /// Map asset.
+        /// </summary>
+        Map = 2,
+
+        /// <summary>
+        /// Playlist asset.
+        /// </summary>
+        Playlist = 3,
+
+        /// <summary>
+        /// Prefab asset.
+        /// </summary>
+        Prefab = 4,
+
+        /// <summary>
+        /// Test asset.
+        /// </summary>
         TestAsset,
-        UgcGameVariant,
-        MapModePair,
-        Project,
+
+        /// <summary>
+        /// Game variant asset.
+        /// </summary>
+        UgcGameVariant = 6,
+
+        /// <summary>
+        /// Map mode pair asset.
+        /// </summary>
+        MapModePair = 7,
+
+        /// <summary>
+        /// Project asset.
+        /// </summary>
+        Project = 8,
+
+        /// <summary>
+        /// Manifest asset.
+        /// </summary>
         Manifest,
+
+        /// <summary>
+        /// Engine game variant asset.
+        /// </summary>
         EngineGameVariant,
     }
 }

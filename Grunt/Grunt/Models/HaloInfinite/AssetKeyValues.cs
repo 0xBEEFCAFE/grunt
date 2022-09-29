@@ -7,9 +7,11 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Placeholder class for asset key values used with custom data.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AssetKeyValues
     {
     }
-
 }

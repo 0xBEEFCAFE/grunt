@@ -7,11 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Configuration for a news article image.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class ArticleImage
     {
+        /// <summary>
+        /// Gets or sets the image width.
+        /// </summary>
         public int Width { get; set; }
+
+        /// <summary>
+        /// Gets or sets the image height.
+        /// </summary>
         public int Height { get; set; }
-        public string Path { get; set; }
+
+        /// <summary>
+        /// Gets or sets the image path.
+        /// </summary>
+        public string? Path { get; set; }
     }
 }

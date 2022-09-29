@@ -9,9 +9,15 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Asset report details.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AssetReport : AssetBase
     {
-        public AssetReportCustomData CustomData { get; set; }
+        /// <summary>
+        /// Gets or sets custom data associated with an asset report.
+        /// </summary>
+        public AssetReportCustomData? CustomData { get; set; }
     }
 }

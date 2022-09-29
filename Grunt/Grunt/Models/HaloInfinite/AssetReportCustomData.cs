@@ -7,10 +7,15 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Asset report custom data.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AssetReportCustomData
     {
-        public string ReportText { get; set; }
+        /// <summary>
+        /// Gets or sets the text for the asset report.
+        /// </summary>
+        public string? ReportText { get; set; }
     }
-
 }

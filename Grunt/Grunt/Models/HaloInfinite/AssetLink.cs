@@ -9,6 +9,9 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Placeholder implementation for an asset link.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AssetLink : AssetBase
     {
