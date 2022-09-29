@@ -6,32 +6,74 @@
 // </copyright>
 
 using System.Collections.Generic;
+using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Authoring asset version.
+    /// </summary>
     [IsAutomaticallySerializable]
-    public class AuthoringAssetVersion
+    public class AuthoringAssetVersion : AssetBase
     {
-        public AuthoringAssetCustomData CustomData { get; set; }
-        public AssetVersionFile AssetVersionFiles { get; set; }
-        public Dictionary<string,List<TargetAsset>> Links { get; set; }
-        public string AssetId { get; set; }
-        public string AssetVersionId { get; set; }
-        public string PublicName { get; set; }
-        public string Description { get; set; }
-        public APIFormattedDate CreatedDate { get; set; }
-        public APIFormattedDate LastModifiedDate { get; set; }
+        /// <summary>
+        /// Gets or sets custom data associated with an authoring asset.
+        /// </summary>
+        public AuthoringAssetCustomData? CustomData { get; set; }
+
+        /// <summary>
+        /// Gets or sets files associated with an authoring asset version.
+        /// </summary>
+        public AssetVersionFile? AssetVersionFiles { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of links along with their types that are associated with an authoring asset version.
+        /// </summary>
+        public Dictionary<string, List<TargetAsset>>? Links { get; set; }
+
+        /// <summary>
+        /// Gets or sets the authoring asset version creation date.
+        /// </summary>
+        public APIFormattedDate? CreatedDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the authoring asset version modification date.
+        /// </summary>
+        public APIFormattedDate? LastModifiedDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the authoring asset version number.
+        /// </summary>
         public int VersionNumber { get; set; }
-        public string Note { get; set; }
+
+        /// <summary>
+        /// Gets or sets the authoring asset version note.
+        /// </summary>
+        public string? Note { get; set; }
+
+        /// <summary>
+        /// Gets or sets the authoring asset version state.
+        /// </summary>
         public int AssetState { get; set; }
-        public List<string> Tags { get; set; }
-        public List<string> Contributors { get; set; }
-        public int AssetHome { get; set; }
-        public bool ExemptFromAutoDelete { get; set; }
-        public int InspectionResult { get; set; }
-        public int CloneBehavior { get; set; }
-        public string Player { get; set; }
-        public string StringCulture { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the authoring asset version is exempt from automatic deletion.
+        /// </summary>
+        public bool? ExemptFromAutoDelete { get; set; }
+
+        /// <summary>
+        /// Gets or sets the player ID.
+        /// </summary>
+        public string? Player { get; set; }
+
+        /// <summary>
+        /// Gets or sets the string culture for the authoring asset version.
+        /// </summary>
+        public string? StringCulture { get; set; }
+
+        /// <summary>
+        /// Gets or sets the previous authoring asset version ID from which the current version was derived.
+        /// </summary>
         public string? PreviousAssetVersionId { get; set; }
     }
 }
