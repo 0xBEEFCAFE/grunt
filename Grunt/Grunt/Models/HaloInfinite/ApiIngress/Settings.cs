@@ -9,40 +9,88 @@ using System.Text.Json.Serialization;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
 {
+    /// <summary>
+    /// Container class for additional networking stack configuration.
+    /// </summary>
     public class Settings
     {
-        public string CELLConfig { get; set; }
+        /// <summary>
+        /// Gets or sets CELL configuration.
+        /// </summary>
+        public string? CELLConfig { get; set; }
 
-        public string ClientQoSTimeoutMs { get; set; }
+        /// <summary>
+        /// Gets or sets the client quality of service timeout, in milliseconds.
+        /// </summary>
+        public string? ClientQoSTimeoutMs { get; set; }
 
-        public string ClearanceAudience { get; set; }
+        /// <summary>
+        /// Gets or sets the audience for the clearance.
+        /// </summary>
+        public string? ClearanceAudience { get; set; }
 
+        /// <summary>
+        /// Gets or sets the comma-separated list of endpoints related to the game CMS.
+        /// </summary>
         [JsonPropertyName("GameCMS_GuideEndpoints")]
-        public string GameCMSGuideEndpoints { get; set; }
+        public string? GameCMSGuideEndpoints { get; set; }
 
+        /// <summary>
+        /// Gets or sets the comma-separated list of excluded HTTP error codes.
+        /// </summary>
         [JsonPropertyName("HttpEvent_ExcludedStatusCodes")]
-        public string HttpEventExcludedStatusCodes { get; set; }
+        public string? HttpEventExcludedStatusCodes { get; set; }
 
+        /// <summary>
+        /// Gets or sets the comma-separated list of supported HTTP headers for API requests.
+        /// </summary>
         [JsonPropertyName("HttpEvent_RequestHeaders")]
-        public string HttpEventRequestHeaders { get; set; }
+        public string? HttpEventRequestHeaders { get; set; }
 
+        /// <summary>
+        /// Gets or sets the comma-separated list of supported HTTP headers for API responses.
+        /// </summary>
         [JsonPropertyName("HttpEvent_ResponseHeaders")]
-        public string HttpEventResponseHeaders { get; set; }
+        public string? HttpEventResponseHeaders { get; set; }
 
+        /// <summary>
+        /// Gets or sets the list of XUIDs for which logging is enabled.
+        /// </summary>
         [JsonPropertyName("HttpEvent_UsersLoggingEnabled")]
-        public string HttpEventUsersLoggingEnabled { get; set; }
+        public string? HttpEventUsersLoggingEnabled { get; set; }
 
+        /// <summary>
+        /// Gets or sets the value for percentage of telemetry to upload (likely).
+        /// </summary>
+        /// <remarks>
+        /// Additional research needs to be done around this specific value and field.
+        /// </remarks>
         [JsonPropertyName("HttpEvent_UsersPercentageUpload")]
-        public string HttpEventUsersPercentageUpload { get; set; }
+        public string? HttpEventUsersPercentageUpload { get; set; }
 
-        public string PlayfabTitleId { get; set; }
+        /// <summary>
+        /// Gets or sets the title ID value for use with PlayFab services.
+        /// </summary>
+        public string? PlayfabTitleId { get; set; }
 
-        public string PurchasePollFrequencyInSeconds { get; set; }
+        /// <summary>
+        /// Gets or sets the purchase poll frequency, in seconds.
+        /// </summary>
+        public string? PurchasePollFrequencyInSeconds { get; set; }
 
-        public string TitleIdList { get; set; }
+        /// <summary>
+        /// Gets or sets the list of supported title IDs. Contents of this field are represented as a JSON blob.
+        /// </summary>
+        public string? TitleIdList { get; set; }
 
-        public string UploadFullHeapInInternalBuilds { get; set; }
+        /// <summary>
+        /// Gets or sets whether full heap is uploaded for internal builds.
+        /// </summary>
+        public string? UploadFullHeapInInternalBuilds { get; set; }
 
-        public string UploadFullHeapInReleaseBuilds { get; set; }
+        /// <summary>
+        /// Gets or sets whether full heap is uploaded for external (release) builds.
+        /// </summary>
+        public string? UploadFullHeapInReleaseBuilds { get; set; }
     }
 }

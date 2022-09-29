@@ -1,4 +1,4 @@
-﻿// <copyright file="RetryPolicy.cs" company="Den Delimarsky">
+﻿// <copyright file="AcknowledgementType.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -8,23 +8,18 @@
 namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
 {
     /// <summary>
-    /// Configuration for the API retry policy.
+    /// Type of acknowledgement for an API request.
     /// </summary>
-    public class RetryPolicy
+    public enum AcknowledgementType
     {
         /// <summary>
-        /// Gets or sets the retry policy ID.
+        /// No acknowledgement.
         /// </summary>
-        public string? RetryPolicyId { get; set; }
+        NoAcknowledgement = 0,
 
         /// <summary>
-        /// Gets or sets the timeout in milliseconds.
+        /// Reply acknowledging the request.
         /// </summary>
-        public int? TimeoutMs { get; set; }
-
-        /// <summary>
-        /// Gets or sets additional retry options.
-        /// </summary>
-        public RetryOptions? RetryOptions { get; set; }
+        Reply = 1,
     }
 }

@@ -5,24 +5,91 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System.Collections.Generic;
+
 namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
 {
+    /// <summary>
+    /// Inheritable class representing an in-game asset in Halo Infinite.
+    /// </summary>
     public abstract class AssetBase
     {
-        public string AssetId { get; set; }
-        public string VersionId { get; set; }
-        public string AssetVersionId { get; set; }
-        public string PublicName { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        /// <summary>
+        /// Gets or sets the asset ID.
+        /// </summary>
+        public string? AssetId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the version ID.
+        /// </summary>
+        public string? VersionId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the version ID.
+        /// </summary>
+        /// <remarks>
+        /// In certain API calls, this property is used instead of <see cref="VersionId"/>. It's likely an inconsistency from the legacy code base.
+        /// </remarks>
+        public string? AssetVersionId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the asset public name.
+        /// </summary>
+        public string? PublicName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the asset name.
+        /// </summary>
+        public string? Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the asset description.
+        /// </summary>
+        public string? Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the inspection result.
+        /// </summary>
         public int InspectionResult { get; set; }
+
+        /// <summary>
+        /// Gets or sets the clone behavior.
+        /// </summary>
         public int CloneBehavior { get; set; }
+
+        /// <summary>
+        /// Gets or sets the asset home.
+        /// </summary>
         public int AssetHome { get; set; }
-        public string[] Tags { get; set; }
-        public string[] Contributors { get; set; }
-        public AssetVersionFile Files { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of asset tags.
+        /// </summary>
+        public List<string>? Tags { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of asset contributors.
+        /// </summary>
+        public List<string>? Contributors { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of asset files.
+        /// </summary>
+        public AssetVersionFile? Files { get; set; }
+
+        /// <summary>
+        /// Gets or sets the asset kind.
+        /// </summary>
         public int AssetKind { get; set; }
+
+        /// <summary>
+        /// Gets or sets the asset order.
+        /// </summary>
         public int Order { get; set; }
-        public PlayAssetStats AssetStats { get; set; }
+
+        /// <summary>
+        /// Gets or sets the asset stats.
+        /// </summary>
+        public PlayAssetStats? AssetStats { get; set; }
     }
 }

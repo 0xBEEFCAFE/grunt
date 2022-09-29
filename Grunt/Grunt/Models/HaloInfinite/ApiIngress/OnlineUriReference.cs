@@ -7,24 +7,54 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
 {
+    /// <summary>
+    /// Container class for URI references through the API surface.
+    /// </summary>
     public class OnlineUriReference
     {
+        /// <summary>
+        /// Gets or sets the unique endpoint ID.
+        /// </summary>
         public string? EndpointId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the authority ID.
+        /// </summary>
         public string? AuthorityId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the API path.
+        /// </summary>
         public string? Path { get; set; }
 
+        /// <summary>
+        /// Gets or sets the query string contents.
+        /// </summary>
         public string? QueryString { get; set; }
 
+        /// <summary>
+        /// Gets or sets the retry policy ID.
+        /// </summary>
         public string? RetryPolicyId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the topic name.
+        /// </summary>
         public string? TopicName { get; set; }
 
-        public int AcknowledgementTypeId { get; set; }
+        /// <summary>
+        /// Gets or sets the acknowledgement type.
+        /// </summary>
+        public AcknowledgementType AcknowledgementTypeId { get; set; }
 
-        public bool AuthenticationLifetimeExtensionSupported { get; set; }
+        /// <summary>
+        /// Gets or sets whether authentication lifetime extension is supported.
+        /// </summary>
+        public bool? AuthenticationLifetimeExtensionSupported { get; set; }
 
-        public bool ClearanceAware { get; set; }
+        /// <summary>
+        /// Gets or sets the requirement for a valid clearance attached to the request.
+        /// </summary>
+        public bool? ClearanceAware { get; set; }
     }
 }

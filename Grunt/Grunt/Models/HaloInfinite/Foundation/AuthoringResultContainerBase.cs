@@ -7,13 +7,37 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
 {
+    /// <summary>
+    /// Base class for authoring asset containers.
+    /// </summary>
     public abstract class AuthoringResultContainerBase
     {
+        /// <summary>
+        /// Gets or sets the estimated number of results.
+        /// </summary>
         public int EstimatedTotal { get; set; }
+
+        /// <summary>
+        /// Gets or sets the start value for the query.
+        /// </summary>
         public int Start { get; set; }
+
+        /// <summary>
+        /// Gets or sets the count of results.
+        /// </summary>
         public int Count { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of results.
+        /// </summary>
         public int ResultCount { get; set; }
-        //TODO: Figure out what the object here is.
-        public object Links { get; set; }
+
+        /// <summary>
+        /// Gets or sets the links associated with the results.
+        /// </summary>
+        /// <remarks>
+        /// Additional research is needed to determine what this field type is.
+        /// </remarks>
+        public object? Links { get; set; }
     }
 }

@@ -7,9 +7,19 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
 {
+    /// <summary>
+    /// Base class for query results.
+    /// </summary>
     public abstract class ResultContainerBase
     {
-        public string Id { get; set; }
+        /// <summary>
+        /// Gets or sets the ID for the result.
+        /// </summary>
+        public string? Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the result code.
+        /// </summary>
         public int ResultCode { get; set; }
     }
 }

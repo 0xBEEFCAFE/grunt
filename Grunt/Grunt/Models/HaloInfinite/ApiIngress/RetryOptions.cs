@@ -7,12 +7,34 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
 {
+    /// <summary>
+    /// Configuration for request retry options.
+    /// </summary>
     public class RetryOptions
     {
+        /// <summary>
+        /// Gets or sets the maximum number of retries before failing.
+        /// </summary>
         public int MaxRetryCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the retry delay, in milliseconds.
+        /// </summary>
         public int RetryDelayMs { get; set; }
+
+        /// <summary>
+        /// Gets or sets the retry growth rate for exponential back-off (presumably).
+        /// </summary>
         public float RetryGrowth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the retry jitter value, in milliseconds.
+        /// </summary>
         public int RetryJitterMs { get; set; }
-        public bool RetryIfNotFound { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether retry should be attempted if the resource is not found.
+        /// </summary>
+        public bool? RetryIfNotFound { get; set; }
     }
 }
