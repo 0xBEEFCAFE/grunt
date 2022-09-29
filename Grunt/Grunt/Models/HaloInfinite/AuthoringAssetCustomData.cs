@@ -9,16 +9,45 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Custom data associated with an authoring asset.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AuthoringAssetCustomData
     {
-        public Dictionary<string, string> KeyValues { get; set; }
-        public int FilmLength { get; set; }
-        public List<FilmChunk> Chunks { get; set; }
-        public bool HasGameEnded { get; set; }
-        public int ManifestRefreshSeconds { get; set; }
-        public string MatchId { get; set; }
-        public int FilmMajorVersion { get; set; }
+        /// <summary>
+        /// Gets or sets a set of keys and associated values for the custom data.
+        /// </summary>
+        public Dictionary<string, string>? KeyValues { get; set; }
 
+        /// <summary>
+        /// Gets or sets the film length.
+        /// </summary>
+        public int FilmLength { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of film chunks.
+        /// </summary>
+        public List<FilmChunk>? Chunks { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the game has ended.
+        /// </summary>
+        public bool? HasGameEnded { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value for the manifest refresh frequency.
+        /// </summary>
+        public int ManifestRefreshSeconds { get; set; }
+
+        /// <summary>
+        /// Gets or sets the match ID.
+        /// </summary>
+        public string? MatchId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the film major version.
+        /// </summary>
+        public int FilmMajorVersion { get; set; }
     }
 }
