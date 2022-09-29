@@ -17,7 +17,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public int MaxTeamCount { get; set; }
         public int MaxPlayersInMediumVmInstance { get; set; }
         public bool DefaultObserversAllowed { get; set; }
-        public GameVariant DefaultMap { get; set; }
-        public GameVariant DefaultGameVariant { get; set; }
+        public GenericAsset DefaultMap { get; set; }
+        public GenericAsset DefaultGameVariant { get; set; }
     }
 }
