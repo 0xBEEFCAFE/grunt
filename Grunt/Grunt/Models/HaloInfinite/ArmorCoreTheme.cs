@@ -10,23 +10,85 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Configuration for an armor coating theme.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class ArmorCoreTheme : ThemeBase
     {
-        public string CoatingPath { get; set; }
-        public string GlovePath { get; set; }
-        public string HelmetPath { get; set; }
-        public string HelmetAttachmentPath { get; set; }
-        public string ChestAttachmentPath { get; set; }
-        public string KneePadPath { get; set; }
-        public string LeftShoulderPadPath { get; set; }
-        public string RightShoulderPadPath { get; set; }
-        public List<Emblem> Emblems { get; set; }
-        public string ArmorFxPath { get; set; }
-        public string MythicFxPath { get; set; }
-        public string VisorPath { get; set; }
-        public string HipAttachmentPath { get; set; }
-        public string WristAttachmentPath { get; set; }
-        public Emblem BigEmblem { get; set; }
+        /// <summary>
+        /// Gets or sets the path to the coating.
+        /// </summary>
+        public string? CoatingPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the glove.
+        /// </summary>
+        public string? GlovePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the helmet.
+        /// </summary>
+        public string? HelmetPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the helmet attachment.
+        /// </summary>
+        public string? HelmetAttachmentPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the chest attachment.
+        /// </summary>
+        public string? ChestAttachmentPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the kneepad.
+        /// </summary>
+        public string? KneePadPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the left shoulder pad.
+        /// </summary>
+        public string? LeftShoulderPadPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the left shoulder path.
+        /// </summary>
+        public string? RightShoulderPadPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of used emblems.
+        /// </summary>
+        public List<Emblem>? Emblems { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to armor effects.
+        /// </summary>
+        public string? ArmorFxPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the mythic effect.
+        /// </summary>
+        public string? MythicFxPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the visor.
+        /// </summary>
+        public string? VisorPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to teh hip attachment.
+        /// </summary>
+        public string? HipAttachmentPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the wrist attachment.
+        /// </summary>
+        public string? WristAttachmentPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the big emblem.
+        /// </summary>
+        public Emblem? BigEmblem { get; set; }
     }
 }

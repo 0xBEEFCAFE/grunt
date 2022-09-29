@@ -7,11 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Configuration for in-game news article actions.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class ArticleAction
     {
-        public DisplayString ActionTitle { get; set; }
-        public DisplayString ActionDescription { get; set; }
-        public string ActionUri { get; set; }
+        /// <summary>
+        /// Gets or sets the composite string for action title, including translations.
+        /// </summary>
+        public DisplayString? ActionTitle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the composite string for action description, including translations.
+        /// </summary>
+        public DisplayString? ActionDescription { get; set; }
+
+        /// <summary>
+        /// Gets or sets the action URI.
+        /// </summary>
+        public string? ActionUri { get; set; }
     }
 }
