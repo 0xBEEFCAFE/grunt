@@ -45,7 +45,7 @@ namespace OpenSpartan.Grunt.Librarian
                     func.AuthorityPort = endpointAuthority.Port;
                     func.QueryString = endpoint.Value.QueryString;
                     func.RequiresClearance = endpoint.Value.ClearanceAware;
-                    func.RequiresSpartanToken = endpointAuthority.AuthenticationMethods.Contains(15);
+                    func.RequiresSpartanToken = endpointAuthority.AuthenticationMethods.Contains(AuthenticationMethod.SpartanTokenV4);
                     
                     switch(func.Name)
                     {
@@ -121,7 +121,7 @@ namespace OpenSpartan.Grunt.Librarian
                                                      func.RequiresClearance.ToString().ToLower()                                                    
                                                      );
                     
-                    if (func.NeedsIntervention)
+                    if (func.NeedsIntervention == true)
                     {
                         functionCode = "//TODO: This function requires manual invtervention/checks.\n" + functionCode;
                     }

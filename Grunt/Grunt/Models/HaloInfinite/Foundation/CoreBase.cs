@@ -30,7 +30,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
         /// <summary>
         /// Gets or sets the core type.
         /// </summary>
-        public string? CoreType { get; set; }
+        public string CoreType { get; set; }
 
         /// <summary>
         /// Gets or sets the date of the core acquisition.
