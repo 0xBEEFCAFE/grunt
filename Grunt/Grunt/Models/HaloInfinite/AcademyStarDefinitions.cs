@@ -5,11 +5,19 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System.Collections.Generic;
+
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container class for academy star definitions.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AcademyStarDefinitions
     {
-        public AcademyStarDefinition[] Values { get; set; }
+        /// <summary>
+        /// Gets or sets the list of supported academy star definitions.
+        /// </summary>
+        public List<AcademyStarDefinition>? Values { get; set; }
     }
 }

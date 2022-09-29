@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container class for active boosts.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class ActiveBoostsContainer
     {
-        public List<ActiveBoost> Boosts { get; set; }
+        /// <summary>
+        /// Gets or sets the list of active boosts.
+        /// </summary>
+        public List<ActiveBoost>? Boosts { get; set; }
     }
 }

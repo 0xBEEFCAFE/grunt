@@ -7,6 +7,9 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Device preset configuration for AMD CPUs.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AMDPreset
     {

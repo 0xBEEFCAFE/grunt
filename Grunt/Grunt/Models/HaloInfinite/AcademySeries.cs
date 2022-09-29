@@ -7,13 +7,35 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Academy series.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AcademySeries
     {
-        public string GameAssetID { get; set; }
-        public string MapAssetID { get; set; }
-        public bool Available { get; set; }
-        public DisplayString Title { get; set; }
-        public DisplayString Description { get; set; }
+        /// <summary>
+        /// Gets or sets the game asset ID.
+        /// </summary>
+        public string? GameAssetID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the map asset ID.
+        /// </summary>
+        public string? MapAssetID { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the series are available.
+        /// </summary>
+        public bool? Available { get; set; }
+
+        /// <summary>
+        /// Gets or sets the composite string for the title, including translations.
+        /// </summary>
+        public DisplayString? Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the composite string for the description, including translations.
+        /// </summary>
+        public DisplayString? Description { get; set; }
     }
 }

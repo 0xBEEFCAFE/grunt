@@ -5,14 +5,34 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System.Collections.Generic;
+
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Academy drill.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AcademyDrill
     {
-        public string TitleStringID { get; set; }
-        public AcademySeries[] Series { get; set; }
+        /// <summary>
+        /// Gets or sets the title string ID.
+        /// </summary>
+        public string? TitleStringID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of supported academy series.
+        /// </summary>
+        public List<AcademySeries>? Series { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sprite frame index.
+        /// </summary>
         public int SpriteFrameIndex { get; set; }
-        public string DescriptionStringID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the description string ID.
+        /// </summary>
+        public string? DescriptionStringID { get; set; }
     }
 }

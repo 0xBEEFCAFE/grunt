@@ -7,15 +7,45 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Player appearance configuration.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Appearance
     {
+        /// <summary>
+        /// Gets or sets the last modified date.
+        /// </summary>
         public APIFormattedDate? LastModifiedDateUtc { get; set; }
-        public string ServiceTag { get; set; }
-        public string ActionPosePath { get; set; }
-        public string StancePath { get; set; }
-        public string BackdropImagePath { get; set; }
-        public Emblem Emblem { get; set; }
-        public string IntroEmotePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the service tag.
+        /// </summary>
+        public string? ServiceTag { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path for the action pose.
+        /// </summary>
+        public string? ActionPosePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path for the stance.
+        /// </summary>
+        public string? StancePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the backdrop image for the Spartan ID.
+        /// </summary>
+        public string? BackdropImagePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the emblem.
+        /// </summary>
+        public Emblem? Emblem { get; set; }
+
+        /// <summary>
+        /// Gets or sets the intro emote path.
+        /// </summary>
+        public string? IntroEmotePath { get; set; }
     }
 }

@@ -7,10 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// AI core theme.
+    /// </summary>
     [IsAutomaticallySerializable]
-    public class AiCoreTheme : Models.HaloInfinite.Foundation.ThemeBase
+    public class AiCoreTheme : Foundation.ThemeBase
     {
-        public string ModelPath { get; set; }
-        public string ColorPath { get; set; }
+        /// <summary>
+        /// Gets or sets the path to the AI core model.
+        /// </summary>
+        public string? ModelPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the AI core color.
+        /// </summary>
+        public string? ColorPath { get; set; }
     }
 }

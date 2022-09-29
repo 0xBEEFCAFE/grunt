@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container class for armor core collections.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class ArmorCoreCollection
     {
-        public List<ArmorCore> ArmorCores { get; set; }
+        /// <summary>
+        /// Gets or sets the list of armor cores.
+        /// </summary>
+        public List<ArmorCore>? ArmorCores { get; set; }
     }
 }
