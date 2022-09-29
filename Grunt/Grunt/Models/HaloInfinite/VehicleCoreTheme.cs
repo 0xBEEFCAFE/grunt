@@ -9,14 +9,40 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Vehicle core theme definition.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class VehicleCoreTheme : Foundation.ThemeBase
     {
-        public string CoatingPath { get; set; }
-        public string HornPath { get; set; }
-        public string VehicleFxPath { get; set; }
-        public string VehicleCharmPath { get; set; }
-        public List<Emblem> Emblems { get; set; }
-        public string AlternateGeometryRegionPath { get; set; }
+        /// <summary>
+        /// Gets or sets the coating path.
+        /// </summary>
+        public string? CoatingPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the horn path.
+        /// </summary>
+        public string? HornPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the vehicle effects path.
+        /// </summary>
+        public string? VehicleFxPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the vehicle charm path.
+        /// </summary>
+        public string? VehicleCharmPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of associated emblems.
+        /// </summary>
+        public List<Emblem>? Emblems { get; set; }
+
+        /// <summary>
+        /// Gets or sets the alternate geometry region path.
+        /// </summary>
+        public string? AlternateGeometryRegionPath { get; set; }
     }
 }

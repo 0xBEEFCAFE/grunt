@@ -12,5 +12,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     {
         public int Amount { get; set; }
         public string CurrencyPath { get; set; }
+        public string Source { get; set; }
     }
 }

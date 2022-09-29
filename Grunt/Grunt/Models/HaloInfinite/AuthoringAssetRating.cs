@@ -11,7 +11,7 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     /// <summary>
-    /// Container for 
+    /// Container for authoring asset ratings.
     /// </summary>
     [IsAutomaticallySerializable]
     public class AuthoringAssetRating : AssetBase
