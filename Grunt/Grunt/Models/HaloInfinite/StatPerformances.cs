@@ -7,10 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for player-specific stats.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class StatPerformances
     {
-        public PerformanceValue Kills { get; set; }
-        public PerformanceValue Deaths { get; set; }
+        /// <summary>
+        /// Gets or sets metadata for player kills.
+        /// </summary>
+        public PerformanceValue? Kills { get; set; }
+
+        /// <summary>
+        /// Gets or sets metadata for player deaths.
+        /// </summary>
+        public PerformanceValue? Deaths { get; set; }
     }
 }
