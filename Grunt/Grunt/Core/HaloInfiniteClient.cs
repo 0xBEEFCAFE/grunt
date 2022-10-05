@@ -1098,6 +1098,20 @@ namespace OpenSpartan.Grunt.Core
                 GlobalConstants.HALO_WAYPOINT_USER_AGENT);
         }
 
+        /// <summary>
+        /// Gets a list of all available medals and their metadata.
+        /// </summary>
+        /// <returns>If successful, an instance of <see cref="MedalMetadata"/> containing medal information. Otherwise, returns null and error details.</returns>
+        public async Task<HaloApiResultContainer<MedalMetadata, HaloApiErrorContainer>> GameCmsGetMedalMetadata()
+        {
+            return await this.ExecuteAPIRequest<MedalMetadata>(
+                $"https://{HaloCoreEndpoints.GameCmsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/Waypoint/file/medals/metadata.json",
+                HttpMethod.Get,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+        }
+
         // ================================================
         // HIUGC
         // ================================================
