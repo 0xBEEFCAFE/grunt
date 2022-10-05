@@ -2324,6 +2324,23 @@ namespace OpenSpartan.Grunt.Core
                 GlobalConstants.HALO_WAYPOINT_USER_AGENT);
         }
 
+        /// <summary>
+        /// Gets the service record for a player.
+        /// </summary>
+        /// <remarks>By tweaking season IDs, you can obtain season-specific information such as number of matches played, wins, losses, and others.</remarks>
+        /// <param name="gamerTag">Player gamertag. Example value is "BreadKrtek".</param>
+        /// <param name="seasonId">The ID of the season for which additional stats are pulled. Example value is "Seasons/Season7.json"</param>
+        /// <returns>If successful, an instance of <see cref="PlayerServiceRecord"/> containing service record information. Otherwise, returns null with additional details about the error.</returns>
+        public async Task<HaloApiResultContainer<PlayerServiceRecord, HaloApiErrorContainer>?> StatsGetPlayerServiceRecord(string gamerTag, string seasonId)
+        {
+            return await this.ExecuteAPIRequest<PlayerServiceRecord>(
+                $"https://{HaloCoreEndpoints.StatsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/players/{gamerTag}/Matchmade/servicerecord?seasonId={seasonId}",
+                HttpMethod.Get,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+        }
+
         // ================================================
         // TextModeration
         // ================================================
