@@ -7,11 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container class for an in-game target asset.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class TargetAsset
     {
-        public string TargetAssetId { get; set; }
-        public object TargetAssetVersionId { get; set; }
+        /// <summary>
+        /// Gets or sets the target asset ID.
+        /// </summary>
+        public string? TargetAssetId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the target asset version ID.
+        /// </summary>
+        public string? TargetAssetVersionId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the asset order.
+        /// </summary>
         public int Order { get; set; }
     }
 }

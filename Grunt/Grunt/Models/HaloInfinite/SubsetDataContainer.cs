@@ -7,12 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Information about subset data for a game engine.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class SubsetDataContainer
     {
+        /// <summary>
+        /// Gets or sets the stat bucket for the game type.
+        /// </summary>
         public int StatBucketGameType { get; set; }
-        public string EngineName { get; set; }
-        public string VariantName { get; set; }
-    }
 
+        /// <summary>
+        /// Gets or sets the engine variant name.
+        /// </summary>
+        public string? EngineName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the variant name.
+        /// </summary>
+        public string? VariantName { get; set; }
+    }
 }

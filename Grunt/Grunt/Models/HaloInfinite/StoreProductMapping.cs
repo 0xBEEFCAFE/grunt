@@ -7,12 +7,30 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Definition of an in-store game item.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class StoreProductMapping
     {
-        public string ItemDef { get; set; }
-        public string ProductId { get; set; }
-        public string Sku { get; set; }
+        /// <summary>
+        /// Gets or sets the item definition.
+        /// </summary>
+        public string? ItemDef { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product ID.
+        /// </summary>
+        public string? ProductId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product stock-keeping unit (SKU).
+        /// </summary>
+        public string? Sku { get; set; }
+
+        /// <summary>
+        /// Gets or sets the available product quantity.
+        /// </summary>
         public int VCQuantity { get; set; }
     }
 }

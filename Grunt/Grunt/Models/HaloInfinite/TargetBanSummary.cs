@@ -9,10 +9,15 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Summary for a user in-game ban.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class TargetBanSummary : ResultContainerBase
     {
-        public BanResult Result { get; set; }
+        /// <summary>
+        /// Gets or sets the ban result for a player.
+        /// </summary>
+        public BanResult? Result { get; set; }
     }
-
 }

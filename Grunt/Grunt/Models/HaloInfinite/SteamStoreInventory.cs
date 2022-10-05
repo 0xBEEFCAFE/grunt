@@ -7,9 +7,15 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Configuration for the title inventory in the Steam store.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class SteamStoreInventory
     {
-        public SteamStoreTitleConfiguration TitleConfiguration { get; set; }
+        /// <summary>
+        /// Gets or sets the title configuration in the Steam store.
+        /// </summary>
+        public SteamStoreTitleConfiguration? TitleConfiguration { get; set; }
     }
 }
