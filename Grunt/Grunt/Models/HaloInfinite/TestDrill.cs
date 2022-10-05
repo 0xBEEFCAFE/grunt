@@ -7,14 +7,35 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Test academy drill.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class TestDrill
     {
-        public string GameVariant { get; set; }
-        public string MapVariant { get; set; }
-        public string GameplayGUID { get; set; }
-        public bool Available { get; set; }
-        public DisplayString Description { get; set; }
-    }
+        /// <summary>
+        /// Gets or sets the identifier for the associated UGC game variant.
+        /// </summary>
+        public string? GameVariant { get; set; }
 
+        /// <summary>
+        /// Gets or sets the identifier for the associated map variant.
+        /// </summary>
+        public string? MapVariant { get; set; }
+
+        /// <summary>
+        /// Gets or sets the identifier for the assocaited gameplay reference.
+        /// </summary>
+        public string? GameplayGUID { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the drill is available.
+        /// </summary>
+        public bool? Available { get; set; }
+
+        /// <summary>
+        /// Gets or sets the description for the drill, including translated strings.
+        /// </summary>
+        public DisplayString? Description { get; set; }
+    }
 }

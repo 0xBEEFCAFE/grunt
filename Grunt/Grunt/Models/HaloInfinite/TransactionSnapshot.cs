@@ -5,13 +5,29 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System.Collections.Generic;
+
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Snapshot of in-game transactions.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class TransactionSnapshot
     {
-        public Transaction[] Transactions { get; set; }
-        public string ContinuationToken { get; set; }
-        public MarketplaceRecord[] MarketplaceLastSuccessfulDates { get; set; }
+        /// <summary>
+        /// Gets or sets the list of transactions.
+        /// </summary>
+        public List<Transaction>? Transactions { get; set; }
+
+        /// <summary>
+        /// Gets or sets the continuation token.
+        /// </summary>
+        public string? ContinuationToken { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of date-stamped marketplace operation snapshots.
+        /// </summary>
+        public List<MarketplaceRecord>? MarketplaceLastSuccessfulDates { get; set; }
     }
 }

@@ -9,9 +9,18 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container class for User-Generated Content (UGC) game variant.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class UGCGameVariant : AssetBase
     {
-        public object CustomData { get; set; }
+        /// <summary>
+        /// Gets or sets custom data associated with a game variant.
+        /// </summary>
+        /// <remarks>
+        /// Additional research is needed to understand what metadata can be injected here.
+        /// </remarks>
+        public object? CustomData { get; set; }
     }
 }

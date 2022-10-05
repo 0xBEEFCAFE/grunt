@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container class for vehicle cores.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class VehicleCoreCollection
     {
-        public List<VehicleCore> VehicleCores { get; set; }
+        /// <summary>
+        /// Gets or sets the collection of available vehicle cores.
+        /// </summary>
+        public List<VehicleCore>? VehicleCores { get; set; }
     }
 }

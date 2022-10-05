@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Vehicle core metadata.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class VehicleCore : Foundation.CoreBase
     {
-        public List<VehicleCoreTheme> Themes { get; set; }
+        /// <summary>
+        /// Gets or sets the themes associated with a vehicle core.
+        /// </summary>
+        public List<VehicleCoreTheme>? Themes { get; set; }
     }
 }

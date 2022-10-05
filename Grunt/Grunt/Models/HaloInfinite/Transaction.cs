@@ -7,11 +7,14 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
-    // TODO: Figure out what the record looks like here.
+    /// <summary>
+    /// Container class for a transaction.
+    /// </summary>
+    /// <remarks>
+    /// Additional research is needed to understand the underlying data model.
+    /// </remarks>
     [IsAutomaticallySerializable]
     public class Transaction
     {
-
     }
-
 }
