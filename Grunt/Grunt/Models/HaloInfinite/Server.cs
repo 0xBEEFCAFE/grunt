@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Configuration for multiplayer servers in Halo Infinite.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Server
     {
+        /// <summary>
+        /// Gets or sets the server region.
+        /// </summary>
         public string? Region { get; set; }
 
+        /// <summary>
+        /// Gets or sets the server URL.
+        /// </summary>
         public string? ServerUrl { get; set; }
     }
 }

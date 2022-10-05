@@ -9,9 +9,15 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for match skill-related results.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class SkillResult : ResultContainerBase
     {
-        public Result Result { get; set; }
+        /// <summary>
+        /// Gets or sets the result metadata.
+        /// </summary>
+        public Result? Result { get; set; }
     }
 }
