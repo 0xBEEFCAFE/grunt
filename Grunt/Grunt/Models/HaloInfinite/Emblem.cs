@@ -10,7 +10,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class Emblem
     {
-        public string EmblemPath { get; set; }
+        public string? EmblemPath { get; set; }
         public int ConfigurationId { get; set; }
     }
 }

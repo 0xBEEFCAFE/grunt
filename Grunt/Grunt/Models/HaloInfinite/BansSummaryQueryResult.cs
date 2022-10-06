@@ -13,8 +13,8 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class BansSummaryQueryResult
     {
-        public List<TargetBanSummary> Results { get; set; }
+        public List<TargetBanSummary>? Results { get; set; }
 
-        public Dictionary<string, OnlineUriReference> Links { get; set; }
+        public Dictionary<string, OnlineUriReference>? Links { get; set; }
     }
 }

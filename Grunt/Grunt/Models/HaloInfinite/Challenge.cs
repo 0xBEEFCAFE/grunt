@@ -13,28 +13,28 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class Challenge
     {
-        public DisplayString Description { get; set; }
+        public DisplayString? Description { get; set; }
 
-        public string Difficulty { get; set; }
+        public string? Difficulty { get; set; }
 
-        public string Category { get; set; }
+        public string? Category { get; set; }
 
-        public Reward Reward { get; set; }
+        public Reward? Reward { get; set; }
 
-        public int ThresholdForSuccess { get; set; }
+        public int? ThresholdForSuccess { get; set; }
 
-        public DisplayString Title { get; set; }
+        public DisplayString? Title { get; set; }
 
-        public object TypeIconPath { get; set; }
+        public string? TypeIconPath { get; set; }
 
-        public object IsUserEvent { get; set; }
+        public bool? IsUserEvent { get; set; }
 
-        public string Path { get; set; }
+        public string? Path { get; set; }
 
-        public int Progress { get; set; }
+        public int? Progress { get; set; }
 
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
-        public bool CanReroll { get; set; }
+        public bool? CanReroll { get; set; }
     }
 }

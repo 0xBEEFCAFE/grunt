@@ -12,6 +12,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     {
         public int ConfigurationId { get; set; }
 
-        public string ConfigurationPath { get; set; }
+        public string? ConfigurationPath { get; set; }
     }
 }

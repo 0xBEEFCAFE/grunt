@@ -14,7 +14,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public int ChunkStartTimeOffsetMilliseconds { get; set; }
         public int DurationMilliseconds { get; set; }
         public int ChunkSize { get; set; }
-        public string FileRelativePath { get; set; }
+        public string? FileRelativePath { get; set; }
         public int ChunkType { get; set; }
     }
 

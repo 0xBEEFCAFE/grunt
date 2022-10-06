@@ -18,6 +18,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <summary>
         /// Gets or sets the list of AI cores.
         /// </summary>
-        public List<AiCore> Cores { get; set; }
+        public List<AiCore>? Cores { get; set; }
     }
 }

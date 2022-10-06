@@ -23,7 +23,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public float KDA { get; set; }
         public int Suicides { get; set; }
         public int Betrayals { get; set; }
-        public string AverageLifeDuration { get; set; }
+        public string? AverageLifeDuration { get; set; }
         public int GrenadeKills { get; set; }
         public int HeadshotKills { get; set; }
         public int MeleeKills { get; set; }
@@ -39,8 +39,8 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public int Hijacks { get; set; }
         public int EmpAssists { get; set; }
         public int MaxKillingSpree { get; set; }
-        public List<Medal> Medals { get; set; }
-        public List<PersonalScore> PersonalScores { get; set; }
+        public List<Medal>? Medals { get; set; }
+        public List<PersonalScore>? PersonalScores { get; set; }
         public float DeprecatedDamageDealt { get; set; }
         public float DeprecatedDamageTaken { get; set; }
     }

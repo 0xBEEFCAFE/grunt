@@ -13,6 +13,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class AuthoringFavoritesContainer : AuthoringResultContainerBase
     {
-        public List<FavoriteAsset> Results { get; set; }
+        public List<FavoriteAsset>? Results { get; set; }
     }
 }

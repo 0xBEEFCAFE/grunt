@@ -13,7 +13,7 @@ namespace OpenSpartan.Grunt.Librarian.Models
         internal string? QueryString { get; set; }
         internal bool? RequiresSpartanToken { get; set; }
         internal bool? RequiresClearance { get; set; }
-        internal HttpMethod Method { get; set; }
+        internal HttpMethod? Method { get; set; }
         internal bool? NeedsIntervention { get; set; }
         internal string? FunctionCode { get; set; }
     }

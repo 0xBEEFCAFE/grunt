@@ -12,6 +12,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class EngineGameVariant : AssetBase
     {
-        public EngineGameVariantCustomData CustomData { get; set; }
+        public EngineGameVariantCustomData? CustomData { get; set; }
     }
 }

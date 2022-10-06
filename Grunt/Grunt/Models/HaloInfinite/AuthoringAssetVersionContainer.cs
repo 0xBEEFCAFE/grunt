@@ -13,6 +13,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class AuthoringAssetVersionContainer : AuthoringResultContainerBase
     {
-        public List<AuthoringAssetVersion> Results { get; set; }
+        public List<AuthoringAssetVersion>? Results { get; set; }
     }
 }

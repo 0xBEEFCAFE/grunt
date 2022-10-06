@@ -12,7 +12,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class InventoryDefinition
     {
-        public PlayerItem[] Items { get; set; }
+        public List<PlayerItem>? Items { get; set; }
         public int ArmorChestAttachmentsOwnableCount { get; set; }
         public int ArmorCoatingsOwnableCount { get; set; }
         public int ArmorGlovesOwnableCount { get; set; }
@@ -54,9 +54,9 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public int VehicleHornsOwnableCount { get; set; }
         public int VehicleThemesOwnableCount { get; set; }
         public int VehicleCoresOwnableCount { get; set; }
-        public List<PlayerItem> Cores { get; set; }
+        public List<PlayerItem>? Cores { get; set; }
         public int SpartanVoicesOwnableCount { get; set; }
-        public List<PlayerItem> EmblemCoatings { get; set; }
-        public List<PlayerItem> Consumables { get; set; }
+        public List<PlayerItem>? EmblemCoatings { get; set; }
+        public List<PlayerItem>? Consumables { get; set; }
     }
 }
