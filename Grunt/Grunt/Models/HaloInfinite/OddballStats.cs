@@ -24,5 +24,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
 
         public int SkullScoringTicks { get; set; }
     }
-
 }
