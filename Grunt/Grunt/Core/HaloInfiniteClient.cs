@@ -518,7 +518,6 @@ namespace OpenSpartan.Grunt.Core
         /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <param name="storeId">The unique store identifier. An example value is "hcs".</param>
         /// <returns>If successful, returns an instance of StoreItem containing offerings. Otherwise, returns null.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access", Justification = "Currently maintaining the order of APIs that are outlined in the endpoints response.")]
         public async Task<HaloApiResultContainer<StoreItem, HaloApiErrorContainer>> EconomyScheduledStorefrontOfferings(string player, string storeId)
         {
             return await this.ExecuteAPIRequest<StoreItem>(
@@ -1101,11 +1100,43 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Gets a list of all available medals and their metadata.
         /// </summary>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetMedalMetadata.xml' path='//example'/>
         /// <returns>If successful, an instance of <see cref="MedalMetadata"/> containing medal information. Otherwise, returns null and error details.</returns>
         public async Task<HaloApiResultContainer<MedalMetadata, HaloApiErrorContainer>> GameCmsGetMedalMetadata()
         {
             return await this.ExecuteAPIRequest<MedalMetadata>(
                 $"https://{HaloCoreEndpoints.GameCmsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/Waypoint/file/medals/metadata.json",
+                HttpMethod.Get,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+        }
+
+        /// <summary>
+        /// Gets the detailed configuration for a Halo Infinite playlist.
+        /// </summary>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetMultiplayerPlaylistConfiguration.xml' path='//example'/>
+        /// <param name="playlistFile">JSON file associated with a playlist. Example is "a446725e-b281-414c-a21e-31b8700e95a1.json".</param>
+        /// <returns>If successful, an instance of <see cref="PlaylistConfiguration"/> containing playlist configuration. Otherwise, returns null and error details.</returns>
+        public async Task<HaloApiResultContainer<PlaylistConfiguration, HaloApiErrorContainer>> GameCmsGetMultiplayerPlaylistConfiguration(string playlistFile)
+        {
+            return await this.ExecuteAPIRequest<PlaylistConfiguration>(
+                $"https://{HaloCoreEndpoints.GameCmsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/Multiplayer/file/playlists/assets/{playlistFile}",
+                HttpMethod.Get,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+        }
+
+        /// <summary>
+        /// Gets emblem mapping configuration.
+        /// </summary>
+        /// <include file='../APIDocsExamples/HaloInfinite/GameCms_GetEmblemMapping.xml' path='//example'/>
+        /// <returns>If successful, an instance of <see cref="Dictionary{String, List}"/> with emblem mapping. Otherwise, returns null and error details.</returns>
+        public async Task<HaloApiResultContainer<Dictionary<string, Dictionary<string, EmblemMapping>>, HaloApiErrorContainer>> GameCmsGetEmblemMapping()
+        {
+            return await this.ExecuteAPIRequest<Dictionary<string, Dictionary<string, EmblemMapping>>>(
+                $"https://{HaloCoreEndpoints.GameCmsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/Waypoint/file/images/emblems/mapping.json",
                 HttpMethod.Get,
                 true,
                 false,
@@ -2328,6 +2359,7 @@ namespace OpenSpartan.Grunt.Core
         /// Gets the service record for a player.
         /// </summary>
         /// <remarks>By tweaking season IDs, you can obtain season-specific information such as number of matches played, wins, losses, and others.</remarks>
+        /// <include file='../APIDocsExamples/HaloInfinite/Stats_GetPlayerServiceRecord.xml' path='//example'/>
         /// <param name="gamerTag">Player gamertag. Example value is "BreadKrtek".</param>
         /// <param name="seasonId">The ID of the season for which additional stats are pulled. Example value is "Seasons/Season7.json"</param>
         /// <returns>If successful, an instance of <see cref="PlayerServiceRecord"/> containing service record information. Otherwise, returns null with additional details about the error.</returns>

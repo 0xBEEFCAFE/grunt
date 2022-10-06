@@ -13,6 +13,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     /// <summary>
     /// Container class for service record subqueries.
     /// </summary>
+    [IsAutomaticallySerializable]
     public class SubqueryContainer
     {
         /// <summary>

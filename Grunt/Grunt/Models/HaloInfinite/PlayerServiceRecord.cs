@@ -12,6 +12,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     /// <summary>
     /// Details about a player service record.
     /// </summary>
+    [IsAutomaticallySerializable]
     public class PlayerServiceRecord
     {
         /// <summary>

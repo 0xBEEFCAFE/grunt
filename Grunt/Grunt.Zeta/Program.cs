@@ -104,10 +104,16 @@ namespace OpenSpartan.Grunt.Zeta
             }).GetAwaiter().GetResult();
 
             // Try getting actual Halo Infinite data.
+            //Task.Run(async () =>
+            //{
+            //    var example = await waypointClient.RedeemCode("0000-0000-0000-0000-0000");
+            //    Console.WriteLine("Code redemption complete.");
+            //}).GetAwaiter().GetResult();
+
             Task.Run(async () =>
             {
-                var example = await waypointClient.RedeemCode("0000-0000-0000-0000-0000");
-                Console.WriteLine("Code redemption complete.");
+                var example = await client.GameCmsGetEmblemMapping();
+                Console.WriteLine("Got mapping.");
             }).GetAwaiter().GetResult();
 
             //Task.Run(async () =>

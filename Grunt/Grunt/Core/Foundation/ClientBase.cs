@@ -127,7 +127,11 @@ namespace OpenSpartan.Grunt.Core.Foundation
                 }
                 else
                 {
-                    if (Attribute.GetCustomAttribute(typeof(T), typeof(IsAutomaticallySerializableAttribute)) != null)
+                    // We will check whether the type is either one of the supported types or is
+                    // a generic type, which means we're directly casting data to something that is usable
+                    // without much custom model wrapping.
+                    if (Attribute.GetCustomAttribute(typeof(T), typeof(IsAutomaticallySerializableAttribute)) != null ||
+                        typeof(T).IsGenericType)
                     {
                         resultContainer.Result = JsonSerializer.Deserialize<T>(await response.Content.ReadAsStringAsync(), this.serializerOptions);
                     }
