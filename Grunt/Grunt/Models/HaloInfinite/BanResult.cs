@@ -9,9 +9,18 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Information about bans on a player account.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class BanResult
     {
-        public List<object>? BansInEffect { get; set; }
+        /// <summary>
+        /// Gets or sets the list of bans in effect for a player account.
+        /// </summary>
+        /// <remarks>
+        /// Additional research is needed to understand the data model here.
+        /// </remarks>
+        public List<dynamic>? BansInEffect { get; set; }
     }
 }

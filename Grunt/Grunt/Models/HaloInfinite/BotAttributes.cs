@@ -7,8 +7,14 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Information related to bot-specific attributes.
+    /// </summary>
     public class BotAttributes
     {
+        /// <summary>
+        /// Gets or sets the bot difficulty.
+        /// </summary>
         public int Difficulty { get; set; }
     }
 }

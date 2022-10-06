@@ -10,9 +10,15 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for authoring asset versions.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AuthoringAssetVersionContainer : AuthoringResultContainerBase
     {
+        /// <summary>
+        /// Gets or sets the list of authoring asset versions.
+        /// </summary>
         public List<AuthoringAssetVersion>? Results { get; set; }
     }
 }

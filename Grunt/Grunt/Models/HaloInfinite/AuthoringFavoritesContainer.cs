@@ -10,9 +10,15 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container class for authoring favorites.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AuthoringFavoritesContainer : AuthoringResultContainerBase
     {
+        /// <summary>
+        /// Gets or sets the list of favorited assets.
+        /// </summary>
         public List<FavoriteAsset>? Results { get; set; }
     }
 }

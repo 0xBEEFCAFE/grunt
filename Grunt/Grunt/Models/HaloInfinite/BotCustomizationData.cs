@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Information related to bot customizations.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class BotCustomizationData
     {
+        /// <summary>
+        /// Gets or sets the list of outfits associated with a bot.
+        /// </summary>
         public List<Outfit>? Outfits { get; set; }
     }
 }

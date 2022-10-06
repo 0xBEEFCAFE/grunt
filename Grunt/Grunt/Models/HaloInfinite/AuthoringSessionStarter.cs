@@ -7,10 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Configuration for an authoring session starter.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class AuthoringSessionStarter
     {
+        /// <summary>
+        /// Gets or sets the previous version ID of the asset used for the session.
+        /// </summary>
         public string? PreviousVersionId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the session origin.
+        /// </summary>
         public string? SessionOrigin { get; set; }
     }
 }
