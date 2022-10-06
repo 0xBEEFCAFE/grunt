@@ -9,10 +9,20 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for ranked rewards.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class RankedRewards
     {
-        public string RewardId { get; set; }
-        public Dictionary<string, string> AwardedRewards { get; set; }
+        /// <summary>
+        /// Gets or sets the rewards ID.
+        /// </summary>
+        public string? RewardId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of awarded rewards.
+        /// </summary>
+        public Dictionary<string, string>? AwardedRewards { get; set; }
     }
 }

@@ -7,11 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for rank snapshots.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class RankSnapshot
     {
+        /// <summary>
+        /// Gets or sets the rank.
+        /// </summary>
         public int Rank { get; set; }
-        public RewardContainer FreeRewards { get; set; }
-        public RewardContainer PaidRewards { get; set; }
+
+        /// <summary>
+        /// Gets or sets free rewards for the player.
+        /// </summary>
+        public RewardContainer? FreeRewards { get; set; }
+
+        /// <summary>
+        /// Gets or sets paid rewards for the player.
+        /// </summary>
+        public RewardContainer? PaidRewards { get; set; }
     }
 }

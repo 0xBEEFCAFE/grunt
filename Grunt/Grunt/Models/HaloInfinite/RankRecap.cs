@@ -7,10 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Post-match player rank recap.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class RankRecap
     {
-        public MatchCsr PreMatchCsr { get; set; }
-        public MatchCsr PostMatchCsr { get; set; }
+        /// <summary>
+        /// Gets or sets the Competitive Skill Rank (CSR) before the match.
+        /// </summary>
+        public MatchCsr? PreMatchCsr { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Competitive Skill Rank (CSR) after the match.
+        /// </summary>
+        public MatchCsr? PostMatchCsr { get; set; }
     }
 }
