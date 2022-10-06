@@ -11,8 +11,9 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class LobbyPresenceResultContainer
     {
         public string? Id { get; set; }
+
         public int ResultCode { get; set; }
+
         public LobbyPresenceResult? Result { get; set; }
     }
-
 }

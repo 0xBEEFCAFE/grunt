@@ -13,6 +13,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class Metadata
     {
         public List<Manufacturer>? Manufacturers { get; set; }
+
         public List<Currency>? Currencies { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace OpenSpartan.Grunt.Librarian
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Grunt Librarian - Halo Infinite API Indexer");
             Console.WriteLine("Developed by Den Delimarsky in 2022. Part of https://gruntapi.com");
@@ -27,27 +27,29 @@ namespace OpenSpartan.Grunt.Librarian
                 container = (await client.GetApiSettingsContainer()).Result;
             }).GetAwaiter().GetResult();
 
-            if (container != null)
+            if (container != null && container.Endpoints != null)
             {
                 List<ExportableFunction> functions = new();
 
-                foreach(var endpoint in container.Endpoints)
+                foreach (KeyValuePair<string, OnlineUriReference> endpoint in container.Endpoints)
                 {
                     Authority endpointAuthority = (from c in container.Authorities where string.Equals(c.Key, endpoint.Value.AuthorityId, StringComparison.InvariantCultureIgnoreCase) select c).First().Value;
                     var endpointNamePieces = endpoint.Key.Split('_');
                     //func.Name = endpointNamePieces.Last();
 
-                    ExportableFunction func = new();
-                    func.Name = endpoint.Key.Replace("_", "");
-                    func.EndpointPath = endpoint.Value.Path;
-                    func.EndpointId = endpoint.Key;
-                    func.AuthorityHost = endpointAuthority.Hostname;
-                    func.AuthorityPort = endpointAuthority.Port;
-                    func.QueryString = endpoint.Value.QueryString;
-                    func.RequiresClearance = endpoint.Value.ClearanceAware;
-                    func.RequiresSpartanToken = endpointAuthority.AuthenticationMethods.Contains(AuthenticationMethod.SpartanTokenV4);
-                    
-                    switch(func.Name)
+                    ExportableFunction func = new()
+                    {
+                        Name = endpoint.Key.Replace("_", ""),
+                        EndpointPath = endpoint.Value.Path,
+                        EndpointId = endpoint.Key,
+                        AuthorityHost = endpointAuthority.Hostname,
+                        AuthorityPort = endpointAuthority.Port,
+                        QueryString = endpoint.Value.QueryString,
+                        RequiresClearance = endpoint.Value.ClearanceAware,
+                        RequiresSpartanToken = endpointAuthority.AuthenticationMethods is not null && endpointAuthority.AuthenticationMethods.Contains(AuthenticationMethod.SpartanTokenV4),
+                    };
+
+                    switch (func.Name)
                     {
                         case string s when s.StartsWith("Get", StringComparison.InvariantCultureIgnoreCase):
                             func.Method = HttpMethod.Get;
@@ -96,37 +98,42 @@ namespace OpenSpartan.Grunt.Librarian
 
                 foreach (var func in functions)
                 {
-                    var endpointCombo = string.Concat(func.EndpointPath, func.QueryString);
-                    var functionParameters = entityRegex.Matches(endpointCombo);
-                    var arguments = string.Empty;
-
-                    if (functionParameters.Count > 0)
+                    if (func is not null)
                     {
-                        foreach (Match match in functionParameters)
+                        var endpointCombo = string.Concat(func.EndpointPath, func.QueryString);
+                        var functionParameters = entityRegex.Matches(endpointCombo);
+                        var arguments = string.Empty;
+
+                        if (functionParameters.Count > 0)
                         {
-                            arguments += "string " + match.Groups[1].Value.ToString() + ", ";
+                            foreach (Match match in functionParameters.Cast<Match>())
+                            {
+                                arguments += "string " + match.Groups[1].Value.ToString() + ", ";
+                            }
+                            arguments = arguments.Trim().TrimEnd(',');
                         }
-                        arguments = arguments.Trim().TrimEnd(',');
-                    }
 
-                    var functionCode = string.Format(functionStub,
-                                                     func.Name,                                                                                     
-                                                     arguments,                                                                                     
-                                                     func.AuthorityHost,                                                                               
-                                                     func.AuthorityPort,                                                                            
-                                                     func.EndpointPath,                                                                 
-                                                     func.QueryString,                                                                              
-                                                     Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(func.Method.ToString().ToLower()),    
-                                                     func.RequiresSpartanToken.ToString().ToLower(),                                                
-                                                     func.RequiresClearance.ToString().ToLower()                                                    
-                                                     );
-                    
-                    if (func.NeedsIntervention == true)
-                    {
-                        functionCode = "//TODO: This function requires manual invtervention/checks.\n" + functionCode;
-                    }
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                        var functionCode = string.Format(functionStub,
+                                                         func.Name,
+                                                         arguments,
+                                                         func.AuthorityHost,
+                                                         func.AuthorityPort,
+                                                         func.EndpointPath,
+                                                         func.QueryString,
+                                                         Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(func.Method != null ? func.Method.ToString().ToLower() : "GET"),
+                                                         func.RequiresSpartanToken is not null ? func!.RequiresSpartanToken!.ToString().ToLower() : true,
+                                                         func.RequiresClearance is not null ? func!.RequiresClearance!.ToString().ToLower() : false
+                                                         );
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
-                    func.FunctionCode = functionCode;
+                        if (func.NeedsIntervention == true)
+                        {
+                            functionCode = "//TODO: This function requires manual invtervention/checks.\n" + functionCode;
+                        }
+
+                        func.FunctionCode = functionCode;
+                    }
                 }
 
                 var combinations = from f in functions

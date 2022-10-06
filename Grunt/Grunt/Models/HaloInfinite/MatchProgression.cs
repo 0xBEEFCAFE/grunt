@@ -13,7 +13,9 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class MatchProgression
     {
         public string? ClearanceId { get; set; }
+
         public string? RewardId { get; set; }
+
         public List<ChallengeProgressState>? ChallengeProgressState { get; set; }
     }
 }

@@ -15,5 +15,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public List<long>? FullClawXuids { get; set; }
         public List<long>? ConsumerClawXuids { get; set; }
     }
-
 }

@@ -15,13 +15,18 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     {
         [JsonPropertyName("kty")]
         public string? KeyType { get; set; }
+
         public string? Use { get; set; }
+
         [JsonPropertyName("kid")]
         public string? KeyId { get; set; }
+
         [JsonPropertyName("n")]
         public string? Modulus { get; set; }
+
         [JsonPropertyName("e")]
         public string? Exponent { get; set; }
+
         [JsonPropertyName("x5c")]
         public string? X509CertificateChain { get; set; }
     }

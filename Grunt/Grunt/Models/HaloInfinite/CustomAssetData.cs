@@ -12,5 +12,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     {
         public AssetKeyValues? KeyValues { get; set; }
     }
-
 }

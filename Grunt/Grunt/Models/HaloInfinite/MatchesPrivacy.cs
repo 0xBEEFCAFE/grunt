@@ -13,5 +13,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public int MatchmadeGames { get; set; }
         public int OtherGames { get; set; }
     }
-
 }

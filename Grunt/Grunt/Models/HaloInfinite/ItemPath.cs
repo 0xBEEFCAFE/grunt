@@ -13,5 +13,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public string? Path { get; set; }
         public string? Type { get; set; }
     }
-
 }

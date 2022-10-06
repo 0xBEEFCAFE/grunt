@@ -15,5 +15,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         [JsonPropertyName("m_identifier")]
         public int MIdentifier { get; set; }
     }
-
 }

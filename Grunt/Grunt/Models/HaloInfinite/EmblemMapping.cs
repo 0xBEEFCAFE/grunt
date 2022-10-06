@@ -10,7 +10,9 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class EmblemMapping
     {
         public string? EmblemCmsPath { get; set; }
+
         public string? NameplateCmsPath { get; set; }
+
         public string? TextColor { get; set; }
     }
 }

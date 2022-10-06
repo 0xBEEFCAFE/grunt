@@ -13,5 +13,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public string? PreviousVersionId { get; set; }
         public string? SessionOrigin { get; set; }
     }
-
 }

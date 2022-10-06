@@ -13,5 +13,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public FireTeamDetails? FireteamDetails { get; set; }
         public object? MatchDetails { get; set; }
     }
-
 }

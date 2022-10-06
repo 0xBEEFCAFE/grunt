@@ -13,6 +13,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class FlightedFeatureFlags
     {
         public List<string>? EnabledFeatures { get; set; }
+
         public List<string>? DisabledFeatures { get; set; }
     }
 }

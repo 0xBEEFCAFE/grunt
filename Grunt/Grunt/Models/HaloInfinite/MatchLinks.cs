@@ -11,5 +11,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class MatchLinks
     {
     }
-
 }

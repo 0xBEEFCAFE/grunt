@@ -32,5 +32,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public bool? TeamsEnabled { get; set; }
         public bool? TeamScoringEnabled { get; set; }
     }
-
 }

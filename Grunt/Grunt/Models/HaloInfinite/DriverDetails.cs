@@ -13,7 +13,9 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class DriverDetails
     {
         public string? Minimum { get; set; }
+
         public string? DownloadLink { get; set; }
+
         public List<object>? Blocklist { get; set; }
     }
 }

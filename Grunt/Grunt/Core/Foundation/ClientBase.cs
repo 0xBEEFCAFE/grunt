@@ -61,6 +61,7 @@ namespace OpenSpartan.Grunt.Core.Foundation
         /// <param name="userAgent">User agent to be used for the request.</param>
         /// <param name="content">If the request contains data to be sent to the Halo Waypoint service, include it here. Expected format is JSON.</param>
         /// <param name="contentType">Content type for POST requests. By default it's `application/json`.</param>
+        /// <typeparam name="T">Data type to return with the response metadata.</typeparam>
         /// <returns>Response string in case of a successful request. Null if request failed.</returns>
         public async Task<HaloApiResultContainer<T, HaloApiErrorContainer>> ExecuteAPIRequest<T>(string endpoint, HttpMethod method, bool useSpartanToken, bool useClearance, string userAgent, string content = "", ApiContentType contentType = ApiContentType.Json)
         {
@@ -115,11 +116,9 @@ namespace OpenSpartan.Grunt.Core.Foundation
                 }
                 else if (typeof(T) == typeof(byte[]))
                 {
-                    using (MemoryStream dataStream = new())
-                    {
-                        response.Content.ReadAsStreamAsync().Result.CopyTo(dataStream);
-                        resultContainer.Result = (T)Convert.ChangeType(dataStream.ToArray(), typeof(T));
-                    }
+                    using MemoryStream dataStream = new();
+                    response.Content.ReadAsStreamAsync().Result.CopyTo(dataStream);
+                    resultContainer.Result = (T)Convert.ChangeType(dataStream.ToArray(), typeof(T));
                 }
                 else if (typeof(T) == typeof(bool))
                 {
@@ -133,11 +132,15 @@ namespace OpenSpartan.Grunt.Core.Foundation
                     if (Attribute.GetCustomAttribute(typeof(T), typeof(IsAutomaticallySerializableAttribute)) != null ||
                         typeof(T).IsGenericType)
                     {
-                        resultContainer.Result = JsonSerializer.Deserialize<T>(await response.Content.ReadAsStringAsync(), this.serializerOptions);
+                        var responseString = await response.Content.ReadAsStringAsync();
+                        if (!string.IsNullOrWhiteSpace(responseString))
+                        {
+                            resultContainer.Result = JsonSerializer.Deserialize<T>(responseString, this.serializerOptions);
+                        }
                     }
                     else
                     {
-                        throw new NotSupportedException("The specified type is not supported. You can onlty get results in string or byte array formats.");
+                        throw new NotSupportedException("The specified type is not supported. You can only get results in string or byte array formats.");
                     }
                 }
             }

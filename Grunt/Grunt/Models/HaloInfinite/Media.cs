@@ -19,5 +19,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public string? FolderPath { get; set; }
         public string? FileName { get; set; }
     }
-
 }

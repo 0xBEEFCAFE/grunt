@@ -14,5 +14,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     {
         public List<long>? Xuids { get; set; }
     }
-
 }

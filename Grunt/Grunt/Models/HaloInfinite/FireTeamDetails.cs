@@ -18,5 +18,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public int Activity { get; set; }
         public int FireteamLeaderMenuActivity { get; set; }
     }
-
 }

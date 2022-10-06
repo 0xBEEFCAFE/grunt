@@ -15,5 +15,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public int MatchmadeMatchesPlayedCount { get; set; }
         public int LocalMatchesPlayedCount { get; set; }
     }
-
 }

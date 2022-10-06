@@ -17,5 +17,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public string? FileRelativePath { get; set; }
         public int ChunkType { get; set; }
     }
-
 }
