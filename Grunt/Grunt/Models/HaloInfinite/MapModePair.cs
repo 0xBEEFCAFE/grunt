@@ -12,9 +12,9 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class MapModePair : AssetBase
     {
-        public object CustomData { get; set; }
-        public Map MapLink { get; set; }
-        public UGCGameVariant UgcGameVariantLink { get; set; }
+        public object? CustomData { get; set; }
+        public Map? MapLink { get; set; }
+        public UGCGameVariant? UgcGameVariantLink { get; set; }
         public int Order { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
-    public class HaloInfinite343MicrosoftStoreTitle
+    public class MicrosoftStoreMapping
     {
         public List<StoreProductMapping>? ProductMapping { get; set; }
         public string? ContainerId { get; set; }

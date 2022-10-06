@@ -10,8 +10,8 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class LobbyPresenceResult
     {
-        public FireTeamDetails FireteamDetails { get; set; }
-        public object MatchDetails { get; set; }
+        public FireTeamDetails? FireteamDetails { get; set; }
+        public object? MatchDetails { get; set; }
     }
 
 }

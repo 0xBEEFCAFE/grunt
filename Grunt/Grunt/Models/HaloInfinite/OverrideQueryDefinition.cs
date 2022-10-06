@@ -5,6 +5,7 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
@@ -15,6 +16,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         [JsonPropertyName("schema_version")]
         public int SchemaVersion { get; set; }
         public int Version { get; set; }
-        public OverrideQuery[] Overrides { get; set; }
+        public List<OverrideQuery>? Overrides { get; set; }
     }
 }

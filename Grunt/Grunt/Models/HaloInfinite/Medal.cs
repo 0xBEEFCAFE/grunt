@@ -13,8 +13,8 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public long NameId { get; set; }
         public int Count { get; set; }
         public int TotalPersonalScoreAwarded { get; set; }
-        public DisplayString Name { get; set; }
-        public DisplayString Description { get; set; }
+        public DisplayString? Name { get; set; }
+        public DisplayString? Description { get; set; }
         public int SpriteIndex { get; set; }
         public int SortingWeight { get; set; }
         public int DifficultyIndex { get; set; }

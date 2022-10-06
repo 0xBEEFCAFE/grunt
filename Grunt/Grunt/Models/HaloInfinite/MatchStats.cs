@@ -6,6 +6,7 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
@@ -14,10 +15,10 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     {
         public Guid MatchId { get; set; }
 
-        public MatchInfo MatchInfo { get; set; }
+        public MatchInfo? MatchInfo { get; set; }
 
-        public Team[] Teams { get; set; }
+        public List<Team>? Teams { get; set; }
 
-        public Player[] Players { get; set; }
+        public List<Player>? Players { get; set; }
     }
 }

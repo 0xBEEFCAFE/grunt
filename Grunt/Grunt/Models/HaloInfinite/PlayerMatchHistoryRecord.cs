@@ -14,7 +14,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     {
         public Guid MatchId { get; set; }
 
-        public MatchInfo MatchInfo { get; set; }
+        public MatchInfo? MatchInfo { get; set; }
 
         public int LastTeamId { get; set; }
 
@@ -22,7 +22,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
 
         public int Rank { get; set; }
 
-        public bool PresentAtEndOfMatch { get; set; }
+        public bool? PresentAtEndOfMatch { get; set; }
     }
 
 }

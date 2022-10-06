@@ -12,6 +12,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     {
         public int TeamId { get; set; }
 
-        public Stats Stats { get; set; }
+        public Stats? Stats { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class LobbyPresenceContainer
     {
-        public List<LobbyPresenceResultContainer> Results { get; set; }
+        public List<LobbyPresenceResultContainer>? Results { get; set; }
     }
 }

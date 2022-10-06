@@ -10,6 +10,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class PlayerClearance
     {
-        public string FlightConfigurationId { get; set; }
+        public string? FlightConfigurationId { get; set; }
     }
 }

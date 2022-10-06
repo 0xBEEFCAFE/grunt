@@ -12,6 +12,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class PlaylistCsrResults : ResultContainerBase
     {
-        public PlaylistCsrContainer Result { get; set; }
+        public PlaylistCsrContainer? Result { get; set; }
     }
 }

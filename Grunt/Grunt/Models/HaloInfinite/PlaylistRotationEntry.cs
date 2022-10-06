@@ -12,7 +12,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class PlaylistRotationEntry : AssetBase
     {
-        public PlaylistMapModePairMetadata Metadata { get; set; }
-        public PlayAssetStats AssetStats { get; set; }
+        public PlaylistMapModePairMetadata? Metadata { get; set; }
+        public PlayAssetStats? AssetStats { get; set; }
     }
 }

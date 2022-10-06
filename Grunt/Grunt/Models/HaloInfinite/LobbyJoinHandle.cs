@@ -10,6 +10,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class LobbyJoinHandle
     {
-        public string JoinHandle { get; set; }
+        public string? JoinHandle { get; set; }
     }
 }

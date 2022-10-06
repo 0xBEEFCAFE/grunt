@@ -6,13 +6,14 @@
 // </copyright>
 
 using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
+using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
     public class Map : AssetBase
     {
-        public CustomMapData CustomData { get; set; }
-        public AssetLink[] PrefabLinks { get; set; }
+        public CustomMapData? CustomData { get; set; }
+        public List<AssetLink>? PrefabLinks { get; set; }
     }
 }

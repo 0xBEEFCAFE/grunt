@@ -12,6 +12,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class MatchSkillInfo
     {
-        public List<SkillResult> Value { get; set; }
+        public List<SkillResult>? Value { get; set; }
     }
 }

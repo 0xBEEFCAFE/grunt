@@ -5,12 +5,14 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System.Collections.Generic;
+
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
     public class Metadata
     {
-        public Manufacturer[] Manufacturers { get; set; }
-        public Currency[] Currencies { get; set; }
+        public List<Manufacturer>? Manufacturers { get; set; }
+        public List<Currency>? Currencies { get; set; }
     }
 }

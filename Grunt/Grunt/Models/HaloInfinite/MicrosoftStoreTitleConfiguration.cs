@@ -5,12 +5,17 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System.Text.Json.Serialization;
+
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     [IsAutomaticallySerializable]
     public class MicrosoftStoreTitleConfiguration
     {
-        public HaloInfinite343MicrosoftStoreTitle hi343 { get; set; }
-        public HaloInfiniteMicrosoftStoreTitle hi { get; set; }
+        [JsonPropertyName("hi343")]
+        public MicrosoftStoreMapping? HaloInfinite343 { get; set; }
+
+        [JsonPropertyName("hi")]
+        public MicrosoftStoreMapping? HaloInfinite { get; set; }
     }
 }
