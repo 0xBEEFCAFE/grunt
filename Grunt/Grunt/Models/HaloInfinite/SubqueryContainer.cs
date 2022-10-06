@@ -18,12 +18,12 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <summary>
         /// Gets or sets the list of season IDs.
         /// </summary>
-        public List<string> SeasonIds { get; set; }
+        public List<string>? SeasonIds { get; set; }
 
         /// <summary>
         /// Gets or sets the list of game variant categories.
         /// </summary>
-        public List<GameVariantCategory> GameVariantCategories { get; set; }
+        public List<GameVariantCategory>? GameVariantCategories { get; set; }
 
         /// <summary>
         /// Gets or sets whether the player is ranked.
@@ -33,6 +33,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <summary>
         /// Gets or sets the list of playlist IDs.
         /// </summary>
-        public List<Guid> PlaylistAssetIds { get; set; }
+        public List<Guid>? PlaylistAssetIds { get; set; }
     }
 }

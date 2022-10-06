@@ -12,7 +12,14 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     /// </summary>
     public enum ResultOrder
     {
+        /// <summary>
+        /// Show results in descending order.
+        /// </summary>
         Desc,
-        Asc
+
+        /// <summary>
+        /// Show results in ascending order.
+        /// </summary>
+        Asc,
     }
 }

@@ -7,12 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for reward track progress measurement.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class RewardTrackProgress
     {
+        /// <summary>
+        /// Gets or sets the reward track rank.
+        /// </summary>
         public int Rank { get; set; }
-        public int PartialProgress { get; set; }
-        public bool IsOwned { get; set; }
-    }
 
+        /// <summary>
+        /// Gets or sets the partial progress for the rank.
+        /// </summary>
+        public int PartialProgress { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the reward track is owned by the player.
+        /// </summary>
+        public bool? IsOwned { get; set; }
+    }
 }

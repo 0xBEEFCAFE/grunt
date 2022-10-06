@@ -68,5 +68,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// </remarks>
         public List<RewardTrack>? RewardTrackProgression { get; set; }
     }
-
 }
