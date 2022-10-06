@@ -72,14 +72,14 @@ namespace OpenSpartan.Grunt.Core.Foundation
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate | DecompressionMethods.Brotli,
             });
 
-            HaloApiResultContainer<T, HaloApiErrorContainer> resultContainer = new(default, new HaloApiErrorContainer());
+            HaloApiResultContainer<T, HaloApiErrorContainer> resultContainer = new(default!, new HaloApiErrorContainer());
 
             var request = new HttpRequestMessage()
             {
                 RequestUri = new Uri(endpoint),
                 Method = method,
             };
-
+            
             if (!string.IsNullOrEmpty(content))
             {
                 request.Content = new StringContent(content, Encoding.UTF8, contentTypeAttribute);
@@ -87,7 +87,8 @@ namespace OpenSpartan.Grunt.Core.Foundation
 
             if (request.Method == HttpMethod.Post)
             {
-                request.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeAttribute);
+                request.Content ??= new StringContent(string.Empty);
+                request.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeAttribute is not null ? contentTypeAttribute : "application/json");
             }
 
             if (useSpartanToken)
@@ -106,7 +107,7 @@ namespace OpenSpartan.Grunt.Core.Foundation
 
             var response = await client.SendAsync(request);
 
-            resultContainer.Error.Code = Convert.ToInt32(response.StatusCode);
+            resultContainer.Error!.Code = Convert.ToInt32(response.StatusCode);
 
             if (response.IsSuccessStatusCode)
             {

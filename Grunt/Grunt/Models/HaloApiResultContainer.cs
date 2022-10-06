@@ -28,11 +28,11 @@ namespace OpenSpartan.Grunt.Models
         /// <summary>
         /// Gets or sets the Halo API request result.
         /// </summary>
-        public T Result { get; set; }
+        public T? Result { get; set; }
 
         /// <summary>
         /// Gets or sets the Halo API request error information.
         /// </summary>
-        public THaloApiErrorContainer Error { get; set; }
+        public THaloApiErrorContainer? Error { get; set; }
     }
 }
