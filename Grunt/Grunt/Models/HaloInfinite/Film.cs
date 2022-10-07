@@ -7,15 +7,30 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Game film configuration.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Film
     {
+        /// <summary>
+        /// Gets or sets the film status.
+        /// </summary>
         public int FilmStatusBond { get; set; }
 
+        /// <summary>
+        /// Gets or sets custom metadata for the film.
+        /// </summary>
         public CustomFilmData? CustomData { get; set; }
 
+        /// <summary>
+        /// Gets or sets the blob storage prefix for the film files.
+        /// </summary>
         public string? BlobStoragePathPrefix { get; set; }
 
+        /// <summary>
+        /// Gets or sets the asset ID for the film.
+        /// </summary>
         public string? AssetId { get; set; }
     }
 }

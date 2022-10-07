@@ -7,6 +7,9 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Generic in-game core implemented through <see cref="HaloInfinite.Foundation.CoreBase"/>.
+    /// </summary>
     public class GenericCore : HaloInfinite.Foundation.CoreBase
     {
     }

@@ -11,6 +11,9 @@ using OpenSpartan.Grunt.Models;
 
 namespace OpenSpartan.Grunt.Util
 {
+    /// <summary>
+    /// Utilities used for extending core functionality offered by the CLR.
+    /// </summary>
     internal static class Extensions
     {
         /// <summary>

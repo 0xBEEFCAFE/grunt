@@ -9,6 +9,9 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Generic representation of a game asset, implemented through <see cref="AssetBase"/>.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class GenericAsset : AssetBase
     {

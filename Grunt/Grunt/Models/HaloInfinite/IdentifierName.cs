@@ -9,9 +9,15 @@ using System.Text.Json.Serialization;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Component identifier name.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class IdentifierName
     {
+        /// <summary>
+        /// Gets or sets the identifier ID.
+        /// </summary>
         [JsonPropertyName("m_identifier")]
         public int MIdentifier { get; set; }
     }

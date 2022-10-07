@@ -9,11 +9,20 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Configuration for flighted feature flags.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class FlightedFeatureFlags
     {
+        /// <summary>
+        /// Gets or sets the list of enabled features.
+        /// </summary>
         public List<string>? EnabledFeatures { get; set; }
 
+        /// <summary>
+        /// Gets or sets the list of disabled features.
+        /// </summary>
         public List<string>? DisabledFeatures { get; set; }
     }
 }

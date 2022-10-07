@@ -9,15 +9,30 @@ using OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// File metadata.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class File
     {
+        /// <summary>
+        /// Gets or sets the URL configuration for the file.
+        /// </summary>
         public OnlineUriReference? Uri { get; set; }
 
+        /// <summary>
+        /// Gets or sets the content <see href="https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag">ETag</see>.
+        /// </summary>
         public string? ETag { get; set; }
 
+        /// <summary>
+        /// Gets or sets the content length.
+        /// </summary>
         public int ContentLength { get; set; }
 
+        /// <summary>
+        /// Gets or sets the usage type.
+        /// </summary>
         public int Usage { get; set; }
     }
 }

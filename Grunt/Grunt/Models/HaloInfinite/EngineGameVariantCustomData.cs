@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Custom configuration data for an engine game variant.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class EngineGameVariantCustomData
     {
+        /// <summary>
+        /// Gets or sets the subset data container configuration.
+        /// </summary>
         public SubsetDataContainer? SubsetData { get; set; }
 
+        /// <summary>
+        /// Gets or sets the localized configuration data.
+        /// </summary>
         public LocalizedDataContainer? LocalizedData { get; set; }
     }
 }

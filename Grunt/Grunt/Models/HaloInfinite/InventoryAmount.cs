@@ -7,13 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Representation of in-game consumable items within a player inventory.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class InventoryAmount
     {
+        /// <summary>
+        /// Gets or sets the inventory item path.
+        /// </summary>
         public string? InventoryItemPath { get; set; }
 
+        /// <summary>
+        /// Gets or sets the amount of consumable items.
+        /// </summary>
         public int Amount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the consumable type.
+        /// </summary>
         public string? Type { get; set; }
     }
 }

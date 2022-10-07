@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Player emblem.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Emblem
     {
+        /// <summary>
+        /// Gets or sets the emblem path.
+        /// </summary>
         public string? EmblemPath { get; set; }
 
+        /// <summary>
+        /// Gets or sets the configuration ID.
+        /// </summary>
         public int ConfigurationId { get; set; }
     }
 }

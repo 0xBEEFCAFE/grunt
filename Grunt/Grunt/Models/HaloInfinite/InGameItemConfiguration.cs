@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Configuration for an in-game item.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class InGameItemConfiguration
     {
+        /// <summary>
+        /// Gets or sets the configuration ID.
+        /// </summary>
         public int ConfigurationId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the configuration path.
+        /// </summary>
         public string? ConfigurationPath { get; set; }
     }
 }
