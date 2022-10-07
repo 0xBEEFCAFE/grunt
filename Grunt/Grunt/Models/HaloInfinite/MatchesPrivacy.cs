@@ -11,6 +11,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class MatchesPrivacy
     {
         public int MatchmadeGames { get; set; }
+
         public int OtherGames { get; set; }
     }
 }

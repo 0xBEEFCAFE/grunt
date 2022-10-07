@@ -13,6 +13,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class OverrideQuery
     {
         public List<Query>? Query { get; set; }
+
         public OverrideSettings? Settings { get; set; }
     }
 }

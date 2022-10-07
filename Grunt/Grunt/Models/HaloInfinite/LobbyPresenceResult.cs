@@ -11,6 +11,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class LobbyPresenceResult
     {
         public FireTeamDetails? FireteamDetails { get; set; }
+
         public object? MatchDetails { get; set; }
     }
 }

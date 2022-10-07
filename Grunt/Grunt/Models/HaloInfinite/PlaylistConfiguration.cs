@@ -15,7 +15,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class PlaylistConfiguration
     {
-
         /// <summary>
         /// Gets or sets the name hint for the playlist configuration. Example value is "bot_arena".
         /// </summary>

@@ -13,6 +13,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class MicrosoftStoreMapping
     {
         public List<StoreProductMapping>? ProductMapping { get; set; }
+
         public string? ContainerId { get; set; }
     }
 }

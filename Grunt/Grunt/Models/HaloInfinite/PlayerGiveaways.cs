@@ -17,5 +17,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         // than a plain object.
         public List<object>? GiveawayResults { get; set; }
     }
-
 }

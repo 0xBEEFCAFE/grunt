@@ -15,12 +15,13 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public List<RewardTrack>? RewardTracks { get; set; }
 
         // TODO: Figure out what this type is.
-        public List<object>? ItemBalances { get; set; }
+        public List<dynamic>? ItemBalances { get; set; }
+
         public List<CurrencyAmount>? CurrencyBalances { get; set; }
+
         public bool? RefreshNeeded { get; set; }
 
         // TODO: Figure out what this type is.
-        public List<object>? Boosts { get; set; }
+        public List<dynamic>? Boosts { get; set; }
     }
-
 }

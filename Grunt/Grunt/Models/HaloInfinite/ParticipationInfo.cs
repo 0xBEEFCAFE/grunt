@@ -13,11 +13,17 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class ParticipationInfo
     {
         public DateTime FirstJoinedTime { get; set; }
+
         public DateTime LastLeaveTime { get; set; }
+
         public bool? PresentAtBeginning { get; set; }
+
         public bool? JoinedInProgress { get; set; }
+
         public bool? LeftInProgress { get; set; }
+
         public bool? PresentAtCompletion { get; set; }
+
         public string? TimePlayed { get; set; }
 
         /// <summary>
@@ -26,6 +32,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <remarks>
         /// Additional research is needed to determine this value.
         /// </remarks>
-        public object? ConfirmedParticipation { get; set; }
+        public dynamic? ConfirmedParticipation { get; set; }
     }
 }

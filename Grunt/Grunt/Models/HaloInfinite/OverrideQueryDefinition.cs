@@ -15,7 +15,9 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     {
         [JsonPropertyName("schema_version")]
         public int SchemaVersion { get; set; }
+
         public int Version { get; set; }
+
         public List<OverrideQuery>? Overrides { get; set; }
     }
 }

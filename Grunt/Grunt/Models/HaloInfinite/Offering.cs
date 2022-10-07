@@ -13,17 +13,26 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class Offering
     {
         public string? OfferingId { get; set; }
+
         public string? OfferingDisplayPath { get; set; }
+
         public APIFormattedDate? OfferingExpirationDate { get; set; }
+
         public List<PlayerItem>? IncludedItems { get; set; }
+
         public List<Price>? Prices { get; set; }
+
         public List<CurrencyAmount>? IncludedCurrencies { get; set; }
+
         public List<string>? IncludedRewardTracks { get; set; }
+
         public string? BoostPath { get; set; }
+
         public int OperationXp { get; set; }
+
         public int EventXp { get; set; }
         
         // TODO: Figure out what exactly this is.
-        public object? MatchBoosts { get; set; }
+        public dynamic? MatchBoosts { get; set; }
     }
 }

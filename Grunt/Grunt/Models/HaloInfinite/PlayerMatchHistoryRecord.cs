@@ -24,5 +24,4 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
 
         public bool? PresentAtEndOfMatch { get; set; }
     }
-
 }
