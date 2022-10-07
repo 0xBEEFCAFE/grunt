@@ -7,13 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Snapshot for currency amounts.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class CurrencyAmount
     {
+        /// <summary>
+        /// Gets or sets the currency amount.
+        /// </summary>
         public int Amount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the path to the currency.
+        /// </summary>
         public string? CurrencyPath { get; set; }
 
+        /// <summary>
+        /// Gets or sets the currency source.
+        /// </summary>
         public string? Source { get; set; }
     }
 }

@@ -7,6 +7,9 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Custom data associated with a game project.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class CustomProjectData
     {

@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Match counterfactuals.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Counterfactuals
     {
+        /// <summary>
+        /// Gets or sets personal counterfactuals.
+        /// </summary>
         public KillDeathStats? SelfCounterfactuals { get; set; }
 
+        /// <summary>
+        /// Gets or sets counterfactuals related to the player tier.
+        /// </summary>
         public TierCounterfactuals? TierCounterfactuals { get; set; }
     }
 }

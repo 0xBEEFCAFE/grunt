@@ -9,10 +9,20 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Snapshot for CLAW access.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class ClawAccessSnapshot
     {
+        /// <summary>
+        /// Gets or sets the list of XUIDs with full CLAW access.
+        /// </summary>
         public List<long>? FullClawXuids { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of consumer XUIDs with CLAW access.
+        /// </summary>
         public List<long>? ConsumerClawXuids { get; set; }
     }
 }

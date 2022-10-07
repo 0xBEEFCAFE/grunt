@@ -7,13 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Definition for an in-game challenge deck.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class ChallengeDeckDefinition
     {
+        /// <summary>
+        /// Gets or sets the capstone challenge path.
+        /// </summary>
         public string? CapstoneChallengePath { get; set; }
 
+        /// <summary>
+        /// Gets or sets the challenge deck type. Example is "Weekly".
+        /// </summary>
         public string? DeckType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the shortened version of the challenge deck type. Example is "weekly".
+        /// </summary>
         public string? Type { get; set; }
     }
 }
