@@ -9,10 +9,15 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Rotation entry for an in-game playlist.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PlaylistRotationEntry : AssetBase
     {
+        /// <summary>
+        /// Gets or sets the playlist metadata.
+        /// </summary>
         public PlaylistMapModePairMetadata? Metadata { get; set; }
-        public PlayAssetStats? AssetStats { get; set; }
     }
 }

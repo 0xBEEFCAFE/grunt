@@ -13,6 +13,5 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public class Prefab : AssetBase
     {
         public PrefabCustomData? CustomData { get; set; }
-        public PlayAssetStats? AssetStats { get; set; }
     }
 }

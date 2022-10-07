@@ -9,13 +9,25 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Driver detail configuration.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class DriverDetails
     {
+        /// <summary>
+        /// Gets or sets the minimum driver version.
+        /// </summary>
         public string? Minimum { get; set; }
 
+        /// <summary>
+        /// Gets or sets the driver download link.
+        /// </summary>
         public string? DownloadLink { get; set; }
 
-        public List<object>? Blocklist { get; set; }
+        /// <summary>
+        /// Gets or sets the list of blocklisted drivers.
+        /// </summary>
+        public List<dynamic>? Blocklist { get; set; }
     }
 }
