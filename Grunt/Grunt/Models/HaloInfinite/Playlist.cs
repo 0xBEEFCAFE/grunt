@@ -28,7 +28,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
 
         public AssetVersionFile? Files { get; set; }
 
-        public List<object>? Contributors { get; set; }
+        public List<dynamic>? Contributors { get; set; }
 
         public int AssetHome { get; set; }
 

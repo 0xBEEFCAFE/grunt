@@ -10,6 +10,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public enum LifecyleMode
     {
         Matchmade = 3,
+
         Custom = 1,
     }
 }

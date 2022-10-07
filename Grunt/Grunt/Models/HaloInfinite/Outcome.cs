@@ -10,8 +10,11 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public enum Outcome
     {
         Tie = 1,
+
         Win = 2,
+
         Loss = 3,
+
         DidNotFinish = 4,
     }
 }

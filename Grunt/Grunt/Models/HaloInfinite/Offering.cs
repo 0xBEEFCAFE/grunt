@@ -31,8 +31,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public int OperationXp { get; set; }
 
         public int EventXp { get; set; }
-        
-        // TODO: Figure out what exactly this is.
+
         public dynamic? MatchBoosts { get; set; }
     }
 }

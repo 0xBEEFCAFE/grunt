@@ -13,8 +13,11 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     public enum MatchType
     {
         All,
+
         Matchmaking,
+
         Custom,
+
         Local
     }
 }

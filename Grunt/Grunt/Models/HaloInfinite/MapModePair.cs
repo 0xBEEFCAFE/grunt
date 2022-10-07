@@ -12,7 +12,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     [IsAutomaticallySerializable]
     public class MapModePair : AssetBase
     {
-        public object? CustomData { get; set; }
+        public dynamic? CustomData { get; set; }
 
         public Map? MapLink { get; set; }
 
