@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// In-game news.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class News
     {
+        /// <summary>
+        /// Gets or sets the list of in-game news articles.
+        /// </summary>
         public List<NewsArticle>? NewsArticles { get; set; }
     }
 }
