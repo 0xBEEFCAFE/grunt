@@ -7,9 +7,15 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// In-game flight ID, also known as player clearance.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PlayerClearance
     {
+        /// <summary>
+        /// Gets or sets the flight configuration ID.
+        /// </summary>
         public string? FlightConfigurationId { get; set; }
     }
 }

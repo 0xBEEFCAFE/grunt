@@ -9,10 +9,16 @@ using System.Text.Json.Serialization;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Graphics override settings.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class OverrideSettings
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether the spec control async compute is enabled.
+        /// </summary>
         [JsonPropertyName("spec_control_async_compute")]
-        public bool SpecControlAsyncCompute { get; set; }
+        public bool? SpecControlAsyncCompute { get; set; }
     }
 }

@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Configuration for an in-game outfit.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Outfit
     {
+        /// <summary>
+        /// Gets or sets outfit customization data.
+        /// </summary>
         public CustomizationData? CustomizationData { get; set; }
 
+        /// <summary>
+        /// Gets or sets the outfit ID.
+        /// </summary>
         public int OutfitID { get; set; }
     }
 }

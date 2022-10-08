@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for multiple player customizations.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PlayerCustomizationCollection
     {
+        /// <summary>
+        /// Gets or sets the list of player customizations.
+        /// </summary>
         public List<PlayerCustomization>? PlayerCustomizations { get; set; }
     }
 }

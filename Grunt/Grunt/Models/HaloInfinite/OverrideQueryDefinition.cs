@@ -10,14 +10,26 @@ using System.Text.Json.Serialization;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for a graphics override query definition.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class OverrideQueryDefinition
     {
+        /// <summary>
+        /// Gets or sets the schema version.
+        /// </summary>
         [JsonPropertyName("schema_version")]
         public int SchemaVersion { get; set; }
 
+        /// <summary>
+        /// Gets or sets the version.
+        /// </summary>
         public int Version { get; set; }
 
+        /// <summary>
+        /// Gets or sets the list of override queries.
+        /// </summary>
         public List<OverrideQuery>? Overrides { get; set; }
     }
 }

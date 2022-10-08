@@ -7,9 +7,15 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for in-game message configuration.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class OEConfiguration
     {
+        /// <summary>
+        /// Gets or sets the message. Includes translated strings.
+        /// </summary>
         public DisplayString? Message { get; set; }
     }
 }

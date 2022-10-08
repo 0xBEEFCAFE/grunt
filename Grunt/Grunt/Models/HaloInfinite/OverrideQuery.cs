@@ -9,11 +9,20 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Graphic configuration override query.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class OverrideQuery
     {
+        /// <summary>
+        /// Gets or sets the list of override queries.
+        /// </summary>
         public List<Query>? Query { get; set; }
 
+        /// <summary>
+        /// Gets or sets the override settings.
+        /// </summary>
         public OverrideSettings? Settings { get; set; }
     }
 }

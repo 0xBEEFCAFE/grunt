@@ -9,9 +9,18 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// In-game giveaways.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PlayerGiveaways
     {
+        /// <summary>
+        /// Gets or sets the list of in-game giveaways.
+        /// </summary>
+        /// <remarks>
+        /// Additional research is needed to understand the underlying data model.
+        /// </remarks>
         public List<dynamic>? GiveawayResults { get; set; }
     }
 }

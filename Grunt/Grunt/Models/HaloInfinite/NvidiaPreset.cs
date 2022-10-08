@@ -7,6 +7,9 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Placeholder implementation for the NVidia hardware preset.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class NvidiaPreset
     {

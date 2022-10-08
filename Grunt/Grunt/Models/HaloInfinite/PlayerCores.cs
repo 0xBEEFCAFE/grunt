@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for player cores.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PlayerCores
     {
+        /// <summary>
+        /// Gets or sets a list of cores.
+        /// </summary>
         public List<GenericCore>? Cores { get; set; }
     }
 }

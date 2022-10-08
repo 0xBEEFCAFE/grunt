@@ -7,13 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Configuration for player customization.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PlayerCustomization
     {
+        /// <summary>
+        /// Gets or sets the customization ID.
+        /// </summary>
         public string? Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets the result code.
+        /// </summary>
         public string? ResultCode { get; set; }
 
+        /// <summary>
+        /// Gets or sets the player customization result.
+        /// </summary>
         public CustomizationData? Result { get; set; }
     }
 }
