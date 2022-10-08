@@ -16,11 +16,11 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <summary>
         /// Gets or sets the Competitive Skill Rank (CSR) before the match.
         /// </summary>
-        public MatchCsr? PreMatchCsr { get; set; }
+        public Csr? PreMatchCsr { get; set; }
 
         /// <summary>
         /// Gets or sets the Competitive Skill Rank (CSR) after the match.
         /// </summary>
-        public MatchCsr? PostMatchCsr { get; set; }
+        public Csr? PostMatchCsr { get; set; }
     }
 }

@@ -7,13 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for the playlist Competitive Skill Rank (CSR).
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PlaylistCsrContainer
     {
-        public PlaylistCsr? Current { get; set; }
+        /// <summary>
+        /// Gets or sets the current playlist Competitive Skill Rank (CSR).
+        /// </summary>
+        public Csr? Current { get; set; }
 
-        public PlaylistCsr? SeasonMax { get; set; }
+        /// <summary>
+        /// Gets or sets the maximum season Competitive Skill Rank (CSR).
+        /// </summary>
+        public Csr? SeasonMax { get; set; }
 
-        public PlaylistCsr? AllTimeMax { get; set; }
+        /// <summary>
+        /// Gets or sets the maximum all-time Competitive Skill Rank (CSR).
+        /// </summary>
+        public Csr? AllTimeMax { get; set; }
     }
 }

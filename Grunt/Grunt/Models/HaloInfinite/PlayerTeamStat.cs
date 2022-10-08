@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Team performance statistics.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PlayerTeamStat
     {
+        /// <summary>
+        /// Gets or sets the team ID.
+        /// </summary>
         public int TeamId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the team statistics.
+        /// </summary>
         public Stats? Stats { get; set; }
     }
 }

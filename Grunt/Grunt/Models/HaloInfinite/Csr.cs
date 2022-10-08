@@ -1,4 +1,4 @@
-﻿// <copyright file="MatchCsr.cs" company="Den Delimarsky">
+﻿// <copyright file="Csr.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -11,7 +11,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     /// A record of a match Competitive Skill Rank (CSR).
     /// </summary>
     [IsAutomaticallySerializable]
-    public class MatchCsr
+    public class Csr
     {
         /// <summary>
         /// Gets or sets the CSR value.

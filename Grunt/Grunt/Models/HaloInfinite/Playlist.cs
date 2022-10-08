@@ -6,38 +6,24 @@
 // </copyright>
 
 using System.Collections.Generic;
+using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Game playlist.
+    /// </summary>
     [IsAutomaticallySerializable]
-    public class Playlist
+    public class Playlist : AssetBase
     {
+        /// <summary>
+        /// Gets or sets custom playlist data.
+        /// </summary>
         public PlaylistCustomData? CustomData { get; set; }
 
-        public List<string>? Tags { get; set; }
-
+        /// <summary>
+        /// Gets or sets the list of rotation entries in the playlist.
+        /// </summary>
         public List<PlaylistRotationEntry>? RotationEntries { get; set; }
-
-        public string? AssetId { get; set; }
-
-        public string? VersionId { get; set; }
-
-        public string? PublicName { get; set; }
-
-        public string? Description { get; set; }
-
-        public AssetVersionFile? Files { get; set; }
-
-        public List<dynamic>? Contributors { get; set; }
-
-        public int AssetHome { get; set; }
-
-        public PlayAssetStats? AssetStats { get; set; }
-
-        public int InspectionResult { get; set; }
-
-        public int CloneBehavior { get; set; }
-
-        public int Order { get; set; }
     }
 }
