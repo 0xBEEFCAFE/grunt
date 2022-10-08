@@ -7,6 +7,9 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Placeholder implementation for match links.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class MatchLinks
     {

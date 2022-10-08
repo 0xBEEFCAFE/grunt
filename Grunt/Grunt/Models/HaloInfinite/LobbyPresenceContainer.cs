@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for lobby presence information.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class LobbyPresenceContainer
     {
+        /// <summary>
+        /// Gets or sets a list of lobby presence results.
+        /// </summary>
         public List<LobbyPresenceResultContainer>? Results { get; set; }
     }
 }

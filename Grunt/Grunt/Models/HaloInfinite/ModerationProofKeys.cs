@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Proof keys used to sign moderation requests.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class ModerationProofKeys
     {
+        /// <summary>
+        /// Gets or sets the list of moderation proof keys.
+        /// </summary>
         public List<Key>? Keys { get; set; }
     }
 }

@@ -9,11 +9,20 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Game CMS item metadata.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Metadata
     {
+        /// <summary>
+        /// Gets or sets a list of associated manufacturers.
+        /// </summary>
         public List<Manufacturer>? Manufacturers { get; set; }
 
+        /// <summary>
+        /// Gets or sets a list of associated currencies.
+        /// </summary>
         public List<Currency>? Currencies { get; set; }
     }
 }

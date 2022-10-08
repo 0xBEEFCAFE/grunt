@@ -7,9 +7,15 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Join handle for Halo Infinite lobbies.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class LobbyJoinHandle
     {
+        /// <summary>
+        /// Gets or sets the join handle string.
+        /// </summary>
         public string? JoinHandle { get; set; }
     }
 }

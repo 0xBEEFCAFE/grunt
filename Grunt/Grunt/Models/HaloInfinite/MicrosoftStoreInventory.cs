@@ -7,9 +7,15 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for Microsoft Store inventory configuration.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class MicrosoftStoreInventory
     {
+        /// <summary>
+        /// Gets or sets the Microsoft Store title configuration.
+        /// </summary>
         public MicrosoftStoreTitleConfiguration? TitleConfiguration { get; set; }
     }
 }

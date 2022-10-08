@@ -9,11 +9,20 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Item mapping within the Microsoft Store.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class MicrosoftStoreMapping
     {
+        /// <summary>
+        /// Gets or sets a list of products mapped within the store.
+        /// </summary>
         public List<StoreProductMapping>? ProductMapping { get; set; }
 
+        /// <summary>
+        /// Gets or sets the container ID.
+        /// </summary>
         public string? ContainerId { get; set; }
     }
 }

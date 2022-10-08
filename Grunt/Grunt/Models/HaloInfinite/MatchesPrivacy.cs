@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Configuration for match privacy.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class MatchesPrivacy
     {
+        /// <summary>
+        /// Gets or sets the privacy setting for matchmade games.
+        /// </summary>
         public int MatchmadeGames { get; set; }
 
+        /// <summary>
+        /// Gets or sets the privacy for other games.
+        /// </summary>
         public int OtherGames { get; set; }
     }
 }

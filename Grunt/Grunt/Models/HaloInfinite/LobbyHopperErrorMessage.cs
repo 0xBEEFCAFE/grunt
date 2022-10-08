@@ -7,13 +7,25 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Error messages associated with the lobby service.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class LobbyHopperErrorMessage
     {
+        /// <summary>
+        /// Gets or sets the game start error message.
+        /// </summary>
         public string? GameStartError { get; set; }
 
+        /// <summary>
+        /// Gets or sets the game start error message ID.
+        /// </summary>
         public int GameStartErrorId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the error string. Includes translated strings.
+        /// </summary>
         public DisplayString? DisplayString { get; set; }
     }
 }

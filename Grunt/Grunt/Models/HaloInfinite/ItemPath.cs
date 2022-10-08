@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Fully qualified item path.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class ItemPath
     {
+        /// <summary>
+        /// Gets or sets the path to the item.
+        /// </summary>
         public string? Path { get; set; }
 
+        /// <summary>
+        /// Gets or sets the path type.
+        /// </summary>
         public string? Type { get; set; }
     }
 }

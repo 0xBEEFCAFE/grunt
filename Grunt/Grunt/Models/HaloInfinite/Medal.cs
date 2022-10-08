@@ -7,27 +7,60 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Halo Infinite match performance medal.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Medal
     {
+        /// <summary>
+        /// Gets or sets the medal name ID.
+        /// </summary>
         public long NameId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the medal count.
+        /// </summary>
         public int Count { get; set; }
 
+        /// <summary>
+        /// Gets or sets the amount of personal score awarded.
+        /// </summary>
         public int TotalPersonalScoreAwarded { get; set; }
 
+        /// <summary>
+        /// Gets or sets the medal name. Includes translated strings.
+        /// </summary>
         public DisplayString? Name { get; set; }
 
+        /// <summary>
+        /// Gets or sets the medal description. Includes translated strings.
+        /// </summary>
         public DisplayString? Description { get; set; }
 
+        /// <summary>
+        /// Gets or sets the sprite index.
+        /// </summary>
         public int SpriteIndex { get; set; }
 
+        /// <summary>
+        /// Gets or sets the sorting weight.
+        /// </summary>
         public int SortingWeight { get; set; }
 
+        /// <summary>
+        /// Gets or sets the difficulty index.
+        /// </summary>
         public int DifficultyIndex { get; set; }
 
+        /// <summary>
+        /// Gets or sets the type index.
+        /// </summary>
         public int TypeIndex { get; set; }
 
+        /// <summary>
+        /// Gets or sets the personal score.
+        /// </summary>
         public int PersonalScore { get; set; }
     }
 }

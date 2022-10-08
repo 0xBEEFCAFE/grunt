@@ -7,6 +7,9 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Placeholder implementation for a localized data container.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class LocalizedDataContainer
     {

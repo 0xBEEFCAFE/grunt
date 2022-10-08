@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for a request for lobby presence information.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class LobbyPresenceRequestContainer
     {
+        /// <summary>
+        /// Gets or sets a list of Xbox Live user IDs (XUIDs) to be verified.
+        /// </summary>
         public List<long>? Xuids { get; set; }
     }
 }

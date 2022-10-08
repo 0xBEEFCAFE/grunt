@@ -12,12 +12,24 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     /// </summary>
     public enum MatchType
     {
+        /// <summary>
+        /// All match types.
+        /// </summary>
         All,
 
+        /// <summary>
+        /// Matchmaking matches. These are standard multiplayer games.
+        /// </summary>
         Matchmaking,
 
+        /// <summary>
+        /// Custom matches.
+        /// </summary>
         Custom,
 
-        Local
+        /// <summary>
+        /// Local (LAN) matches.
+        /// </summary>
+        Local,
     }
 }

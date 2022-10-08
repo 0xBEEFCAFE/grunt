@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Gear manufacturer record.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Manufacturer
     {
+        /// <summary>
+        /// Gets or sets the manufacturer name. Includes translated strings.
+        /// </summary>
         public DisplayString? ManufacturerName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the path to the manufacturer logo.
+        /// </summary>
         public string? ManufacturerLogoImage { get; set; }
     }
 }
