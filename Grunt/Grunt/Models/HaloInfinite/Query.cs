@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Query used to get information on graphics specs overides.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Query
     {
+        /// <summary>
+        /// Gets or sets the key for the query.
+        /// </summary>
         public string? Key { get; set; }
 
+        /// <summary>
+        /// Gets or sets the operation for the query.
+        /// </summary>
         public string? Op { get; set; }
 
         /// <summary>

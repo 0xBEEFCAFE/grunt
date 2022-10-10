@@ -7,11 +7,20 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Custom data associated with a prefab.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PrefabCustomData
     {
+        /// <summary>
+        /// Gets or sets the number of parts in a prefab.
+        /// </summary>
         public int Parts { get; set; }
 
-        public bool HasNodeGraph { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the prefab has a node graph.
+        /// </summary>
+        public bool? HasNodeGraph { get; set; }
     }
 }

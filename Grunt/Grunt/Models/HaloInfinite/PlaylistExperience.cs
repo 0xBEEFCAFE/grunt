@@ -12,8 +12,14 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     /// </summary>
     public enum PlaylistExperience
     {
+        /// <summary>
+        /// Arena experience.
+        /// </summary>
         Arena = 2,
 
+        /// <summary>
+        /// Featured series experience.
+        /// </summary>
         Featured = 5,
     }
 }

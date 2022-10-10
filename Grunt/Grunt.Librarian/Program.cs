@@ -20,11 +20,11 @@ namespace OpenSpartan.Grunt.Librarian
 
             HaloInfiniteClient client = new(string.Empty, string.Empty);
 
-            Configuration container = new();
+            Configuration? container = new();
             // Get the API endpoint data.
             Task.Run(async () =>
             {
-                container = (await client.GetApiSettingsContainer()).Result;
+                container = (await client.GetApiSettingsContainer()).Result!;
             }).GetAwaiter().GetResult();
 
             if (container != null && container.Endpoints != null)

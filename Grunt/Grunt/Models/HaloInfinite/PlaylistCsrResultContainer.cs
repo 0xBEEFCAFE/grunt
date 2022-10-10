@@ -9,9 +9,15 @@ using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Container for CSR data associated with a playlst.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PlaylistCsrResultContainer
     {
+        /// <summary>
+        /// Gets or sets the list of CSR values associated with a playlist.
+        /// </summary>
         public List<PlaylistCsrResults>? Value { get; set; }
     }
 }

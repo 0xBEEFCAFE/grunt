@@ -9,9 +9,15 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// In-game Forge prefab.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class Prefab : AssetBase
     {
+        /// <summary>
+        /// Gets or sets custom data associated with an in-game Forge prefab.
+        /// </summary>
         public PrefabCustomData? CustomData { get; set; }
     }
 }

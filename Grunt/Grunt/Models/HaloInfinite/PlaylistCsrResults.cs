@@ -9,9 +9,15 @@ using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Playlist CSR snapshot.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PlaylistCsrResults : ResultContainerBase
     {
+        /// <summary>
+        /// Gets or sets the playlist CSR data container.
+        /// </summary>
         public PlaylistCsrContainer? Result { get; set; }
     }
 }

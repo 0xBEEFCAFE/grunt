@@ -7,9 +7,15 @@
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
+    /// <summary>
+    /// Metadata associated with a map-mode pair.
+    /// </summary>
     [IsAutomaticallySerializable]
     public class PlaylistMapModePairMetadata
     {
+        /// <summary>
+        /// Gets or sets the weight for the map-mode pair in a playlist.
+        /// </summary>
         public float Weight { get; set; }
     }
 }
