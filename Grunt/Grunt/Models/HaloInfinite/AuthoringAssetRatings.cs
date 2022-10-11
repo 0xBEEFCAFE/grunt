@@ -31,6 +31,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <remarks>
         /// Additional research is needed to figure out the underlying data model.
         /// </remarks>
-        public List<object>? Ratings { get; set; }
+        public List<dynamic>? Ratings { get; set; }
     }
 }

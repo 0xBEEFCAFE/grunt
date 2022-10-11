@@ -5,6 +5,8 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System.Collections.Generic;
+
 namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
 {
     /// <summary>
@@ -38,6 +40,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
         /// <remarks>
         /// Additional research is needed to determine what this field type is.
         /// </remarks>
-        public object? Links { get; set; }
+        public List<dynamic>? Links { get; set; }
     }
 }
