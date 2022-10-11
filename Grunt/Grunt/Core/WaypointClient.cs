@@ -83,5 +83,23 @@ namespace OpenSpartan.Grunt.Core
                 false,
                 GlobalConstants.WEB_USER_AGENT);
         }
+
+        /// <summary>
+        /// Gets information about a user's Halo Waypoint profile.
+        /// </summary>
+        /// <remarks>
+        /// Profile is obtained for the user associated with the Spartan token passed to the request.
+        /// </remarks>
+        /// <include file='../APIDocsExamples/Waypoint/GetUserProfile.xml' path='//example'/>
+        /// <returns>If successful, returns an instance of <see cref="UserProfile"/> containing profile information. Otherwise, returns a null object and error details.</returns>
+        public async Task<HaloApiResultContainer<UserProfile, HaloApiErrorContainer>> GetUserProfile()
+        {
+            return await this.ExecuteAPIRequest<UserProfile>(
+                $"https://{WaypointEndpoints.ProfileEndpoint}.{WaypointEndpoints.ServiceDomain}/users/me",
+                HttpMethod.Post,
+                true,
+                false,
+                GlobalConstants.WEB_USER_AGENT);
+        }
     }
 }
