@@ -22,6 +22,11 @@ namespace OpenSpartan.Grunt.Endpoints
         /// </summary>
         internal static readonly string VoucherEndpoint = "voucher";
 
+        /// <summary>
+        /// Origin responsible for APIs for profile information.
+        /// </summary>
+        internal static readonly string ProfileEndpoint = "profile";
+
         // ====================
         // Service domains
         // ====================

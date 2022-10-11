@@ -49,7 +49,7 @@ namespace OpenSpartan.Grunt.Core
         /// </remarks>
         /// <include file='../APIDocsExamples/Waypoint/RedeemCode.xml' path='//example'/>
         /// <param name="code">Code to be redeemed.</param>
-        /// <returns>If call is successful, returns an instance of <see cref="CodeRedemptionResult"/> that contains information about the redeemed code. Otherwise, returns error details.</returns>
+        /// <returns>If call is successful, returns an instance of <see cref="CodeRedemptionResult"/> that contains information about the redeemed code. Otherwise, returns a null object and error details.</returns>
         public async Task<HaloApiResultContainer<CodeRedemptionResult, HaloApiErrorContainer>> RedeemCode(string code)
         {
             RedeemableCode container = new()
@@ -64,6 +64,24 @@ namespace OpenSpartan.Grunt.Core
                 false,
                 GlobalConstants.WEB_USER_AGENT,
                 JsonSerializer.Serialize(container));
+        }
+
+        /// <summary>
+        /// Gets information about a user's Halo Waypoint settings.
+        /// </summary>
+        /// <remarks>
+        /// Settings are obtained for the user associated with the Spartan token passed to the request.
+        /// </remarks>
+        /// <include file='../APIDocsExamples/Waypoint/GetUserSettings.xml' path='//example'/>
+        /// <returns>If successful, returns an instance of <see cref="UserSettings"/> containing user configuration information. Otherwise, returns a null object and error details.</returns>
+        public async Task<HaloApiResultContainer<UserSettings, HaloApiErrorContainer>> GetUserSettings()
+        {
+            return await this.ExecuteAPIRequest<UserSettings>(
+                $"https://{WaypointEndpoints.ProfileEndpoint}.{WaypointEndpoints.ServiceDomain}/users/me/settings",
+                HttpMethod.Post,
+                true,
+                false,
+                GlobalConstants.WEB_USER_AGENT);
         }
     }
 }
