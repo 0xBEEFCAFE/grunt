@@ -85,17 +85,36 @@ namespace OpenSpartan.Grunt.Core
         }
 
         /// <summary>
-        /// Gets information about a user's Halo Waypoint profile.
+        /// Gets information about your own Halo Waypoint profile.
         /// </summary>
         /// <remarks>
         /// Profile is obtained for the user associated with the Spartan token passed to the request.
         /// </remarks>
-        /// <include file='../APIDocsExamples/Waypoint/GetUserProfile.xml' path='//example'/>
+        /// <include file='../APIDocsExamples/Waypoint/GetMyProfile.xml' path='//example'/>
         /// <returns>If successful, returns an instance of <see cref="UserProfile"/> containing profile information. Otherwise, returns a null object and error details.</returns>
-        public async Task<HaloApiResultContainer<UserProfile, HaloApiErrorContainer>> GetUserProfile()
+        public async Task<HaloApiResultContainer<UserProfile, HaloApiErrorContainer>> GetMyProfile()
         {
             return await this.ExecuteAPIRequest<UserProfile>(
                 $"https://{WaypointEndpoints.ProfileEndpoint}.{WaypointEndpoints.ServiceDomain}/users/me",
+                HttpMethod.Post,
+                true,
+                false,
+                GlobalConstants.WEB_USER_AGENT);
+        }
+
+        /// <summary>
+        /// Gets information about a user's Halo Waypoint profile.
+        /// </summary>
+        /// <include file='../APIDocsExamples/Waypoint/GetUserProfile.xml' path='//example'/>
+        /// <param name="userId">User identifier. Can be a XUID or Gamertag. If XUID is used, then <paramref name="isXuid"/> should be set to true.</param>
+        /// <param name="isXuid">Determines whether the user ID specified in <paramref name="userId"/> is a XUID or not.</param>
+        /// <returns>If successful, returns an instance of <see cref="UserProfile"/> containing profile information. Otherwise, returns a null object and error details.</returns>
+        public async Task<HaloApiResultContainer<UserProfile, HaloApiErrorContainer>> GetUserProfile(string userId, bool isXuid)
+        {
+            string composedId = isXuid ? $"xuid({userId})" : $"gt({userId})";
+
+            return await this.ExecuteAPIRequest<UserProfile>(
+                $"https://{WaypointEndpoints.ProfileEndpoint}.{WaypointEndpoints.ServiceDomain}/users/me/{composedId}",
                 HttpMethod.Post,
                 true,
                 false,
