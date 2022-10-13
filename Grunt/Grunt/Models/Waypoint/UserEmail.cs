@@ -7,7 +7,6 @@
 
 namespace OpenSpartan.Grunt.Models.Waypoint
 {
-
     /// <summary>
     /// Entity representing the user's email.
     /// </summary>
