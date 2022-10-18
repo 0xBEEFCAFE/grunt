@@ -121,10 +121,17 @@ namespace OpenSpartan.Grunt.Zeta
             //    Console.WriteLine("Code redemption complete.");
             //}).GetAwaiter().GetResult();
 
+            // Example showing how one can get the exact breakdown of player medals
+            // and produce an auto-generated snapshot based on the data.
             Task.Run(async () =>
             {
+                // First, let's get the metadata about existing medals.
+                // This contains the list of all medals that are available in game.
                 Console.WriteLine("Getting medal metadata...");
                 var medalReferences = (await client.GameCmsGetMedalMetadata()).Result;
+
+                Console.WriteLine($"Getting the extra large medal sprite sheet at {medalReferences.Sprites.ExtraLarge.Path}...");
+                var spriteContent = (await client.GameCmsGetProgressionFile<byte[]>(medalReferences.Sprites.ExtraLarge.Path)).Result;
 
                 Console.WriteLine("Getting player service record...");
                 var serviceRecord = (await client.StatsGetPlayerServiceRecord("ZeBond", "Seasons/Season7.json")).Result;

@@ -27,6 +27,7 @@ namespace OpenSpartan.Grunt.Core.Foundation
         private readonly JsonSerializerOptions serializerOptions = new()
         {
             WriteIndented = true,
+            PropertyNameCaseInsensitive = true,
             Converters =
             {
                 new EmptyDateStringToNullJsonConverter(),

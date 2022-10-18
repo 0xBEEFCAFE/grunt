@@ -6,6 +6,7 @@
 // </copyright>
 
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
