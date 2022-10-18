@@ -12,6 +12,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     /// <summary>
     /// Metadata for player-awarded medals.
     /// </summary>
+    [IsAutomaticallySerializable]
     public class MedalMetadata
     {
         /// <summary>

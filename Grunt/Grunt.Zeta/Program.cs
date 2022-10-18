@@ -3,6 +3,7 @@ using OpenSpartan.Grunt.Core;
 using OpenSpartan.Grunt.Models;
 using OpenSpartan.Grunt.Util;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
@@ -14,8 +15,18 @@ namespace OpenSpartan.Grunt.Zeta
     {
         static void Main(string[] args)
         {
-            var clientConfig = ConfigurationReader.ReadConfiguration<ClientConfiguration>("client.json");
-            
+            ClientConfiguration? clientConfig = new ClientConfiguration();
+
+            if (File.Exists("client.json"))
+            {
+                clientConfig = ConfigurationReader.ReadConfiguration<ClientConfiguration>("client.json");
+            }
+            else
+            {
+                Console.WriteLine("Make sure you have a client configuration file (client.json) defined in the application folder.");
+                Environment.Exit(0);
+            }
+
             XboxAuthenticationClient manager = new();
             var url = manager.GenerateAuthUrl(clientConfig.ClientId, clientConfig.RedirectUrl);
 
@@ -112,9 +123,14 @@ namespace OpenSpartan.Grunt.Zeta
 
             Task.Run(async () =>
             {
-                var example = await client.GameCmsGetEmblemMapping();
-                Console.WriteLine("Got mapping.");
-            }).GetAwaiter().GetResult();
+                Console.WriteLine("Getting medal metadata...");
+                var medalReferences = (await client.GameCmsGetMedalMetadata()).Result;
+
+                Console.WriteLine("Getting player service record...");
+                var serviceRecord = (await client.StatsGetPlayerServiceRecord("ZeBond", "Seasons/Season7.json")).Result;
+                
+                Console.WriteLine("Got all the player record data.");
+            });
 
             //Task.Run(async () =>
             //{

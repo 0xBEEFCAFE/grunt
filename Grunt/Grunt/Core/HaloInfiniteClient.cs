@@ -1107,7 +1107,7 @@ namespace OpenSpartan.Grunt.Core
             return await this.ExecuteAPIRequest<MedalMetadata>(
                 $"https://{HaloCoreEndpoints.GameCmsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/Waypoint/file/medals/metadata.json",
                 HttpMethod.Get,
-                true,
+                false,
                 false,
                 GlobalConstants.HALO_WAYPOINT_USER_AGENT);
         }

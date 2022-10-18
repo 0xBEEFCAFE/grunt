@@ -359,3 +359,7 @@ grunt.json
 
 ## Contains token information
 tokens.json
+
+## Misc
+.vscode/
+.DS_Store
