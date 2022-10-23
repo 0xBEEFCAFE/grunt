@@ -1107,7 +1107,7 @@ namespace OpenSpartan.Grunt.Core
             return await this.ExecuteAPIRequest<MedalMetadata>(
                 $"https://{HaloCoreEndpoints.GameCmsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/Waypoint/file/medals/metadata.json",
                 HttpMethod.Get,
-                false,
+                true,
                 false,
                 GlobalConstants.HALO_WAYPOINT_USER_AGENT);
         }
@@ -1137,6 +1137,21 @@ namespace OpenSpartan.Grunt.Core
         {
             return await this.ExecuteAPIRequest<Dictionary<string, Dictionary<string, EmblemMapping>>>(
                 $"https://{HaloCoreEndpoints.GameCmsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/Waypoint/file/images/emblems/mapping.json",
+                HttpMethod.Get,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+        }
+
+        /// <summary>
+        /// Gets a file from the Halo Waypoint service.
+        /// </summary>
+        /// <param name="filePath">Path to the file to be retrieved.</param>
+        /// <returns>If successful, a byte array containing the file contents. Otherwise, returns null and error details.</returns>
+        public async Task<HaloApiResultContainer<byte[], HaloApiErrorContainer>> GameCmsGetGenericWaypointFile(string filePath)
+        {
+            return await this.ExecuteAPIRequest<byte[]>(
+                $"https://{HaloCoreEndpoints.GameCmsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/Waypoint/file/{filePath}",
                 HttpMethod.Get,
                 true,
                 false,

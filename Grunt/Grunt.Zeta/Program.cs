@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Dynamic;
 
 namespace OpenSpartan.Grunt.Zeta
 {
@@ -130,12 +131,35 @@ namespace OpenSpartan.Grunt.Zeta
                 Console.WriteLine("Getting medal metadata...");
                 var medalReferences = (await client.GameCmsGetMedalMetadata()).Result;
 
+                // Next, let's get the sprite sheet for all the medals that are available.
+                // We're using the largest one available to make the output graphic a bit better.
                 Console.WriteLine($"Getting the extra large medal sprite sheet at {medalReferences.Sprites.ExtraLarge.Path}...");
-                var spriteContent = (await client.GameCmsGetProgressionFile<byte[]>(medalReferences.Sprites.ExtraLarge.Path)).Result;
+                var spriteContent = (await client.GameCmsGetGenericWaypointFile(medalReferences.Sprites.ExtraLarge.Path)).Result;
 
+                Bitmap bmp;
+                using (var ms = new MemoryStream(spriteContent))
+                {
+                    bmp = new Bitmap(ms);
+                }
+
+                // With the fundamentals in place, we can now obtain the player service record
+                // that contains the list of medals earned for a given season.
                 Console.WriteLine("Getting player service record...");
                 var serviceRecord = (await client.StatsGetPlayerServiceRecord("ZeBond", "Seasons/Season7.json")).Result;
                 
+                // Medals are in CoreStats -> Medals and can be matched by NameId.
+                List<ExpandoObject> medals = new List<ExpandoObject>();
+                foreach(var medal in serviceRecord.CoreStats.Medals)
+                {
+                    var matchedMedals = from c in medalReferences.Medals where c.NameId == medal.NameId select c;
+
+                    dynamic medalReference = new ExpandoObject();
+                    
+                    medalReference.Count = medal.Count;
+
+
+                }
+
                 Console.WriteLine("Got all the player record data.");
             });
 
