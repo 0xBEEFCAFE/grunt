@@ -236,7 +236,7 @@ The endpoint above does not require authentication and can be queried in the ope
 
 ## Documentation
 
-You can read the docs on the [Grunt docs website](https://docs.grunt.com).
+You can read the docs on the [Grunt docs website](https://docs.gruntapi.com).
 
 ## FAQ
 
