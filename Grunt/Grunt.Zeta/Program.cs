@@ -9,6 +9,10 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Dynamic;
+using Microsoft.Maui.Graphics.Platform;
+using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Graphics.Skia;
+using System.Runtime.InteropServices;
 
 namespace OpenSpartan.Grunt.Zeta
 {
@@ -136,31 +140,64 @@ namespace OpenSpartan.Grunt.Zeta
                 Console.WriteLine($"Getting the extra large medal sprite sheet at {medalReferences.Sprites.ExtraLarge.Path}...");
                 var spriteContent = (await client.GameCmsGetGenericWaypointFile(medalReferences.Sprites.ExtraLarge.Path)).Result;
 
-                Bitmap bmp;
-                using (var ms = new MemoryStream(spriteContent))
+                using MemoryStream ms = new MemoryStream(spriteContent);
+                IImage sourceBitmap = Microsoft.Maui.Graphics.Skia.SkiaImage.FromStream(ms);
+
+                SkiaBitmapExportContext context = new SkiaBitmapExportContext(256, 256, 1);
+                ICanvas canvas = context.Canvas;
+                canvas.DrawImage(sourceBitmap, 0, 0, 256, 256);
+                context.WriteToFile("test.png");
+                
+                var info = new SkiaSharp.SKImageInfo((int)sourceBitmap.Width, (int)sourceBitmap.Height);
+
+                
+                // pin the bytes
+                var gch = GCHandle.Alloc(spriteContent, GCHandleType.Pinned);
+                try
                 {
-                    bmp = new Bitmap(ms);
+                    // create a pixmap from the bytes
+                    var addr = gch.AddrOfPinnedObject();
+                    using var pixmap = new SkiaSharp.SKPixmap(info, addr);
+
+                    SkiaSharp.SKRectI rectI = new SkiaSharp.SKRectI(256,256,256,256);
+
+                    // get the subset
+                    var subset = pixmap.ExtractSubset(rectI);
+
+                    // encode to a data object
+                    using var data = subset.Encode(SkiaSharp.SKPngEncoderOptions.Default);
+
+                    // convert data to bytes
+                    File.WriteAllBytes("test2.png", data.ToArray());
+                }
+                finally
+                {
+                    // release bytes
+                    gch.Free();
                 }
 
                 // With the fundamentals in place, we can now obtain the player service record
                 // that contains the list of medals earned for a given season.
-                Console.WriteLine("Getting player service record...");
-                var serviceRecord = (await client.StatsGetPlayerServiceRecord("ZeBond", "Seasons/Season7.json")).Result;
+            //     Console.WriteLine("Getting player service record...");
+            //     var serviceRecord = (await client.StatsGetPlayerServiceRecord("ZeBond", "Seasons/Season7.json")).Result;
                 
-                // Medals are in CoreStats -> Medals and can be matched by NameId.
-                List<ExpandoObject> medals = new List<ExpandoObject>();
-                foreach(var medal in serviceRecord.CoreStats.Medals)
-                {
-                    var matchedMedals = from c in medalReferences.Medals where c.NameId == medal.NameId select c;
+            //     // Medals are in CoreStats -> Medals and can be matched by NameId.
+            //     List<ExpandoObject> medals = new List<ExpandoObject>();
+            //     foreach(var medal in serviceRecord.CoreStats.Medals)
+            //     {
+            //         var matchedMedals = from c in medalReferences.Medals where c.NameId == medal.NameId select c;
 
-                    dynamic medalReference = new ExpandoObject();
+            //         dynamic medalReference = new ExpandoObject();
                     
-                    medalReference.Count = medal.Count;
+            //         medalReference.Count = medal.Count;
+            //         if (image != null)
+            //         {
+            //             Microsoft.Maui.Graphics.Skia.SkiaImage image = new SkiaImage()
+            //         }
 
+            //     }
 
-                }
-
-                Console.WriteLine("Got all the player record data.");
+            //     Console.WriteLine("Got all the player record data.");
             });
 
             //Task.Run(async () =>
