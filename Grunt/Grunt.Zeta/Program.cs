@@ -215,6 +215,12 @@ namespace OpenSpartan.Grunt.Zeta
                 Console.WriteLine("Got all the player record data.");
             });
 
+            Task.Run(async () =>
+            {
+                var stats = (await client.StatsGetMatchStats("21416434-4717-4966-9902-af7097469f74")).Result;
+                Console.WriteLine("Got match stats.");
+            }).GetAwaiter().GetResult();
+
             //Task.Run(async () =>
             //{
             //    var latestBuildData = await client.HIUGCDiscoveryGetManifestByBuild("6.10022.18207");
