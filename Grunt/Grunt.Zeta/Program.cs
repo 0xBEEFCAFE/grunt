@@ -9,10 +9,8 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Dynamic;
-using Microsoft.Maui.Graphics.Platform;
-using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Graphics.Skia;
-using System.Runtime.InteropServices;
+using Microsoft.Maui.Graphics;
 
 namespace OpenSpartan.Grunt.Zeta
 {
@@ -150,7 +148,7 @@ namespace OpenSpartan.Grunt.Zeta
                 var serviceRecord = (await client.StatsGetPlayerServiceRecord("ZeBond", "Seasons/Season7.json")).Result;
                 
                 // Medals are in CoreStats -> Medals and can be matched by NameId.
-                List<ExpandoObject> medals = new List<ExpandoObject>();
+                List<dynamic> medals = new List<dynamic>();
                 foreach(var medal in serviceRecord.CoreStats.Medals)
                 {
                     var matchedMedal = (from c in medalReferences.Medals where c.NameId == medal.NameId select c).FirstOrDefault();
@@ -165,17 +163,55 @@ namespace OpenSpartan.Grunt.Zeta
                         var row = (int)Math.Floor(matchedMedal.SpriteIndex / 16.0);
                         var column = (int)(matchedMedal.SpriteIndex % 16.0);
 
-                        SkiaSharp.SKRectI rectI = SkiaSharp.SKRectI.Create(row * 256, column * 256, 256, 256);
+                        SkiaSharp.SKRectI rectI = SkiaSharp.SKRectI.Create(column * 256, row * 256, 256, 256);
 
                         // get the subset
                         var subset = pixmap.ExtractSubset(rectI);
 
                         // encode to a data object
                         using var data = subset.Encode(SkiaSharp.SKPngEncoderOptions.Default);
-                        File.WriteAllBytes("test3.png", data.ToArray());
+
+                        medalReference.ImageData = data.ToArray();
+                        medalReference.Name = matchedMedal!.Name!.Value;
+
+                        medals.Add(medalReference);
                     }
                 }
 
+                // Now, let's compose all images.
+                SkiaBitmapExportContext context = new SkiaBitmapExportContext(256 * 16, (256 * (int)Math.Ceiling(medals.Count / 16.0)) + (16 * (int)Math.Ceiling(medals.Count / 16.0)), 1);
+                ICanvas canvas = context.Canvas;
+
+                SolidPaint solidPaint = new SolidPaint(Colors.White);
+                RectF solidRectangle = new RectF(0, 0, context.Width, context.Height);
+                canvas.SetFillPaint(solidPaint, solidRectangle);
+                canvas.FillRoundedRectangle(solidRectangle, 7);
+
+                int writeRow = 0;
+                int writeColumn = 0;
+
+                var orderedMedalList = medals.OrderByDescending(a => a.Count);
+                foreach(var reference in orderedMedalList)
+                {
+                    using (MemoryStream mstream = new MemoryStream(reference.ImageData))
+                    {
+                        IImage image = Microsoft.Maui.Graphics.Skia.SkiaImage.FromStream(mstream);
+                        canvas.DrawImage(image, writeColumn * 256, writeRow * 256, 256, 256);
+                        canvas.Font = Font.DefaultBold;
+                        canvas.FontSize = 21;
+                        canvas.DrawString($"{reference.Name} ({reference.Count})", writeColumn * 256 + 128, (writeRow + 1) * 256 + 16, HorizontalAlignment.Center);
+                    }
+
+                    writeColumn++;
+                    if (writeColumn == 16)
+                    {
+                        writeColumn = 0;
+                        writeRow++;
+                    }
+                }
+
+                context.WriteToFile("test_medals.jpg");
+                
                 Console.WriteLine("Got all the player record data.");
             });
 
