@@ -21,7 +21,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public DateTime? FirstJoinedTime { get; set; }
 
         /// <summary>
-        /// Gets or sets the last leave time.
+        /// Gets or sets the last leave time. If the player never left the game, this value will be null.
         /// </summary>
         public DateTime? LastLeaveTime { get; set; }
 
