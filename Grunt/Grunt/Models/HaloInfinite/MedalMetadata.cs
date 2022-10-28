@@ -6,12 +6,14 @@
 // </copyright>
 
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     /// <summary>
     /// Metadata for player-awarded medals.
     /// </summary>
+    [IsAutomaticallySerializable]
     public class MedalMetadata
     {
         /// <summary>

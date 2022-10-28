@@ -21,6 +21,6 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <remarks>
         /// Additional research is needed to understand what metadata can be injected here.
         /// </remarks>
-        public object? CustomData { get; set; }
+        public dynamic? CustomData { get; set; }
     }
 }

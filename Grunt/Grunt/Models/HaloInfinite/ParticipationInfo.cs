@@ -18,12 +18,12 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <summary>
         /// Gets or sets the first joined time.
         /// </summary>
-        public DateTime FirstJoinedTime { get; set; }
+        public DateTime? FirstJoinedTime { get; set; }
 
         /// <summary>
         /// Gets or sets the last leave time.
         /// </summary>
-        public DateTime LastLeaveTime { get; set; }
+        public DateTime? LastLeaveTime { get; set; }
 
         /// <summary>
         /// Gets or sets a value that indicates whether the player was present from the beginning of the match.

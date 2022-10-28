@@ -5,6 +5,8 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System.Text.Json.Serialization;
+
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     /// <summary>
@@ -25,6 +27,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <summary>
         /// Gets or sets the contents for the extra large sprite. Size is 256x256px.
         /// </summary>
+        [JsonPropertyName("extra-large")]
         public Sprite? ExtraLarge { get; set; }
     }
 }

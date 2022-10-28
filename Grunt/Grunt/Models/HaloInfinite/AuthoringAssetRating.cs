@@ -22,7 +22,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <remarks>
         /// Additional research is needed to figure out the underlying data model.
         /// </remarks>
-        public object? Links { get; set; }
+        public dynamic? Links { get; set; }
 
         /// <summary>
         /// Gets or sets authoring asset rating custom data.

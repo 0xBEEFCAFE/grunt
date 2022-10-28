@@ -1143,6 +1143,21 @@ namespace OpenSpartan.Grunt.Core
                 GlobalConstants.HALO_WAYPOINT_USER_AGENT);
         }
 
+        /// <summary>
+        /// Gets a file from the Halo Waypoint service.
+        /// </summary>
+        /// <param name="filePath">Path to the file to be retrieved.</param>
+        /// <returns>If successful, a byte array containing the file contents. Otherwise, returns null and error details.</returns>
+        public async Task<HaloApiResultContainer<byte[], HaloApiErrorContainer>> GameCmsGetGenericWaypointFile(string filePath)
+        {
+            return await this.ExecuteAPIRequest<byte[]>(
+                $"https://{HaloCoreEndpoints.GameCmsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/Waypoint/file/{filePath}",
+                HttpMethod.Get,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+        }
+
         // ================================================
         // HIUGC
         // ================================================

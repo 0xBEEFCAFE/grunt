@@ -44,7 +44,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <remarks>
         /// Additional research is required to figure out what this data model encompasses. Used while getting list of awarded rewards.
         /// </remarks>
-        public List<object>? InventoryItems { get; set; }
+        public List<dynamic>? InventoryItems { get; set; }
 
         /// <summary>
         /// Gets or sets the tracking ID.
@@ -57,7 +57,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <remarks>
         /// Additional research is required to figure out what this data model encompasses. Used while getting list of awarded rewards.
         /// </remarks>
-        public List<object>? Currencies { get; set; }
+        public List<dynamic>? Currencies { get; set; }
 
         /// <summary>
         /// Gets or sets information regarding reward track progression.
