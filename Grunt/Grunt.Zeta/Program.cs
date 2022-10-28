@@ -141,63 +141,42 @@ namespace OpenSpartan.Grunt.Zeta
                 var spriteContent = (await client.GameCmsGetGenericWaypointFile(medalReferences.Sprites.ExtraLarge.Path)).Result;
 
                 using MemoryStream ms = new MemoryStream(spriteContent);
-                IImage sourceBitmap = Microsoft.Maui.Graphics.Skia.SkiaImage.FromStream(ms);
-
-                SkiaBitmapExportContext context = new SkiaBitmapExportContext(256, 256, 1);
-                ICanvas canvas = context.Canvas;
-                canvas.DrawImage(sourceBitmap, 0, 0, 256, 256);
-                context.WriteToFile("test.png");
-                
-                var info = new SkiaSharp.SKImageInfo((int)sourceBitmap.Width, (int)sourceBitmap.Height);
-
-                
-                // pin the bytes
-                var gch = GCHandle.Alloc(spriteContent, GCHandleType.Pinned);
-                try
-                {
-                    // create a pixmap from the bytes
-                    var addr = gch.AddrOfPinnedObject();
-                    using var pixmap = new SkiaSharp.SKPixmap(info, addr);
-
-                    SkiaSharp.SKRectI rectI = new SkiaSharp.SKRectI(256,256,256,256);
-
-                    // get the subset
-                    var subset = pixmap.ExtractSubset(rectI);
-
-                    // encode to a data object
-                    using var data = subset.Encode(SkiaSharp.SKPngEncoderOptions.Default);
-
-                    // convert data to bytes
-                    File.WriteAllBytes("test2.png", data.ToArray());
-                }
-                finally
-                {
-                    // release bytes
-                    gch.Free();
-                }
+                SkiaSharp.SKBitmap bmp = SkiaSharp.SKBitmap.Decode(ms); 
+                using var pixmap = bmp.PeekPixels();
 
                 // With the fundamentals in place, we can now obtain the player service record
                 // that contains the list of medals earned for a given season.
-            //     Console.WriteLine("Getting player service record...");
-            //     var serviceRecord = (await client.StatsGetPlayerServiceRecord("ZeBond", "Seasons/Season7.json")).Result;
+                Console.WriteLine("Getting player service record...");
+                var serviceRecord = (await client.StatsGetPlayerServiceRecord("ZeBond", "Seasons/Season7.json")).Result;
                 
-            //     // Medals are in CoreStats -> Medals and can be matched by NameId.
-            //     List<ExpandoObject> medals = new List<ExpandoObject>();
-            //     foreach(var medal in serviceRecord.CoreStats.Medals)
-            //     {
-            //         var matchedMedals = from c in medalReferences.Medals where c.NameId == medal.NameId select c;
+                // Medals are in CoreStats -> Medals and can be matched by NameId.
+                List<ExpandoObject> medals = new List<ExpandoObject>();
+                foreach(var medal in serviceRecord.CoreStats.Medals)
+                {
+                    var matchedMedal = (from c in medalReferences.Medals where c.NameId == medal.NameId select c).FirstOrDefault();
 
-            //         dynamic medalReference = new ExpandoObject();
-                    
-            //         medalReference.Count = medal.Count;
-            //         if (image != null)
-            //         {
-            //             Microsoft.Maui.Graphics.Skia.SkiaImage image = new SkiaImage()
-            //         }
+                    if (matchedMedal != null)
+                    {
+                        dynamic medalReference = new ExpandoObject();
+                        
+                        medalReference.Count = medal.Count;
+                        
+                        // The spritesheet for medals is 16x16, so we want to make sure that we extract the right medals.
+                        var row = (int)Math.Floor(matchedMedal.SpriteIndex / 16.0);
+                        var column = (int)(matchedMedal.SpriteIndex % 16.0);
 
-            //     }
+                        SkiaSharp.SKRectI rectI = SkiaSharp.SKRectI.Create(row * 256, column * 256, 256, 256);
 
-            //     Console.WriteLine("Got all the player record data.");
+                        // get the subset
+                        var subset = pixmap.ExtractSubset(rectI);
+
+                        // encode to a data object
+                        using var data = subset.Encode(SkiaSharp.SKPngEncoderOptions.Default);
+                        File.WriteAllBytes("test3.png", data.ToArray());
+                    }
+                }
+
+                Console.WriteLine("Got all the player record data.");
             });
 
             //Task.Run(async () =>
