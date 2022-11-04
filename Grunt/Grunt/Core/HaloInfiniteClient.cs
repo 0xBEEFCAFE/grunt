@@ -2378,10 +2378,12 @@ namespace OpenSpartan.Grunt.Core
         /// <param name="gamerTag">Player gamertag. Example value is "BreadKrtek".</param>
         /// <param name="seasonId">The ID of the season for which additional stats are pulled. Example value is "Seasons/Season7.json"</param>
         /// <returns>If successful, an instance of <see cref="PlayerServiceRecord"/> containing service record information. Otherwise, returns null with additional details about the error.</returns>
-        public async Task<HaloApiResultContainer<PlayerServiceRecord, HaloApiErrorContainer>?> StatsGetPlayerServiceRecord(string gamerTag, string seasonId)
+        public async Task<HaloApiResultContainer<PlayerServiceRecord, HaloApiErrorContainer>?> StatsGetPlayerServiceRecord(string gamerTag, string seasonId = "")
         {
+            var seasonMarker = !string.IsNullOrWhiteSpace(seasonId) ? $"?seasonId={seasonId}" : seasonId;
+
             return await this.ExecuteAPIRequest<PlayerServiceRecord>(
-                $"https://{HaloCoreEndpoints.StatsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/players/{gamerTag}/Matchmade/servicerecord?seasonId={seasonId}",
+                $"https://{HaloCoreEndpoints.StatsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/players/{gamerTag}/Matchmade/servicerecord{seasonMarker}",
                 HttpMethod.Get,
                 true,
                 false,

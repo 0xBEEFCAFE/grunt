@@ -145,7 +145,7 @@ namespace OpenSpartan.Grunt.Zeta
                 // With the fundamentals in place, we can now obtain the player service record
                 // that contains the list of medals earned for a given season.
                 Console.WriteLine("Getting player service record...");
-                var serviceRecord = (await client.StatsGetPlayerServiceRecord("ZeBond", "Seasons/Season7.json")).Result;
+                var serviceRecord = (await client.StatsGetPlayerServiceRecord("ZeBond")).Result;
                 
                 // Medals are in CoreStats -> Medals and can be matched by NameId.
                 List<dynamic> medals = new List<dynamic>();

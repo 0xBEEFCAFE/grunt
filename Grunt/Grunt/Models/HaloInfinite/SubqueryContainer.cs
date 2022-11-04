@@ -29,7 +29,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <summary>
         /// Gets or sets whether the player is ranked.
         /// </summary>
-        public bool? IsRanked { get; set; }
+        public List<bool>? IsRanked { get; set; }
 
         /// <summary>
         /// Gets or sets the list of playlist IDs.
