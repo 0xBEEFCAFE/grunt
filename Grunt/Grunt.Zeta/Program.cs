@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Dynamic;
 using Microsoft.Maui.Graphics.Skia;
 using Microsoft.Maui.Graphics;
+using OpenSpartan.Grunt.Models.Waypoint;
 
 namespace OpenSpartan.Grunt.Zeta
 {
@@ -119,7 +120,12 @@ namespace OpenSpartan.Grunt.Zeta
 
             Task.Run(async () =>
             {
-                var stats = (await waypointClient.GetArticleCategory(511));
+                ServiceAwardSnapshot snapshot = new ServiceAwardSnapshot();
+                snapshot.FeaturedAwards = new List<string>();
+                snapshot.FeaturedAwards.Add("hi-event-ritualEagleStrike");
+                snapshot.FeaturedAwards.Add("h5-csr-tier1");
+
+                var stats = (await waypointClient.PutFeaturedServiceAwards(snapshot));
                 Console.WriteLine("Got articles.");
             }).GetAwaiter().GetResult();
 
