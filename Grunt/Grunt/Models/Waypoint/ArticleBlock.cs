@@ -5,9 +5,9 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
-using OpenSpartan.Grunt.Converters;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using OpenSpartan.Grunt.Converters;
 
 namespace OpenSpartan.Grunt.Models.Waypoint
 {

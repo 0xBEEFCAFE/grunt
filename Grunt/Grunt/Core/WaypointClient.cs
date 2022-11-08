@@ -259,5 +259,21 @@ namespace OpenSpartan.Grunt.Core
                 requestBody,
                 ApiContentType.Json);
         }
+
+        /// <summary>
+        /// Gets <see href="https://www.halowaypoint.com/">Halo Waypoint</see> service award details.
+        /// </summary>
+        /// <include file='../APIDocsExamples/Waypoint/GetServiceAward.xml' path='//example'/>
+        /// <param name="slug">Service award slug.</param>
+        /// <returns>If successful, returns an instance of <see cref="ServiceAward"/>. Otherwise, returns a null object and the error details.</returns>
+        public async Task<HaloApiResultContainer<ServiceAward, HaloApiErrorContainer>> GetServiceAward(string slug)
+        {
+            return await this.ExecuteAPIRequest<ServiceAward>(
+                $"https://{WaypointEndpoints.WPContentEndpoint}.{WaypointEndpoints.ServiceDomain}/service-awards/{slug}",
+                HttpMethod.Get,
+                false,
+                false,
+                GlobalConstants.WEB_USER_AGENT);
+        }
     }
 }
