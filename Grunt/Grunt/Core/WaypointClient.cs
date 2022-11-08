@@ -169,5 +169,21 @@ namespace OpenSpartan.Grunt.Core
                 false,
                 GlobalConstants.WEB_USER_AGENT);
         }
+
+        /// <summary>
+        /// Gets a single article published on <see href="https://www.halowaypoint.com/">Halo Waypoint</see>.
+        /// </summary>
+        /// <include file='../APIDocsExamples/Waypoint/GetArticle.xml' path='//example'/>
+        /// <param name="slug">Slug associated with the article. Example value is "halo-waypoint-content-browser".</param>
+        /// <returns>If successful, returns an instance of <see cref="Article"/>. Otherwise, returns a null object and error details.</returns>
+        public async Task<HaloApiResultContainer<Article, HaloApiErrorContainer>> GetArticle(string slug)
+        {
+            return await this.ExecuteAPIRequest<Article>(
+                $"https://{WaypointEndpoints.WPContentEndpoint}.{WaypointEndpoints.ServiceDomain}/articles/{slug}",
+                HttpMethod.Post,
+                true,
+                false,
+                GlobalConstants.WEB_USER_AGENT);
+        }
     }
 }
