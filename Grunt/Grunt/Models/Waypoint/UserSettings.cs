@@ -10,6 +10,7 @@ namespace OpenSpartan.Grunt.Models.Waypoint
     /// <summary>
     /// Halo Waypoint user settings.
     /// </summary>
+    [IsAutomaticallySerializable]
     public class UserSettings
     {
         /// <summary>

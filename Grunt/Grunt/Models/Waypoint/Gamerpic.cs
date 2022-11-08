@@ -10,6 +10,7 @@ namespace OpenSpartan.Grunt.Models.Waypoint
     /// <summary>
     /// Configuration for a user's Xbox Live gamerpic.
     /// </summary>
+    [IsAutomaticallySerializable]
     public class Gamerpic
     {
         /// <summary>

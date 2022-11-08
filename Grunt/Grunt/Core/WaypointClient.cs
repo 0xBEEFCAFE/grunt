@@ -5,6 +5,8 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -116,6 +118,53 @@ namespace OpenSpartan.Grunt.Core
             return await this.ExecuteAPIRequest<UserProfile>(
                 $"https://{WaypointEndpoints.ProfileEndpoint}.{WaypointEndpoints.ServiceDomain}/users/me/{composedId}",
                 HttpMethod.Post,
+                true,
+                false,
+                GlobalConstants.WEB_USER_AGENT);
+        }
+
+        /// <summary>
+        /// Gets the list of articles published on <see href="https://www.halowaypoint.com/">Halo Waypoint</see>.
+        /// </summary>
+        /// <include file='../APIDocsExamples/Waypoint/GetArticles.xml' path='//example'/>
+        /// <param name="language">Article language. Example value is "en".</param>
+        /// <param name="offset">Offset (number of articles to skip) from which to start the query.</param>
+        /// <param name="count">Number of articles to retrieve.</param>
+        /// <param name="order">Order in which articles are returned. Example values are "asc" or "desc".</param>
+        /// <param name="categories">List of categories for which to return the articles.</param>
+        /// <returns>If successful, returns the list of articles, each represented as <see cref="Article"/>. Otherwise, returns the details about the error.</returns>
+        public async Task<HaloApiResultContainer<List<Article>, HaloApiErrorContainer>> GetArticles(string language = "", int offset = -1, int count = -1, string order = "", List<int>? categories = null)
+        {
+            string urlBase = $"https://{WaypointEndpoints.WPContentEndpoint}.{WaypointEndpoints.ServiceDomain}/articles?";
+
+            if (!string.IsNullOrWhiteSpace(language))
+            {
+                urlBase += $"lang={language}&";
+            }
+
+            if (offset > 0)
+            {
+                urlBase += $"offset={offset}&";
+            }
+
+            if (count > 0)
+            {
+                urlBase += $"count={count}&";
+            }
+
+            if (!string.IsNullOrWhiteSpace(order))
+            {
+                urlBase += $"order={order}&";
+            }
+
+            if (categories != null && categories.Count > 0)
+            {
+                urlBase += $"categories={string.Join(",", categories)}&";
+            }
+
+            return await this.ExecuteAPIRequest<List<Article>>(
+                urlBase,
+                HttpMethod.Get,
                 true,
                 false,
                 GlobalConstants.WEB_USER_AGENT);

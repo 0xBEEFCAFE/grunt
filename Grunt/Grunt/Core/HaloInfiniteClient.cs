@@ -1520,6 +1520,9 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Publishes an asset version.
         /// </summary>
+        /// <remarks>
+        /// There is no content returned for the response other than a HTTP 200 OK if the operation is successful.
+        /// </remarks>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
         /// <param name="versionId">Unique ID for the asset version to be published.</param>
