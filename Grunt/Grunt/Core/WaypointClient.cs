@@ -165,7 +165,7 @@ namespace OpenSpartan.Grunt.Core
             return await this.ExecuteAPIRequest<List<Article>>(
                 urlBase,
                 HttpMethod.Get,
-                true,
+                false,
                 false,
                 GlobalConstants.WEB_USER_AGENT);
         }
@@ -180,8 +180,44 @@ namespace OpenSpartan.Grunt.Core
         {
             return await this.ExecuteAPIRequest<Article>(
                 $"https://{WaypointEndpoints.WPContentEndpoint}.{WaypointEndpoints.ServiceDomain}/articles/{slug}",
-                HttpMethod.Post,
-                true,
+                HttpMethod.Get,
+                false,
+                false,
+                GlobalConstants.WEB_USER_AGENT);
+        }
+
+        /// <summary>
+        /// Gets a list of article categories that are available on <see href="https://www.halowaypoint.com/">Halo Waypoint</see>.
+        /// </summary>
+        /// <include file='../APIDocsExamples/Waypoint/GetArticleCategories.xml' path='//example'/>
+        /// <param name="language">Language in which the categories should be displayed. Example value is "en".</param>
+        /// <returns>If successful, returns a list of <see cref="ArticleCategory"/> containing publishing categories. Otherwise, returns a null object and the error details.</returns>
+        public async Task<HaloApiResultContainer<List<ArticleCategory>, HaloApiErrorContainer>> GetArticleCategories(string language = "")
+        {
+            return await this.ExecuteAPIRequest<List<ArticleCategory>>(
+                $"https://{WaypointEndpoints.WPContentEndpoint}.{WaypointEndpoints.ServiceDomain}/taxonomy/article_category?" + (!string.IsNullOrEmpty(language) ? $"lang={language}" : string.Empty),
+                HttpMethod.Get,
+                false,
+                false,
+                GlobalConstants.WEB_USER_AGENT);
+        }
+
+        /// <summary>
+        /// Gets the details on a single article category published on <see href="https://www.halowaypoint.com/">Halo Waypoint</see>.
+        /// </summary>
+        /// <remarks>
+        /// If you specify a category that does not exist, the response will be a HTTP 200 OK but with a `null` body.
+        /// </remarks>
+        /// <include file='../APIDocsExamples/Waypoint/GetArticleCategory.xml' path='//example'/>
+        /// <param name="id">ID of the category. Must be an integer.</param>
+        /// <param name="language">Language in which the category should be displayed. Example value is "en".</param>
+        /// <returns>If successful, returns an instance of <see cref="ArticleCategory"/> containing category information. Otherwise, returns a null object and the error details.</returns>
+        public async Task<HaloApiResultContainer<ArticleCategory, HaloApiErrorContainer>> GetArticleCategory(int id, string language = "")
+        {
+            return await this.ExecuteAPIRequest<ArticleCategory>(
+                $"https://{WaypointEndpoints.WPContentEndpoint}.{WaypointEndpoints.ServiceDomain}/taxonomy/article_category/{id}?" + (!string.IsNullOrEmpty(language) ? $"lang={language}" : string.Empty),
+                HttpMethod.Get,
+                false,
                 false,
                 GlobalConstants.WEB_USER_AGENT);
         }

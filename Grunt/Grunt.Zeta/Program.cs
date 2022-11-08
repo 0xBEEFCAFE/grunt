@@ -119,7 +119,7 @@ namespace OpenSpartan.Grunt.Zeta
 
             Task.Run(async () =>
             {
-                var stats = (await waypointClient.GetArticles());
+                var stats = (await waypointClient.GetArticleCategory(511));
                 Console.WriteLine("Got articles.");
             }).GetAwaiter().GetResult();
 
