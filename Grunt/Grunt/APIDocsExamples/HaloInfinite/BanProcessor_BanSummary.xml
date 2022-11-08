@@ -25,4 +25,8 @@
         }
     }
 	</code>
+	To use this function in your code:
+	<code>
+	var result = (await client.BanProcessorBanSummary(new List&lt;string&gt; { "xuid(YOUR_XUID)" }));
+	</code>
 </example>

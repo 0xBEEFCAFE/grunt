@@ -5,13 +5,15 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
+
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
     /// <summary>
     /// Game film configuration.
     /// </summary>
     [IsAutomaticallySerializable]
-    public class Film
+    public class Film : AssetBase
     {
         /// <summary>
         /// Gets or sets the film status.
@@ -27,10 +29,5 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// Gets or sets the blob storage prefix for the film files.
         /// </summary>
         public string? BlobStoragePathPrefix { get; set; }
-
-        /// <summary>
-        /// Gets or sets the asset ID for the film.
-        /// </summary>
-        public string? AssetId { get; set; }
     }
 }

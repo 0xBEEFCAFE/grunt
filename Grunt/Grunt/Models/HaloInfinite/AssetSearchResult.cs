@@ -5,6 +5,7 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 using OpenSpartan.Grunt.Models.HaloInfinite.Foundation;
 
@@ -95,5 +96,45 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// Gets or sets the number of ratings.
         /// </summary>
         public int NumberOfRatings { get; set; }
+
+        /// <summary>
+        /// Gets or sets the published asset version.
+        /// </summary>
+        public Guid? PublishedVersion { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the asset is banned.
+        /// </summary>
+        public bool? IsBanned { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of times the asset has been favorited.
+        /// </summary>
+        public int FavoritesCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the asset rating score.
+        /// </summary>
+        public float RatingScore { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of ratings the asset has received.
+        /// </summary>
+        public int RatingCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the asset state.
+        /// </summary>
+        public int AssetState { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date the asset was created on.
+        /// </summary>
+        public APIFormattedDate? AssetCreatedDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date the asset was modified on.
+        /// </summary>
+        public APIFormattedDate? AssetLastModified { get; set; }
     }
 }

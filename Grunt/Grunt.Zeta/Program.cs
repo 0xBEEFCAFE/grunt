@@ -3,15 +3,9 @@ using OpenSpartan.Grunt.Core;
 using OpenSpartan.Grunt.Models;
 using OpenSpartan.Grunt.Util;
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using System.Dynamic;
-using Microsoft.Maui.Graphics.Skia;
-using Microsoft.Maui.Graphics;
-using OpenSpartan.Grunt.Models.Waypoint;
+using OpenSpartan.Grunt.Models.HaloInfinite;
 
 namespace OpenSpartan.Grunt.Zeta
 {
@@ -21,7 +15,7 @@ namespace OpenSpartan.Grunt.Zeta
         {
             ClientConfiguration? clientConfig = new ClientConfiguration();
 
-            if (File.Exists("client.json"))
+            if (System.IO.File.Exists("client.json"))
             {
                 clientConfig = ConfigurationReader.ReadConfiguration<ClientConfiguration>("client.json");
             }
@@ -116,17 +110,29 @@ namespace OpenSpartan.Grunt.Zeta
                 {
                     Console.WriteLine("Could not obtain the clearance.");
                 }
-            }).GetAwaiter().GetResult();            
+            }).GetAwaiter().GetResult();
+
+            //Task.Run(async () =>
+            //{
+            //    ServiceAwardSnapshot snapshot = new ServiceAwardSnapshot();
+            //    snapshot.FeaturedAwards = new List<string>();
+            //    snapshot.FeaturedAwards.Add("hi-event-ritualEagleStrike");
+            //    snapshot.FeaturedAwards.Add("h5-csr-tier1");
+
+            //    var stats = (await waypointClient.PutFeaturedServiceAwards(snapshot));
+            //    Console.WriteLine("Got articles.");
+            //}).GetAwaiter().GetResult();
+
 
             Task.Run(async () =>
             {
-                ServiceAwardSnapshot snapshot = new ServiceAwardSnapshot();
-                snapshot.FeaturedAwards = new List<string>();
-                snapshot.FeaturedAwards.Add("hi-event-ritualEagleStrike");
-                snapshot.FeaturedAwards.Add("h5-csr-tier1");
+                Permission permission = new()
+                {
+                    AuthoringRole = 1
+                };
 
-                var stats = (await waypointClient.PutFeaturedServiceAwards(snapshot));
-                Console.WriteLine("Got articles.");
+                var result = (await client.HIUGCGrantOrRevokePermissions("hi", "ugcGameVariants", "3895f3d4-2493-4b84-ae18-876ad3ab344d", "xuid(2533274837773602)", permission));
+                Console.WriteLine("Got project result!");
             }).GetAwaiter().GetResult();
 
             Console.ReadLine();
