@@ -5,6 +5,8 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using static System.Net.WebRequestMethods;
+
 namespace OpenSpartan.Grunt.Endpoints
 {
     /// <summary>
@@ -26,6 +28,11 @@ namespace OpenSpartan.Grunt.Endpoints
         /// Origin responsible for APIs for profile information.
         /// </summary>
         internal static readonly string ProfileEndpoint = "profile";
+
+        /// <summary>
+        /// Origin responsible for content published on <see href="https://www.halowaypoint.com/">Halo Waypoint</see>.
+        /// </summary>
+        internal static readonly string WPContentEndpoint = "wpcontent";
 
         // ====================
         // Service domains

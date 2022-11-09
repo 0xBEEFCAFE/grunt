@@ -10,6 +10,7 @@ namespace OpenSpartan.Grunt.Models.Waypoint
     /// <summary>
     /// Data related to a user's Halo Waypoint profile.
     /// </summary>
+    [IsAutomaticallySerializable]
     public class UserProfile
     {
         /// <summary>

@@ -86,7 +86,7 @@ namespace OpenSpartan.Grunt.Core.Foundation
                 request.Content = new StringContent(content, Encoding.UTF8, contentTypeAttribute);
             }
 
-            if (request.Method == HttpMethod.Post)
+            if (request.Method == HttpMethod.Post || request.Method == HttpMethod.Put)
             {
                 request.Content ??= new StringContent(string.Empty);
                 request.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeAttribute is not null ? contentTypeAttribute : "application/json");

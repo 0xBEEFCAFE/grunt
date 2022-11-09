@@ -39,7 +39,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public DisplayString? Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the sprite index.
+        /// Gets or sets the sprite index. The sprite index is zero-based, starting with 0 on the sprite sheet. Sprite sheets are generally 16 by 16.
         /// </summary>
         public int SpriteIndex { get; set; }
 

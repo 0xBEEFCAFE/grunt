@@ -10,6 +10,7 @@ namespace OpenSpartan.Grunt.Models.Waypoint
     /// <summary>
     /// Settings associated with a user's notification preferences.
     /// </summary>
+    [IsAutomaticallySerializable]
     public class UserNotificationsSettings
     {
         /// <summary>

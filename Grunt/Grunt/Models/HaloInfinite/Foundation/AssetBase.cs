@@ -5,6 +5,7 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
@@ -17,12 +18,12 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
         /// <summary>
         /// Gets or sets the asset ID.
         /// </summary>
-        public string? AssetId { get; set; }
+        public Guid? AssetId { get; set; }
 
         /// <summary>
         /// Gets or sets the version ID.
         /// </summary>
-        public string? VersionId { get; set; }
+        public Guid? VersionId { get; set; }
 
         /// <summary>
         /// Gets or sets the version ID.
@@ -30,7 +31,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
         /// <remarks>
         /// In certain API calls, this property is used instead of <see cref="VersionId"/>. It's likely an inconsistency from the legacy code base.
         /// </remarks>
-        public string? AssetVersionId { get; set; }
+        public Guid? AssetVersionId { get; set; }
 
         /// <summary>
         /// Gets or sets the asset public name.

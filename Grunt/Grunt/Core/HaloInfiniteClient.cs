@@ -62,6 +62,31 @@ namespace OpenSpartan.Grunt.Core
         }
 
         // ================================================
+        // BanProcessor
+        // ================================================
+
+        /// <summary>
+        /// Gets the summary information for applicable bans to players and devices.
+        /// </summary>
+        /// <remarks>
+        /// In the query result the entity will include a link to self. The authority ID ("spartanstats") there is incorrect, as the ban summary needs to be obtained from the "banprocessor" authority.
+        /// </remarks>
+        /// <include file='../APIDocsExamples/HaloInfinite/BanProcessor_BanSummary.xml' path='//example'/>
+        /// <param name="targetlist">A list of targets that need to be checked. Authenticated devices can be included as "Authenticated(Device)". Individual players can be specified as "xuid(XUID_VALUE)".</param>
+        /// <returns>An instance of BanSummary containing applicable ban information if request was successful. Return value is null otherwise.</returns>
+        /// <remarks>In some quick tests, it seems that including Authenticated(Device) in the request results in 401 Unauthorized if called outside the game. Additional work might be required to understand how to validate the device.</remarks>
+        public async Task<HaloApiResultContainer<BansSummaryQueryResult, HaloApiErrorContainer>> BanProcessorBanSummary(List<string> targetlist)
+        {
+            var formattedTargetList = string.Join(",", targetlist);
+            return await this.ExecuteAPIRequest<BansSummaryQueryResult>(
+                $"https://{HaloCoreEndpoints.BanProcessorOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/bansummary?auth=st&targets={formattedTargetList}",
+                HttpMethod.Get,
+                true,
+                false,
+                GlobalConstants.HALO_PC_USER_AGENT);
+        }
+
+        // ================================================
         // Academy
         // ================================================
 
@@ -1163,6 +1188,44 @@ namespace OpenSpartan.Grunt.Core
         // ================================================
 
         /// <summary>
+        /// Grants or revokes permissions for a player in relation to an in-game asset.
+        /// </summary>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_GrantOrRevokePermissions.xml' path='//example'/>
+        /// <param name="title">Title associated with an asset. Example value is "hi" for Halo Infinite.</param>
+        /// <param name="assetType">Type of asset to modify permissions for. Example value is "ugcGameVariants".</param>
+        /// <param name="assetId">Unique asset ID. Example value is "3895f3d4-2493-4b84-ae18-876ad3ab344d" for a UGC game variant.</param>
+        /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
+        /// <param name="permission">A <see cref="Permission"/> object with the <see cref="Permission.AuthoringRole"/> set to the desired permission level. Ensure that no other properties other than <see cref="Permission.AuthoringRole"/> are set.</param>
+        /// <returns>If successful, returns an instance of <see cref="Permission"/> with permission details. Otherwise, returns a null result object with attached error details.</returns>
+        public async Task<HaloApiResultContainer<Permission, HaloApiErrorContainer>> HIUGCGrantOrRevokePermissions(string title, string assetType, string assetId, string player, Permission permission)
+        {
+            return await this.ExecuteAPIRequest<Permission>(
+                $"https://{HaloCoreEndpoints.AuthoringOrigin}.{HaloCoreEndpoints.ServiceDomain}/{title}/{assetType}/{assetId}/permissions/{player}",
+                HttpMethod.Patch,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT,
+                JsonSerializer.Serialize(permission));
+        }
+
+        /// <summary>
+        /// Favorites a film to a player's account based on a match ID.
+        /// </summary>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_FavoriteAFilmByMatchId.xml' path='//example'/>
+        /// <param name="player">The unique player XUID, in the format "xuid(XUID_VALUE)".</param>
+        /// <param name="matchId">Unique match ID.</param>
+        /// <returns>If successful, returns an instance of <see cref="AssetActionResult"/> representing the favorited film. Otherwise, returns a null result object with attached error details.</returns>
+        public async Task<HaloApiResultContainer<AssetActionResult, HaloApiErrorContainer>> HIUGCFavoriteAFilmByMatchId(string player, string matchId)
+        {
+            return await this.ExecuteAPIRequest<AssetActionResult>(
+                $"https://{HaloCoreEndpoints.AuthoringOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/players/{player}/favorites/films/matches/{matchId}",
+                HttpMethod.Put,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+        }
+
+        /// <summary>
         /// Checks whether the player has favorited a specific asset.
         /// </summary>
         /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_CheckAssetPlayerBookmark.xml' path='//example'/>
@@ -1520,6 +1583,9 @@ namespace OpenSpartan.Grunt.Core
         /// <summary>
         /// Publishes an asset version.
         /// </summary>
+        /// <remarks>
+        /// There is no content returned for the response other than a HTTP 200 OK if the operation is successful.
+        /// </remarks>
         /// <param name="assetType">Type of asset to check. Example value is "UgcGameVariants".</param>
         /// <param name="assetId">Unique ID for the asset. Example value is "f96f57e2-9f15-45c5-83ac-5775a48d2ba8" for "Attrition-Default-UGC".</param>
         /// <param name="versionId">Unique ID for the asset version to be published.</param>
@@ -1758,6 +1824,71 @@ namespace OpenSpartan.Grunt.Core
         // ================================================
         // HIUGCDiscovery
         // ================================================
+
+        /// <summary>
+        /// Gets the game manifest based on a build GUID.
+        /// </summary>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetManifestByBuildGuid.xml' path='//example'/>
+        /// <param name="buildGuid">Build GUID. Example value is "5df1784f-72a9-4207-a529-2f91eb37fc1f".</param>
+        /// <returns>If successful, returns an instance of <see cref="Manifest"/>. Otherwise, returns a null object along with error details.</returns>
+        public async Task<HaloApiResultContainer<Manifest, HaloApiErrorContainer>> HIUGCDiscoveryGetManifestByBuildGuid(string buildGuid)
+        {
+            return await this.ExecuteAPIRequest<Manifest>(
+                $"https://{HaloCoreEndpoints.DiscoveryOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/manifests/guids/{buildGuid}/game",
+                HttpMethod.Get,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+        }
+
+        /// <summary>
+        /// Gets the collection of Forge templates (canvases) such as Arid, Seafloor, Mires, Void, Argyle, and more. These are suggested maps from which to start when making a new map in Forge.
+        /// </summary>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetForgeTemplates.xml' path='//example'/>
+        /// <returns>If successful, returns an instance of <see cref="Project"/> containing the maps. Otherwise, returns a null object along with error details.</returns>
+        public async Task<HaloApiResultContainer<Project, HaloApiErrorContainer>> HIUGCDiscoveryGetForgeTemplates()
+        {
+            return await this.ExecuteAPIRequest<Project>(
+                $"https://{HaloCoreEndpoints.DiscoveryOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/projects/bf0e9bab-6fed-47a4-8bf7-bfd4422ee552",
+                HttpMethod.Get,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+        }
+
+        /// <summary>
+        /// Gets the details about a match film.
+        /// </summary>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_GetFilm.xml' path='//example'/>
+        /// <param name="assetId">Film asset ID. This is not the same as the match ID, but can be retrieved from match details.</param>
+        /// <returns>If successful, returns an instance of <see cref="Film"/> containing film metadata. Otherwise, returns a null object along with error details.</returns>
+        public async Task<HaloApiResultContainer<Film, HaloApiErrorContainer>> HIUGCDiscoveryGetFilm(string assetId)
+        {
+            return await this.ExecuteAPIRequest<Film>(
+                $"https://{HaloCoreEndpoints.DiscoveryOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/films/{assetId}",
+                HttpMethod.Get,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+        }
+
+        /// <summary>
+        /// Gets the list of assets recommended by 343 Industries.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint is used within the content browser in Halo Infinite.
+        /// </remarks>
+        /// <include file='../APIDocsExamples/HaloInfinite/HIUGC_Discovery_Get343Recommended.xml' path='//example'/>
+        /// <returns>If successful, returns an instance of <see cref="Project"/> containing the list of recommended assets. Otherwise, returns a null object along with error details.</returns>
+        public async Task<HaloApiResultContainer<Project, HaloApiErrorContainer>> HIUGCDiscoveryGet343Recommended()
+        {
+            return await this.ExecuteAPIRequest<Project>(
+                $"https://{HaloCoreEndpoints.DiscoveryOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/projects/712add52-f989-48e1-b3bb-ac7cd8a1c17a",
+                HttpMethod.Get,
+                true,
+                false,
+                GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+        }
 
         /// <summary>
         /// Returns metadata about a given engine game variant version.
@@ -2253,24 +2384,6 @@ namespace OpenSpartan.Grunt.Core
         // ================================================
 
         /// <summary>
-        /// Gets the summary information for applicable bans to players and devices.
-        /// </summary>
-        /// <include file='../APIDocsExamples/HaloInfinite/Stats_BanSummary.xml' path='//example'/>
-        /// <param name="targetlist">A list of targets that need to be checked. Authenticated devices can be included as "Authenticated(Device)". Individual players can be specified as "xuid(XUID_VALUE)".</param>
-        /// <returns>An instance of BanSummary containing applicable ban information if request was successful. Return value is null otherwise.</returns>
-        /// <remarks>In some quick tests, it seems that including Authenticated(Device) in the request results in 401 Unauthorized if called outside the game. Additional work might be required to understand how to validate the device.</remarks>
-        public async Task<HaloApiResultContainer<BansSummaryQueryResult, HaloApiErrorContainer>> StatsBanSummary(List<string> targetlist)
-        {
-            var formattedTargetList = string.Join(",", targetlist);
-            return await this.ExecuteAPIRequest<BansSummaryQueryResult>(
-                $"https://{HaloCoreEndpoints.BanProcessorOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/bansummary?auth=st&targets={formattedTargetList}",
-                HttpMethod.Get,
-                false,
-                false,
-                GlobalConstants.HALO_PC_USER_AGENT);
-        }
-
-        /// <summary>
         /// Gets challenge decks that are available for a player.
         /// </summary>
         /// <include file='../APIDocsExamples/HaloInfinite/Stats_GetChallengeDecks.xml' path='//example'/>
@@ -2378,10 +2491,12 @@ namespace OpenSpartan.Grunt.Core
         /// <param name="gamerTag">Player gamertag. Example value is "BreadKrtek".</param>
         /// <param name="seasonId">The ID of the season for which additional stats are pulled. Example value is "Seasons/Season7.json"</param>
         /// <returns>If successful, an instance of <see cref="PlayerServiceRecord"/> containing service record information. Otherwise, returns null with additional details about the error.</returns>
-        public async Task<HaloApiResultContainer<PlayerServiceRecord, HaloApiErrorContainer>?> StatsGetPlayerServiceRecord(string gamerTag, string seasonId)
+        public async Task<HaloApiResultContainer<PlayerServiceRecord, HaloApiErrorContainer>?> StatsGetPlayerServiceRecord(string gamerTag, string seasonId = "")
         {
+            var seasonMarker = !string.IsNullOrWhiteSpace(seasonId) ? $"?seasonId={seasonId}" : seasonId;
+
             return await this.ExecuteAPIRequest<PlayerServiceRecord>(
-                $"https://{HaloCoreEndpoints.StatsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/players/{gamerTag}/Matchmade/servicerecord?seasonId={seasonId}",
+                $"https://{HaloCoreEndpoints.StatsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/players/{gamerTag}/Matchmade/servicerecord{seasonMarker}",
                 HttpMethod.Get,
                 true,
                 false,

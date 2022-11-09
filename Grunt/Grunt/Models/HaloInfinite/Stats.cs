@@ -41,10 +41,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <summary>
         /// Gets or sets Infection game mode stats.
         /// </summary>
-        /// <remarks>
-        /// Additional research is needed to understand the data model here.
-        /// </remarks>
-        public dynamic? InfectionStats { get; set; }
+        public InfectionStats? InfectionStats { get; set; }
 
         /// <summary>
         /// Gets or sets Oddball game mode stats.
