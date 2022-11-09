@@ -489,4 +489,8 @@
         "Links": {}
     }
 	</code>
+	You can use this function in your code like this:
+	<code>
+	var searchResult = (await client.HIUGCDiscoverySearch(0, 12, true, "DatePublishedUtc", ResultOrder.Desc, new System.Collections.Generic.List&lt;AssetKind&gt;() { AssetKind.Prefab, AssetKind.Project }));
+	</code>
 </example>

@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -2185,13 +2186,26 @@ namespace OpenSpartan.Grunt.Core
         /// <param name="includeTimes">Include creation, modification, and deletion times in results.</param>
         /// <param name="sort">Property by which to sort the results. Example is "PlaysRecent".</param>
         /// <param name="order">Determines whether results are ordered in descending or ascending order.</param>
-        /// <param name="assetKind">Type of asset to be searched.</param>
+        /// <param name="assetKinds">List of asset kinds to be included in the search.</param>
         /// <param name="author">The unique author XUID, in the format "xuid(XUID_VALUE)".</param>
         /// <returns>If successful, returns an instance of SearchResultsContainer container assets. Otherwise, returns null.</returns>
-        public async Task<HaloApiResultContainer<SearchResultsContainer, HaloApiErrorContainer>> HIUGCDiscoverySearch(int start, int count, bool includeTimes, string sort, ResultOrder order, AssetKind assetKind, string author)
+        public async Task<HaloApiResultContainer<SearchResultsContainer, HaloApiErrorContainer>> HIUGCDiscoverySearch(int start = 0, int count = 12, bool includeTimes = true, string sort = "DatePublishedUtc", ResultOrder order = ResultOrder.Desc, List<AssetKind>? assetKinds = null, string? author = null)
         {
+            var baseSearchString = $"https://{HaloCoreEndpoints.DiscoveryOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/search?start={start}&count={count}&include-times={includeTimes}&sort={sort}&order={order}&";
+
+            if (!string.IsNullOrEmpty(author))
+            {
+                baseSearchString += $"&author={author}";
+            }
+
+            if (assetKinds != null && assetKinds.Any())
+            {
+                baseSearchString += "&assetKind=";
+                baseSearchString += string.Join("&assetKind=", assetKinds.ToArray());
+            }
+
             return await this.ExecuteAPIRequest<SearchResultsContainer>(
-                $"https://{HaloCoreEndpoints.DiscoveryOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/search?start={start}&count={count}&include-times={includeTimes}&sort={sort}&order={order}&assetKind={assetKind}&author={author}",
+                baseSearchString,
                 HttpMethod.Get,
                 true,
                 false,

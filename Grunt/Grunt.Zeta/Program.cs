@@ -126,13 +126,8 @@ namespace OpenSpartan.Grunt.Zeta
 
             Task.Run(async () =>
             {
-                Permission permission = new()
-                {
-                    AuthoringRole = 1
-                };
-
-                var result = (await client.HIUGCGrantOrRevokePermissions("hi", "ugcGameVariants", "3895f3d4-2493-4b84-ae18-876ad3ab344d", "xuid(2533274837773602)", permission));
-                Console.WriteLine("Got project result!");
+                var searchResult = (await client.HIUGCDiscoverySearch(0, 12,true, "DatePublishedUtc", ResultOrder.Desc, new System.Collections.Generic.List<AssetKind>() { AssetKind.Prefab, AssetKind.Project }));
+                Console.WriteLine();
             }).GetAwaiter().GetResult();
 
             Console.ReadLine();

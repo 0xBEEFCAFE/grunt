@@ -57,5 +57,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// Gets or sets Stockpile game mode stats.
         /// </summary>
         public StockpileStats? StockpileStats { get; set; }
+
+        public VIPStats? VipStats { get; set; }
     }
 }

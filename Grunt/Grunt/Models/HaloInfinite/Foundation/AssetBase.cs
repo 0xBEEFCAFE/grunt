@@ -81,7 +81,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite.Foundation
         /// <summary>
         /// Gets or sets the asset kind.
         /// </summary>
-        public int AssetKind { get; set; }
+        public AssetKind AssetKind { get; set; }
 
         /// <summary>
         /// Gets or sets the asset order.
