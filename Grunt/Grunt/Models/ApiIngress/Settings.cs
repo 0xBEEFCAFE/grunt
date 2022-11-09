@@ -7,11 +7,12 @@
 
 using System.Text.Json.Serialization;
 
-namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
+namespace OpenSpartan.Grunt.Models.ApiIngress
 {
     /// <summary>
     /// Container class for additional networking stack configuration.
     /// </summary>
+    [IsAutomaticallySerializable]
     public class Settings
     {
         /// <summary>
@@ -92,5 +93,20 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
         /// Gets or sets whether full heap is uploaded for external (release) builds.
         /// </summary>
         public string? UploadFullHeapInReleaseBuilds { get; set; }
+
+        /// <summary>
+        /// Gets or sets the destination for Gold trial upsell links.
+        /// </summary>
+        public string? GoldTrialDestinationUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Halo XSTS audience URI.
+        /// </summary>
+        public string? HaloXSTSAudienceUri { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product access list.
+        /// </summary>
+        public string? ProductAccessList { get; set; }
     }
 }

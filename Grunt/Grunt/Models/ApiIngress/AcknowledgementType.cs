@@ -5,11 +5,12 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
-namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
+namespace OpenSpartan.Grunt.Models.ApiIngress
 {
     /// <summary>
     /// Type of acknowledgement for an API request.
     /// </summary>
+    [IsAutomaticallySerializable]
     public enum AcknowledgementType
     {
         /// <summary>

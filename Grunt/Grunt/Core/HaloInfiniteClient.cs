@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using OpenSpartan.Grunt.Core.Foundation;
 using OpenSpartan.Grunt.Endpoints;
 using OpenSpartan.Grunt.Models;
+using OpenSpartan.Grunt.Models.ApiIngress;
 using OpenSpartan.Grunt.Models.HaloInfinite;
 using OpenSpartan.Grunt.Util;
 
@@ -51,10 +52,10 @@ namespace OpenSpartan.Grunt.Core
         /// Method supports returning results in XML behind the scenes. Class names map to XML data model.
         /// </remarks>
         /// <include file='../APIDocsExamples/HaloInfinite/GetApiSettingsContainer.xml' path='//example'/>
-        /// <returns>An instance of ApiSettingsContainer if the call is successful. Otherwise, returns null.</returns>
-        public async Task<HaloApiResultContainer<Models.HaloInfinite.ApiIngress.Configuration, HaloApiErrorContainer>> GetApiSettingsContainer()
+        /// <returns>An instance of <see cref="Configuration"/> if the call is successful. Otherwise, returns null.</returns>
+        public async Task<HaloApiResultContainer<Configuration, HaloApiErrorContainer>> GetApiSettingsContainer()
         {
-            return await this.ExecuteAPIRequest<Models.HaloInfinite.ApiIngress.Configuration>(
+            return await this.ExecuteAPIRequest<Configuration>(
                 HaloCoreEndpoints.HaloInfiniteEndpointsEndpoint,
                 HttpMethod.Get,
                 false,

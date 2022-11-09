@@ -26,8 +26,9 @@ namespace OpenSpartan.Grunt.Authentication
         /// Gets the Spartan V4 token.
         /// </summary>
         /// <param name="xstsToken">XSTS token from the Xbox Live authentication flow.</param>
+        /// <param name="version">Version for the Spartan token to be obtained. Halo Infinite uses 4, while Halo 5 uses 3.</param>
         /// <returns>If successful, returns an instance of <see cref="SpartanToken"/> representing the authentication token. Otherwise, returns null.</returns>
-        public async Task<SpartanToken?> GetSpartanToken(string xstsToken)
+        public async Task<SpartanToken?> GetSpartanToken(string xstsToken, int version = 4)
         {
             SpartanTokenRequest tokenRequest = new();
             tokenRequest.Audience = "urn:343:s3:services";
@@ -46,7 +47,7 @@ namespace OpenSpartan.Grunt.Authentication
 
             var request = new HttpRequestMessage()
             {
-                RequestUri = new Uri(HaloCoreEndpoints.SpartanTokenEndpoint),
+                RequestUri = new Uri(HaloCoreEndpoints.SpartanTokenEndpoint + $"?v={version}"),
                 Method = HttpMethod.Post,
                 Content = new StringContent(data, Encoding.UTF8, "application/json"),
             };

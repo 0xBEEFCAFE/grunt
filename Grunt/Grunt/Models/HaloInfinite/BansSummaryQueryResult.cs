@@ -6,7 +6,7 @@
 // </copyright>
 
 using System.Collections.Generic;
-using OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress;
+using OpenSpartan.Grunt.Models.ApiIngress;
 
 namespace OpenSpartan.Grunt.Models.HaloInfinite
 {
