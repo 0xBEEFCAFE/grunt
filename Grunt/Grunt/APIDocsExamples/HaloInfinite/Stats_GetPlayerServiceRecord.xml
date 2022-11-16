@@ -600,4 +600,13 @@
         }
     }
 	</code>
+	To use this function in your code:
+	<code>
+	HaloInfiniteClient client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
+    Task.Run(async () =>
+    {
+        var serviceRecord = (await client.StatsGetPlayerServiceRecord("zebond", LifecycleMode.Custom)).Result;
+        Console.WriteLine("Got service record.");
+    }).GetAwaiter().GetResult();
+	</code>
 </example>
