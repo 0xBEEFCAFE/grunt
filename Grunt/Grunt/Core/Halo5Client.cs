@@ -71,7 +71,7 @@ namespace OpenSpartan.Grunt.Core
         public async Task<HaloApiResultContainer<SeasonPassGameContent, HaloApiErrorContainer>> ContentHacsGetActiveSeasonPass()
         {
             return await this.ExecuteAPIRequest<SeasonPassGameContent>(
-                $"https://content-hacs.svc.halowaypoint.com:443/content/guid-3bb4a66ff4514d5b8466a3f82918720a",
+                $"https://{HaloCoreEndpoints.ContentHacsOrigin}.{HaloCoreEndpoints.ServiceDomain}/content/guid-3bb4a66ff4514d5b8466a3f82918720a",
                 HttpMethod.Get,
                 true,
                 false,
@@ -86,7 +86,7 @@ namespace OpenSpartan.Grunt.Core
         public async Task<HaloApiResultContainer<SpartanRankManifest, HaloApiErrorContainer>> ContentHacsGetActiveSpartanRankManifest()
         {
             return await this.ExecuteAPIRequest<SpartanRankManifest>(
-                $"https://content-hacs.svc.halowaypoint.com:443/content/guid-9d9fdd5cbd5e4540a24fa2caa59ebd8c",
+                $"https://{HaloCoreEndpoints.ContentHacsOrigin}.{HaloCoreEndpoints.ServiceDomain}/content/guid-9d9fdd5cbd5e4540a24fa2caa59ebd8c",
                 HttpMethod.Get,
                 true,
                 false,

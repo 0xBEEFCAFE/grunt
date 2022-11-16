@@ -71,6 +71,11 @@ namespace OpenSpartan.Grunt.Endpoints
         /// </summary>
         internal static readonly string TextOrigin = "text";
 
+        /// <summary>
+        /// Content HACS origin.
+        /// </summary>
+        internal static readonly string ContentHacsOrigin = "content-hacs";
+
         // ====================
         // Service domains
         // ====================
