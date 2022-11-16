@@ -1,24 +1,22 @@
-﻿// <copyright file="Media.cs" company="Den Delimarsky">
+﻿// <copyright file="ContentMedia.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
-using OpenSpartan.Grunt.Models.ApiIngress;
-
-namespace OpenSpartan.Grunt.Models.HaloInfinite
+namespace OpenSpartan.Grunt.Models.Halo5
 {
     /// <summary>
-    /// Reference information for in-game media.
+    /// Container class for media embedded with Halo 5 content.
     /// </summary>
     [IsAutomaticallySerializable]
-    public class Media
+    public class ContentMedia
     {
         /// <summary>
-        /// Gets or sets the fully-qualified URL to the media content.
+        /// Gets or sets the URL to the media file.
         /// </summary>
-        public OnlineUriReference? MediaUrl { get; set; }
+        public string? MediaUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the media MIME type.
@@ -26,14 +24,14 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         public string? MimeType { get; set; }
 
         /// <summary>
-        /// Gets or sets the media caption. Includes translated strings.
+        /// Gets or sets the media caption.
         /// </summary>
-        public DisplayString? Caption { get; set; }
+        public string? Caption { get; set; }
 
         /// <summary>
-        /// Gets or sets the media alternate text. Includes translated strings.
+        /// Gets or sets the media alternative text.
         /// </summary>
-        public DisplayString? AlternateText { get; set; }
+        public string? AlternateText { get; set; }
 
         /// <summary>
         /// Gets or sets the media folder path.

@@ -1,30 +1,31 @@
-﻿// <copyright file="RetryPolicy.cs" company="Den Delimarsky">
+﻿// <copyright file="Link.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
-namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
+namespace OpenSpartan.Grunt.Models.Halo5
 {
     /// <summary>
-    /// Configuration for the API retry policy.
+    /// Link embedded with game assets.
     /// </summary>
-    public class RetryPolicy
+    [IsAutomaticallySerializable]
+    public class Link
     {
         /// <summary>
-        /// Gets or sets the retry policy ID.
+        /// Gets or sets whether the links is an absolute one.
         /// </summary>
-        public string? RetryPolicyId { get; set; }
+        public bool? Absolute { get; set; }
 
         /// <summary>
-        /// Gets or sets the timeout in milliseconds.
+        /// Gets or sets the link relation.
         /// </summary>
-        public int? TimeoutMs { get; set; }
+        public string? Relation { get; set; }
 
         /// <summary>
-        /// Gets or sets additional retry options.
+        /// Gets or sets the link URI.
         /// </summary>
-        public RetryOptions? RetryOptions { get; set; }
+        public string? URI { get; set; }
     }
 }

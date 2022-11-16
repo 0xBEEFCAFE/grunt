@@ -7,11 +7,12 @@
 
 using System.Collections.Generic;
 
-namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
+namespace OpenSpartan.Grunt.Models.ApiIngress
 {
     /// <summary>
     /// Container class for API authority information.
     /// </summary>
+    [IsAutomaticallySerializable]
     public class Authority
     {
         /// <summary>

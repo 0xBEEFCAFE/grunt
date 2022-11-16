@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using OpenSpartan.Grunt.Core.Foundation;
 using OpenSpartan.Grunt.Endpoints;
 using OpenSpartan.Grunt.Models;
+using OpenSpartan.Grunt.Models.ApiIngress;
 using OpenSpartan.Grunt.Models.HaloInfinite;
 using OpenSpartan.Grunt.Util;
 
@@ -51,10 +52,10 @@ namespace OpenSpartan.Grunt.Core
         /// Method supports returning results in XML behind the scenes. Class names map to XML data model.
         /// </remarks>
         /// <include file='../APIDocsExamples/HaloInfinite/GetApiSettingsContainer.xml' path='//example'/>
-        /// <returns>An instance of ApiSettingsContainer if the call is successful. Otherwise, returns null.</returns>
-        public async Task<HaloApiResultContainer<Models.HaloInfinite.ApiIngress.Configuration, HaloApiErrorContainer>> GetApiSettingsContainer()
+        /// <returns>An instance of <see cref="Configuration"/> if the call is successful. Otherwise, returns null.</returns>
+        public async Task<HaloApiResultContainer<Configuration, HaloApiErrorContainer>> GetApiSettingsContainer()
         {
-            return await this.ExecuteAPIRequest<Models.HaloInfinite.ApiIngress.Configuration>(
+            return await this.ExecuteAPIRequest<Configuration>(
                 HaloCoreEndpoints.HaloInfiniteEndpointsEndpoint,
                 HttpMethod.Get,
                 false,
@@ -2503,14 +2504,15 @@ namespace OpenSpartan.Grunt.Core
         /// <remarks>By tweaking season IDs, you can obtain season-specific information such as number of matches played, wins, losses, and others.</remarks>
         /// <include file='../APIDocsExamples/HaloInfinite/Stats_GetPlayerServiceRecord.xml' path='//example'/>
         /// <param name="gamerTag">Player gamertag. Example value is "BreadKrtek".</param>
+        /// <param name="mode">Type of games for which to get the service record.</param>
         /// <param name="seasonId">The ID of the season for which additional stats are pulled. Example value is "Seasons/Season7.json"</param>
         /// <returns>If successful, an instance of <see cref="PlayerServiceRecord"/> containing service record information. Otherwise, returns null with additional details about the error.</returns>
-        public async Task<HaloApiResultContainer<PlayerServiceRecord, HaloApiErrorContainer>?> StatsGetPlayerServiceRecord(string gamerTag, string seasonId = "")
+        public async Task<HaloApiResultContainer<PlayerServiceRecord, HaloApiErrorContainer>?> StatsGetPlayerServiceRecord(string gamerTag, LifecycleMode mode, string seasonId = "")
         {
             var seasonMarker = !string.IsNullOrWhiteSpace(seasonId) ? $"?seasonId={seasonId}" : seasonId;
 
             return await this.ExecuteAPIRequest<PlayerServiceRecord>(
-                $"https://{HaloCoreEndpoints.StatsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/players/{gamerTag}/Matchmade/servicerecord{seasonMarker}",
+                $"https://{HaloCoreEndpoints.StatsOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/players/{gamerTag}/{mode}/servicerecord{seasonMarker}",
                 HttpMethod.Get,
                 true,
                 false,

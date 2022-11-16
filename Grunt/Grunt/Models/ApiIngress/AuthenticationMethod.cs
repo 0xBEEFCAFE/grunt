@@ -5,11 +5,12 @@
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
-namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
+namespace OpenSpartan.Grunt.Models.ApiIngress
 {
     /// <summary>
     /// Enum with the types of supported API authentication methods for Halo Infinite endpoints.
     /// </summary>
+    [IsAutomaticallySerializable]
     public enum AuthenticationMethod
     {
         /// <summary>

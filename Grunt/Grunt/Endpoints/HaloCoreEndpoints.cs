@@ -71,6 +71,11 @@ namespace OpenSpartan.Grunt.Endpoints
         /// </summary>
         internal static readonly string TextOrigin = "text";
 
+        /// <summary>
+        /// Content HACS origin.
+        /// </summary>
+        internal static readonly string ContentHacsOrigin = "content-hacs";
+
         // ====================
         // Service domains
         // ====================
@@ -93,5 +98,10 @@ namespace OpenSpartan.Grunt.Endpoints
         /// Endpoint used to obtain the Halo Infinite endpoints.
         /// </summary>
         internal static readonly string HaloInfiniteEndpointsEndpoint = "https://settings.svc.halowaypoint.com/settings/hipc/e2a0a7c6-6efe-42af-9283-c2ab73250c48";
+
+        /// <summary>
+        /// Endpoint used to obtain the Halo 5 endpoints.
+        /// </summary>
+        internal static readonly string Halo5EndpointsEndpoint = "https://settings.svc.halowaypoint.com/settings/h5pc/a1b344c4-91a3-47f7-92f4-95784cda3cd2";
     }
 }

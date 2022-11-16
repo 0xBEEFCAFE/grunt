@@ -7,11 +7,12 @@
 
 using System.Collections.Generic;
 
-namespace OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress
+namespace OpenSpartan.Grunt.Models.ApiIngress
 {
     /// <summary>
     /// Configuration related to existing game endpoints. This class is used by <see cref="Core.HaloInfiniteClient"></see> to get the general list of available API endpoints.
     /// </summary>
+    [IsAutomaticallySerializable]
     public class Configuration
     {
         /// <summary>

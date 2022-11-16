@@ -1,25 +1,23 @@
-﻿// <copyright file="LifecyleMode.cs" company="Den Delimarsky">
+﻿// <copyright file="RewardSet.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 // The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
 // </copyright>
 
-namespace OpenSpartan.Grunt.Models.HaloInfinite
+using OpenSpartan.Grunt.Models.Halo5.Foundation;
+
+namespace OpenSpartan.Grunt.Models.Halo5
 {
     /// <summary>
-    /// Halo Infinite game lifecycle mode.
+    /// Container for a reward set.
     /// </summary>
-    public enum LifecyleMode
+    [IsAutomaticallySerializable]
+    public class RewardSet : AssetBase
     {
         /// <summary>
-        /// Matchmade game.
+        /// Gets or sets the REQ Pack reward set view.
         /// </summary>
-        Matchmade = 3,
-
-        /// <summary>
-        /// Custom game.
-        /// </summary>
-        Custom = 1,
+        public REQPackRewardSetView? View { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using OpenSpartan.Grunt.Core;
 using OpenSpartan.Grunt.Librarian.Models;
-using OpenSpartan.Grunt.Models.HaloInfinite.ApiIngress;
+using OpenSpartan.Grunt.Models.ApiIngress;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace OpenSpartan.Grunt.Librarian
             Console.WriteLine("Grunt Librarian - Halo Infinite API Indexer");
             Console.WriteLine("Developed by Den Delimarsky in 2022. Part of https://gruntapi.com");
 
-            HaloInfiniteClient client = new(string.Empty, string.Empty);
+            Halo5Client client = new(string.Empty, string.Empty);
 
             Configuration? container = new();
 

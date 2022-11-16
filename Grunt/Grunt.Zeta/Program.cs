@@ -82,18 +82,18 @@ namespace OpenSpartan.Grunt.Zeta
 
             Task.Run(async () =>
             {
-                haloToken = await haloAuthClient.GetSpartanToken(haloTicket.Token);
+                haloToken = await haloAuthClient.GetSpartanToken(haloTicket.Token, 4);
                 Console.WriteLine("Your Halo token:");
                 Console.WriteLine(haloToken.Token);
             }).GetAwaiter().GetResult();
-            
-            // Let's create an instance to experiment with the Halo Infinite client.
+
+            //Let's create an instance to experiment with the Halo Infinite client.
             HaloInfiniteClient client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
 
-            // Let's also create an instance to experiment with the Halo Waypoint APIs.
-            WaypointClient waypointClient = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
+            //// Let's also create an instance to experiment with the Halo Waypoint APIs.
+            //WaypointClient waypointClient = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
 
-            Console.WriteLine($"Your XUID is {extendedTicket.DisplayClaims.Xui[0].XUID}");
+            //Console.WriteLine($"Your XUID is {extendedTicket.DisplayClaims.Xui[0].XUID}");
 
             // Test getting the clearance for local execution.
             string localClearance = string.Empty;
@@ -112,6 +112,12 @@ namespace OpenSpartan.Grunt.Zeta
                 }
             }).GetAwaiter().GetResult();
 
+            Task.Run(async () =>
+            {
+                var serviceRecord = (await client.StatsGetPlayerServiceRecord("zebond", LifecycleMode.Custom)).Result;
+                Console.WriteLine("Got service record.");
+            }).GetAwaiter().GetResult();
+
             //Task.Run(async () =>
             //{
             //    ServiceAwardSnapshot snapshot = new ServiceAwardSnapshot();
@@ -123,12 +129,12 @@ namespace OpenSpartan.Grunt.Zeta
             //    Console.WriteLine("Got articles.");
             //}).GetAwaiter().GetResult();
 
-
-            Task.Run(async () =>
-            {
-                var searchResult = (await client.HIUGCDiscoverySearch(0, 12,true, "DatePublishedUtc", ResultOrder.Desc, new System.Collections.Generic.List<AssetKind>() { AssetKind.Prefab, AssetKind.Project }));
-                Console.WriteLine();
-            }).GetAwaiter().GetResult();
+            //Halo5Client h5client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
+            //Task.Run(async () =>
+            //{
+            //    var seasonPass = (await h5client.ContentHacsGetActiveSeasonPass()).Result;
+            //    Console.WriteLine("Got season pass manifest.");
+            //}).GetAwaiter().GetResult();
 
             Console.ReadLine();
         }
