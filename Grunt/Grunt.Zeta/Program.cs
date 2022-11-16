@@ -82,13 +82,13 @@ namespace OpenSpartan.Grunt.Zeta
 
             Task.Run(async () =>
             {
-                haloToken = await haloAuthClient.GetSpartanToken(haloTicket.Token, 3);
+                haloToken = await haloAuthClient.GetSpartanToken(haloTicket.Token, 4);
                 Console.WriteLine("Your Halo token:");
                 Console.WriteLine(haloToken.Token);
             }).GetAwaiter().GetResult();
 
-            // Let's create an instance to experiment with the Halo Infinite client.
-            //HaloInfiniteClient client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
+            //Let's create an instance to experiment with the Halo Infinite client.
+            HaloInfiniteClient client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
 
             //// Let's also create an instance to experiment with the Halo Waypoint APIs.
             //WaypointClient waypointClient = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
@@ -96,21 +96,27 @@ namespace OpenSpartan.Grunt.Zeta
             //Console.WriteLine($"Your XUID is {extendedTicket.DisplayClaims.Xui[0].XUID}");
 
             // Test getting the clearance for local execution.
-            //string localClearance = string.Empty;
-            //Task.Run(async () =>
-            //{
-            //    var clearance = (await client.SettingsGetClearance("RETAIL", "UNUSED", "222249.22.06.08.1730-0")).Result;
-            //    if (clearance != null)
-            //    {
-            //        localClearance = clearance.FlightConfigurationId;
-            //        client.ClearanceToken = localClearance;
-            //        Console.WriteLine($"Your clearance is {localClearance} and it's set in the client.");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Could not obtain the clearance.");
-            //    }
-            //}).GetAwaiter().GetResult();
+            string localClearance = string.Empty;
+            Task.Run(async () =>
+            {
+                var clearance = (await client.SettingsGetClearance("RETAIL", "UNUSED", "222249.22.06.08.1730-0")).Result;
+                if (clearance != null)
+                {
+                    localClearance = clearance.FlightConfigurationId;
+                    client.ClearanceToken = localClearance;
+                    Console.WriteLine($"Your clearance is {localClearance} and it's set in the client.");
+                }
+                else
+                {
+                    Console.WriteLine("Could not obtain the clearance.");
+                }
+            }).GetAwaiter().GetResult();
+
+            Task.Run(async () =>
+            {
+                var serviceRecord = (await client.StatsGetPlayerServiceRecord("zebond", LifecycleMode.Custom)).Result;
+                Console.WriteLine("Got service record.");
+            }).GetAwaiter().GetResult();
 
             //Task.Run(async () =>
             //{
@@ -123,12 +129,12 @@ namespace OpenSpartan.Grunt.Zeta
             //    Console.WriteLine("Got articles.");
             //}).GetAwaiter().GetResult();
 
-            Halo5Client h5client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
-            Task.Run(async () =>
-            {
-                var seasonPass = (await h5client.ContentHacsGetActiveSeasonPass()).Result;
-                Console.WriteLine("Got season pass manifest.");
-            }).GetAwaiter().GetResult();
+            //Halo5Client h5client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
+            //Task.Run(async () =>
+            //{
+            //    var seasonPass = (await h5client.ContentHacsGetActiveSeasonPass()).Result;
+            //    Console.WriteLine("Got season pass manifest.");
+            //}).GetAwaiter().GetResult();
 
             Console.ReadLine();
         }

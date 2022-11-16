@@ -10,7 +10,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
     /// <summary>
     /// Halo Infinite game lifecycle mode.
     /// </summary>
-    public enum LifecyleMode
+    public enum LifecycleMode
     {
         /// <summary>
         /// Matchmade game.

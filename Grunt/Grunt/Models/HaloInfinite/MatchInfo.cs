@@ -33,7 +33,7 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// <summary>
         /// Gets or sets the match lifecycle mode.
         /// </summary>
-        public LifecyleMode LifecycleMode { get; set; }
+        public LifecycleMode LifecycleMode { get; set; }
 
         /// <summary>
         /// Gets or sets the match game variant category.
