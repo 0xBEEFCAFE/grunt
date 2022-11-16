@@ -58,6 +58,9 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// </summary>
         public StockpileStats? StockpileStats { get; set; }
 
+        /// <summary>
+        /// Gets or sets VIP game mode stats.
+        /// </summary>
         public VIPStats? VipStats { get; set; }
     }
 }

@@ -9,8 +9,15 @@ using OpenSpartan.Grunt.Models.Halo5.Foundation;
 
 namespace OpenSpartan.Grunt.Models.Halo5
 {
+    /// <summary>
+    /// Definition of a Spartan rank manifest.
+    /// </summary>
+    [IsAutomaticallySerializable]
     public class SpartanRankManifest : AssetBase
     {
-        public SpartankRankContainerView View { get; set; }
+        /// <summary>
+        /// Gets or sets the view for the Spartan rank container.
+        /// </summary>
+        public SpartankRankContainerView? View { get; set; }
     }
 }

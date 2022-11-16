@@ -9,6 +9,10 @@ using OpenSpartan.Grunt.Models.Halo5.Foundation;
 
 namespace OpenSpartan.Grunt.Models.Halo5
 {
+    /// <summary>
+    /// Placeholder class for generic assets that implement <see cref="AssetBase"/>.
+    /// </summary>
+    [IsAutomaticallySerializable]
     public class GenericAsset : AssetBase
     {
     }

@@ -1,19 +1,36 @@
-﻿using OpenSpartan.Grunt.Models.Halo5.Foundation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="SeasonPassManifest.cs" company="Den Delimarsky">
+// Developed by Den Delimarsky.
+// Den Delimarsky licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+// The underlying API powering Grunt is managed by 343 Industries and Microsoft. This wrapper is not endorsed by 343 Industries or Microsoft.
+// </copyright>
 
 namespace OpenSpartan.Grunt.Models.Halo5
 {
-
+    /// <summary>
+    /// Manifest associated with a Halo 5 season pass.
+    /// </summary>
+    [IsAutomaticallySerializable]
     public class SeasonPassManifest
     {
-        public Image Image { get; set; }
-        public GenericAsset Entitlement { get; set; }
-        public string XboxLiveMarketplaceID { get; set; }
-        public GenericAsset GrantProgram { get; set; }
-    }
+        /// <summary>
+        /// Gets or sets the season pass image.
+        /// </summary>
+        public Image? Image { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the season pass entitlement.
+        /// </summary>
+        public GenericAsset? Entitlement { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Xbox Live Marketplace ID for the season pass.
+        /// </summary>
+        public string? XboxLiveMarketplaceID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the asset grant program.
+        /// </summary>
+        public GenericAsset? GrantProgram { get; set; }
+    }
 }
