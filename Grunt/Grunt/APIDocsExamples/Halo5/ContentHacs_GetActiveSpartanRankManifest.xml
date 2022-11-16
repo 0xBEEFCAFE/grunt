@@ -7168,4 +7168,13 @@
         "ChildrenCount": 0
     }
 	</code>
+	To use this function in your code:
+	<code>
+	Halo5Client h5client = new Halo5Client(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
+    Task.Run(async () =>
+    {
+        var rank = (await h5client.ContentHacsGetActiveSpartanRankManifest()).Result;
+        Console.WriteLine("Got rank manifest.");
+    }).GetAwaiter().GetResult();
+	</code>
 </example>

@@ -67,4 +67,13 @@
         "ChildrenCount": 0
     }
 	</code>
+	To use this function in your code:
+	<code>
+    Halo5Client h5client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
+    Task.Run(async () =>
+    {
+        var seasonPass = (await h5client.ContentHacsGetActiveSeasonPass()).Result;
+        Console.WriteLine("Got season pass manifest.");
+    }).GetAwaiter().GetResult();
+	</code>
 </example>

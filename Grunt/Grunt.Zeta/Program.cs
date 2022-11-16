@@ -123,11 +123,11 @@ namespace OpenSpartan.Grunt.Zeta
             //    Console.WriteLine("Got articles.");
             //}).GetAwaiter().GetResult();
 
-            Halo5Client h5client = new Halo5Client(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
+            Halo5Client h5client = new(haloToken.Token, extendedTicket.DisplayClaims.Xui[0].XUID);
             Task.Run(async () =>
             {
-                var stats = (await h5client.ContentHacsGetActiveSpartanRankManifest()).Result;
-                Console.WriteLine("Got rank manifest.");
+                var seasonPass = (await h5client.ContentHacsGetActiveSeasonPass()).Result;
+                Console.WriteLine("Got season pass manifest.");
             }).GetAwaiter().GetResult();
 
             Console.ReadLine();
