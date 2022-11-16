@@ -1,4 +1,4 @@
-﻿// <copyright file="LifecyleMode.cs" company="Den Delimarsky">
+﻿// <copyright file="LifecycleMode.cs" company="Den Delimarsky">
 // Developed by Den Delimarsky.
 // Den Delimarsky licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -16,6 +16,11 @@ namespace OpenSpartan.Grunt.Models.HaloInfinite
         /// Matchmade game.
         /// </summary>
         Matchmade = 3,
+
+        /// <summary>
+        /// Local game.
+        /// </summary>
+        Local = 2,
 
         /// <summary>
         /// Custom game.
