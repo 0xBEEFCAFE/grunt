@@ -17,7 +17,7 @@ using OpenSpartan.Grunt.Util;
 namespace OpenSpartan.Grunt.Core
 {
     /// <summary>
-    /// Client used to access the Halo Infinite API surface.
+    /// Client used to access the Halo 5 API surface.
     /// </summary>
     public class Halo5Client : ClientBase
     {
