@@ -6,6 +6,7 @@
 // </copyright>
 
 using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -30,34 +31,45 @@ namespace OpenSpartan.Grunt.Authentication
         /// <returns>If successful, returns an instance of <see cref="SpartanToken"/> representing the authentication token. Otherwise, returns null.</returns>
         public async Task<SpartanToken?> GetSpartanToken(string xstsToken, int version = 4)
         {
-            SpartanTokenRequest tokenRequest = new();
-            tokenRequest.Audience = "urn:343:s3:services";
-            tokenRequest.MinVersion = "4";
-            tokenRequest.Proof = new SpartanTokenProof[]
-            {
-                new SpartanTokenProof()
-                {
-                    Token = xstsToken,
-                    TokenType = "Xbox_XSTSv3",
-                },
-            };
-
             var client = new HttpClient();
-            var data = JsonSerializer.Serialize(tokenRequest);
+            string? data = string.Empty;
+
+            if (version == 4)
+            {
+                SpartanTokenRequest tokenRequest = new();
+                tokenRequest.Audience = "urn:343:s3:services";
+                tokenRequest.MinVersion = version.ToString();
+                tokenRequest.Proof = new SpartanTokenProof[]
+                {
+                    new SpartanTokenProof()
+                    {
+                        Token = xstsToken,
+                        TokenType = "Xbox_XSTSv3",
+                    },
+                };
+
+                data = JsonSerializer.Serialize(tokenRequest);
+            }
 
             var request = new HttpRequestMessage()
             {
                 RequestUri = new Uri(HaloCoreEndpoints.SpartanTokenEndpoint + $"?v={version}"),
-                Method = HttpMethod.Post,
-                Content = new StringContent(data, Encoding.UTF8, "application/json"),
+                Method = version == 4 ? HttpMethod.Post : HttpMethod.Get,
+                Content = version == 4 ? new StringContent(data, Encoding.UTF8, "application/json") : null,
             };
 
             request.Headers.Add("User-Agent", GlobalConstants.HALO_WAYPOINT_USER_AGENT);
+            request.Headers.Add("Accept", "application/json");
+
+            if (version == 3)
+            {
+                request.Headers.Add("X-343-Authorization-XBL3", $"XBL3.0 x=*;{xstsToken}");
+            }
 
             var response = await client.SendAsync(request);
 
             return response.IsSuccessStatusCode
-                ? JsonSerializer.Deserialize<SpartanToken>(response.Content.ReadAsStringAsync().Result)
+                ? JsonSerializer.Deserialize<SpartanToken>(await response.Content.ReadAsStringAsync())
                 : null;
         }
     }
