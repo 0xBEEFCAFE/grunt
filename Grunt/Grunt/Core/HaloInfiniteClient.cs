@@ -2382,12 +2382,13 @@ namespace OpenSpartan.Grunt.Core
         /// <include file='../APIDocsExamples/HaloInfinite/Skill_GetPlaylistCsr.xml' path='//example'/>
         /// <param name="playlistId">Unique ID for the playlist.</param>
         /// <param name="playerIds">Array of player IDs. Each ID string should be in the format of "xuid(XUID_VALUE)".</param>
+        /// <param name="seasonId">Season identifier. Example value is "CsrSeason2-3".</param>
         /// <returns>If successful, an instance of <see cref="PlaylistCsrResultContainer"/> representing player CSRs. Otherwise, returns null.</returns>
-        public async Task<HaloApiResultContainer<PlaylistCsrResultContainer, HaloApiErrorContainer>> SkillGetPlaylistCsr(string playlistId, List<string> playerIds)
+        public async Task<HaloApiResultContainer<PlaylistCsrResultContainer, HaloApiErrorContainer>> SkillGetPlaylistCsr(string playlistId, List<string> playerIds, string seasonId = "")
         {
             var formattedPlayerList = string.Join(",", playerIds);
             return await this.ExecuteAPIRequest<PlaylistCsrResultContainer>(
-                $"https://{HaloCoreEndpoints.SkillOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/playlist/{playlistId}/csrs?players={formattedPlayerList}",
+                $"https://{HaloCoreEndpoints.SkillOrigin}.{HaloCoreEndpoints.ServiceDomain}/hi/playlist/{playlistId}/csrs?players={formattedPlayerList}&season={seasonId}",
                 HttpMethod.Get,
                 true,
                 true,
